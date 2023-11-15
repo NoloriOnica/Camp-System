@@ -1,5 +1,8 @@
 package Feedback;
-public class Suggestion {
+
+import java.io.*;
+
+public class Suggestion implements Serializable{
     private String suggetionString;
     private boolean isApproved;
     private String sendertName;

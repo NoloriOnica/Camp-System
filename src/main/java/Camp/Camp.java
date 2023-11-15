@@ -3,6 +3,7 @@ package Camp;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.*;
 
 import Feedback.Suggestion;
 import Feedback.Enquiries;
@@ -10,7 +11,7 @@ import Feedback.Enquiries;
 import Student.Student;
 
 
-public class Camp {
+public class Camp implements Serializable{
     private CampInfo campInfo;
     private int remainingAttendeeSlot;
     private ArrayList<Enquiries> enquiriesList;

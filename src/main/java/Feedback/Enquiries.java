@@ -1,6 +1,8 @@
 package Feedback;
 
-public class Enquiries {
+import java.io.*;
+
+public class Enquiries implements Serializable{
     private String enquiry;
     private boolean isProcessed;
     private String sendertName;

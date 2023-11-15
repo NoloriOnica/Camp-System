@@ -1,5 +1,6 @@
 package Camp;
 import java.util.ArrayList;
+import java.io.*;
 
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
@@ -8,7 +9,7 @@ import Feedback.SuggestionsHandler;
 import Report.CampReportGenerator;
 
 
-public class CampCommittee{
+public class CampCommittee implements Serializable{
     private Camp camp;
 	private String name;
 	private CampUserGroup campUserGroup;

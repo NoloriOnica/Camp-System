@@ -1,7 +1,8 @@
 package Camp;
 import java.time.LocalDate;
+import java.io.*;
 
-public class CampInfo {
+public class CampInfo implements Serializable {
 
     // Camp Information
     private String campName;

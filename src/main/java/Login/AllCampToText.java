@@ -20,16 +20,16 @@ public class AllCampToText {
     public static ArrayList<Camp> readCampsFromFile() {
         ArrayList<Camp> allCamps = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
-            // Check if the file is not empty before reading
-            if (ois.available() > 0) {
-                Object obj = ois.readObject();
+            Object obj = ois.readObject();
+            while (obj != null) {
                 if (obj instanceof ArrayList) {
                     allCamps = (ArrayList<Camp>) obj;
                     System.out.println("Camps read from file successfully.");
                 }
-            } else {
-                System.out.println("File is empty.");
+                obj = ois.readObject();
             }
+        } catch (EOFException e) {
+            // End of file reached, do nothing
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

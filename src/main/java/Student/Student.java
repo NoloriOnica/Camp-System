@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.*;
 
 import Login.User;
 import Camp.Camp;
@@ -13,7 +14,7 @@ import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
 import Student.StudentViewsCamps;
 
-public class Student extends User {
+public class Student extends User implements Serializable {
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
     private CampUserGroup campUserGroup;
