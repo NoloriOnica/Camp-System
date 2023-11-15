@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Login.User;
+import Camp.CampCommittee;
 import Camp.Camp;
-import Camp.CampUserGroup;
-import Camp.CampVisibility;
 import Feedback.EnquiriesController;
 import Feedback.SuggestionController;
-import Report.CampReportGenerator;
 import Report.PerformanceReportGenerator;
+import Report.CampReportGenerator;
+import Camp.CampUserGroup;
+import Camp.CampVisibility;
+
+
+import Login.User;
 
 public class Staff extends User {
 
@@ -32,7 +35,6 @@ public class Staff extends User {
         this.campReportGenerator = new CampReportGenerator();
         this.performanceReportGenerator = new PerformanceReportGenerator();
     }
-    
 
     public Camp createCamp(ArrayList<Camp> allCamps) { //Pass in ALL CAMPS as parameter //Return Null if the camp is not created
         // Implementation for creating a camp
@@ -50,16 +52,19 @@ public class Staff extends User {
         campName = sc.nextLine();
         // Check if the camp name already exists
         boolean campExists = false;
-        for (Camp existingCamp : allCamps) {
-            if (existingCamp.getCampInfo().getCampName().equalsIgnoreCase(campName)) {
-                campExists = true;
-                break;
-            }
-        }
-        if (campExists) {
-            System.out.println(
-                    "Camp with the name '" + campName + "' already exists. Choose a different name.");
-            return null;
+        if(allCamps != null)
+        {
+	        for (Camp existingCamp : allCamps) {
+	            if (existingCamp.getCampInfo().getCampName().equalsIgnoreCase(campName)) {
+	                campExists = true;
+	                break;
+	            }
+	        }
+	        if (campExists) {
+	            System.out.println(
+	                    "Camp with the name '" + campName + "' already exists. Choose a different name.");
+	            return null;
+	        }
         }
 
         System.out.println("Enter Start Date (YYYY-MM-DD):");
@@ -73,77 +78,105 @@ public class Staff extends User {
 
         System.out.println("Select Camp User Group");
         System.out.println("1) Whole NTU\n2)SCSE\n3)NBS\n4)SPMS");
-        tries = 0; int index = sc.nextInt();
+        tries = 0;
+        int index; 
+
         while (tries < 3) {
-            switch (index) {
-                case 1:
-                    campUserGroup = CampUserGroup.WHOLE_NTU;
+            try {
+                index = sc.nextInt(); // 
+                sc.nextLine(); // 
+
+                switch (index) {
+                    case 1:
+                        campUserGroup = CampUserGroup.WHOLE_NTU;
+                        break;
+                    case 2:
+                        campUserGroup = CampUserGroup.SCSE;
+                        break;
+                    case 3:
+                        campUserGroup = CampUserGroup.NBS;
+                        break;
+                    case 4:
+                        campUserGroup = CampUserGroup.SPMS;
+                        break;
+                    default:
+                        System.out.println("Invalid input, please enter a number between 1 and 4.");
+                        break;
+                }
+                if (index >= 1 && index <= 4) {
+                    // If the input is valid, break out of the loop
                     break;
-                case 2:
-                    campUserGroup = CampUserGroup.SCSE;
-                    break;
-                case 3:
-                    campUserGroup = CampUserGroup.NBS;
-                    break;
-                case 4:
-                    campUserGroup = CampUserGroup.SPMS;
-                    break;
-                default:
-                    if(tries < 3)
-                        System.out.println("Invalid input, please enter again.");
-                    tries++;
-                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input, please enter a number.");
+                sc.next(); // Consume the invalid input
             }
+            tries++; // Increment tries after each attempt
         }
+
         if (tries >= 3) {
-            System.out.println("Please try again later.");
+            System.out.println("Maximum attempt limit reached. Please try again later.");
             return null;
         }
-        
+
         
         System.out.println("Select Camp's Visibility");
         System.out.println("1)ON\n2)OFF");
-        tries = 0; index = sc.nextInt();
+        tries = 0;
+
         while (tries < 3) {
-            switch (index) {
-                case 1:
-                    campVisibility = CampVisibility.ON;
+            System.out.print("Please enter your choice: "); // Prompt for input
+            try {
+                index = sc.nextInt(); // Get user input
+                sc.nextLine(); // Consume the newline character after the number input
+                switch (index) {
+                    case 1:
+                        campVisibility = CampVisibility.ON;
+                        break;
+                    case 2:
+                        campVisibility = CampVisibility.OFF;
+                        break;
+                    default:
+                        System.out.println("Invalid input, please enter 1 or 2.");
+                        break;
+                }
+                if (index == 1 || index == 2) {
+                    // Valid input, exit the loop
                     break;
-                case 2:
-                    campVisibility = CampVisibility.OFF;
-                    break;
-                default:
-                    if(tries < 3)
-                        System.out.println("Invalid input, please enter again.");
-                    tries++;
-                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input, please enter a number.");
+                sc.next(); 
             }
+            tries++; // Increment tries after each loop iteration
         }
+
         if (tries >= 3) {
-            System.out.println("Please try again later.");
+            System.out.println("Maximum attempt limit reached. Please try again later.");
             return null;
         }
-        sc.nextLine();//Consume next line
 
-        System.out.println("Enter Camp's Location");
+//        sc.nextLine();//Consume next line
+
+        System.out.println("Enter Camp's Location:");
         location = sc.nextLine();
 
-        System.out.println("Enter Camp's Total Slots");
-        totalSlots = sc.nextInt();
+        System.out.println("Enter Camp's Total Slots:");
+        totalSlots = Integer.parseInt(sc.nextLine()); 
 
-        System.out.println("Enter Camp's Camp Committee Slots (Max = 10)");
-        campCommitteeSlot = sc.nextInt();
+        System.out.println("Enter Camp's Camp Committee Slots (Max = 10):");
+        campCommitteeSlot = Integer.parseInt(sc.nextLine());
         if(campCommitteeSlot > 10)
             campCommitteeSlot = 10;
         
-        System.out.println("Enter Camp's Description");
+        System.out.println("Enter Camp's Description:");
         description = sc.nextLine();
 
 
         Camp camp = new Camp(campName, startDate, endDate, regClosingDate, campUserGroup, campVisibility, 
         location, totalSlots, campCommitteeSlot, description, staffInChargeID);
         this.createdCamps.add(camp);
-        System.out.println("Camp "+camp.getCampInfo().getCampName()+" created successfully.");
+        System.out.println("Camp "+camp.getCampInfo().getCampName()+" created successfully!");
         return camp;
     }
 
@@ -412,5 +445,10 @@ public class Staff extends User {
     public void generatePerformanceReport(){
         performanceReportGenerator.generatePerformanceReport(this.createdCamps);
     }
+
+	public ArrayList<Camp> getCampList() {
+		// TODO Auto-generated method stub
+		return this.createdCamps;
+	}
 }
     
