@@ -58,7 +58,7 @@ public class CampReportGenerator {
                 int i = 1;
                 ArrayList<Student> studentList = camp.getRegisteredStudents();
                 for(Student student : studentList){
-                     writer.write((i++) +" "+ student.getName() + " Faculty: "+student.getCampUserGroup().toString() + "\n");
+                     writer.write((i++) +" "+ student.getName() + " Faculty: "+student.getFaculty().toString() + "\n");
                 }
             }
             System.out.println("Report generated successfully.");

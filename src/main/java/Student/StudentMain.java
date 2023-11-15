@@ -13,8 +13,8 @@ import Staff.Staff;
 public class StudentMain {
 	public static Student student;
 	
-	public static void createStudent(String userId, String name, String email, String faculty, String userType, CampUserGroup campUserGroup) {
-		student = new Student(userId, name, email, faculty, userType, campUserGroup);
+	public static void createStudent(String userId, String name, String email, String faculty, String userType) {
+		student = new Student(userId, name, email, faculty, userType);
 	}
 	
 		
@@ -88,6 +88,5 @@ public class StudentMain {
 
         } while (choice != 0);
 
-        scanner.close();
     }
 }

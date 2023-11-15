@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Staff.StaffMain;
+import Student.StudentMain;
 
 public class Login {
 	public static void main(String[] args) throws IOException {
@@ -54,6 +55,10 @@ public class Login {
 				if (curUser.getUserType().equalsIgnoreCase("t")){
 					StaffMain.createStaff(curUser.getUserID(), curUser.getName(), curUser.getEmail(), curUser.getFaculty(), curUser.getUserType());
 					StaffMain.main(new String[] {});
+				}
+				else if(curUser.getUserType().equalsIgnoreCase("s")) {
+					StudentMain.createStudent(curUser.getUserID(), curUser.getName(), curUser.getEmail(), curUser.getFaculty(), curUser.getUserType());
+					StudentMain.main(new String[] {});
 				}
 				else {
 					System.out.println("You do have the relevant rights. Contact support!");
