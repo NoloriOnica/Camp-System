@@ -36,7 +36,7 @@ public class Login {
 		int loginChoice = 2;
 
 		while (loginChoice != 0) {
-			
+			System.out.println();
 			System.out.println("0. Exit");
 			System.out.println("1. Change Password");
 			System.out.println("2. Go to Main Menu");

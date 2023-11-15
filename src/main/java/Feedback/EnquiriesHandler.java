@@ -3,11 +3,12 @@ package Feedback;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.*;
 
 import Camp.Camp;
 import Student.Student;
 
-public class EnquiriesHandler {
+public class EnquiriesHandler implements Serializable{
     
     public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
         ArrayList<Camp> availableCamps = student.viewCamps(allCamps);

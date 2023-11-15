@@ -11,7 +11,7 @@ public class AllCampToText {
     public static void writeCampsToFile(ArrayList<Camp> allCamps) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(allCamps);
-            System.out.println("Camps written to file successfully.");
+            //System.out.println("Camps written to file successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,7 +24,7 @@ public class AllCampToText {
             while (obj != null) {
                 if (obj instanceof ArrayList) {
                     allCamps = (ArrayList<Camp>) obj;
-                    System.out.println("Camps read from file successfully.");
+                    //System.out.println("Camps read from file successfully.");
                 }
                 obj = ois.readObject();
             }
