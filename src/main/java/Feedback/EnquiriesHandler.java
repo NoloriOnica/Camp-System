@@ -56,10 +56,8 @@ public class EnquiriesHandler {
         ArrayList<Enquiries> enquiriesList = student.getEnquiriesList();
         if(enquiriesList == null) return null;
         for (Enquiries enquiry : enquiriesList) {
-            if (!enquiry.getProcessState()) {
-                enquiriesHolder.add(enquiry);
-                System.out.println((++i) + ") " + enquiry.toString());
-            }
+            enquiriesHolder.add(enquiry);
+            System.out.println((++i) + ") " + enquiry.toString());
         }
         return enquiriesHolder;
     }

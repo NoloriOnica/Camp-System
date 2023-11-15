@@ -1,7 +1,4 @@
-package Feedback;
 import java.util.*;
-
-import Camp.Camp;
 
 public class EnquiriesController {
 
@@ -57,6 +54,9 @@ public class EnquiriesController {
                             System.out.println("That enquiry sent by " + enquiries.get(index).getSenderName()
                                     + " is ALREADY replied.");
                         } else {
+                            System.out.println("Enter the reply: ");
+                            String reply = sc.nextLine();
+                            enquiries.get(index).setReply(reply);
                             enquiries.get(index).setProcessState(true);
                             System.out.println(
                                     "That enquiry sent by " + enquiries.get(index).getSenderName() + " is replied.");
@@ -82,5 +82,4 @@ public class EnquiriesController {
         }
         return false;
     }
-
 }
