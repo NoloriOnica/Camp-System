@@ -1,6 +1,6 @@
 package Camp;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.io.*;
 
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
@@ -12,15 +12,17 @@ import Report.CampReportGenerator;
 public class CampCommittee implements Serializable{
     private Camp camp;
 	private String name;
+	private CampUserGroup campUserGroup;
 	private int point = 0;
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
 
-	public CampCommittee(String name, Camp camp)
+	public CampCommittee(String name, Camp camp, CampUserGroup campUserGroup)
 	{
 		this.name = name;
         this.camp = camp;
+		this.campUserGroup = campUserGroup;
 		enquiriesController = new EnquiriesController();
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
@@ -96,5 +98,7 @@ public void setPoint(int point){
 public String getName(){
 	return this.name;
 }
-
+public CampUserGroup getCampUserGroup(){
+	return this.campUserGroup;
+}
 }

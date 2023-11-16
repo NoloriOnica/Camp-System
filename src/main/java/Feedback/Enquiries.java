@@ -1,8 +1,8 @@
 package Feedback;
 
+import java.io.Serializable;
 
-
-public class Enquiries {
+public class Enquiries implements Serializable{
     private String enquiry;
     private boolean isProcessed;
     private String senderName;
@@ -45,3 +45,4 @@ public class Enquiries {
         return line;
     }
 }
+

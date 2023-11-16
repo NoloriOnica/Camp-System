@@ -21,7 +21,7 @@ public class StudentViewsCamps{
     private boolean isCampVisibleToStudent(Camp camp, Student student) {
         boolean isVisible = camp.getCampInfo().getCampVisibility() == CampVisibility.ON;
         boolean isUserGroupAllowed = camp.getCampInfo().getCampUserGroup().equals(student.getFaculty())
-                                     || camp.getCampInfo().getCampUserGroup().equals(CampUserGroup.WHOLE_NTU);
+                                     || camp.getCampInfo().getCampUserGroup().equals("Whole NTU");
         return isVisible && isUserGroupAllowed;
     }
     

@@ -4,5 +4,9 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
 org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
 org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=ignore
+<<<<<<< HEAD
+org.eclipse.jdt.core.compiler.processAnnotations=disabled
+=======
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
 org.eclipse.jdt.core.compiler.release=disabled
 org.eclipse.jdt.core.compiler.source=1.8

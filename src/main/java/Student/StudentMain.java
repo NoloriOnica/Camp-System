@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import Camp.Camp;
 import Camp.CampUserGroup;
-import Login.AllCampToText;
 import Login.User;
 import Staff.Staff;
 
@@ -20,7 +19,7 @@ public class StudentMain {
 		
     public static void main(String[] args) {
 
-    	ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
+        ArrayList<Camp> allCamps = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -83,8 +82,6 @@ public class StudentMain {
                     System.out.println("Invalid choice. Please enter a number between 0 and 9.");
                     break;
             }
-            
-            AllCampToText.writeCampsToFile(allCamps);
 
         } while (choice != 0);
 

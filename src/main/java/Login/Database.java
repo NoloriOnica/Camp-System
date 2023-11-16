@@ -11,7 +11,7 @@ class Database {
 	private static final String DATABASE_FILE = "././././data/database.xlsx";
 	private static final String STUDENTLIST = "././././data/student_list.xlsx";
 	private static final String STAFFLIST = "././././data/staff_list.xlsx";
-
+	
 	public static void initializeDatabase() {
 		try {
 			// Load existing database data
@@ -230,9 +230,4 @@ class Database {
 		}
 		return new ArrayList<>();
 	}
-
-
 }
-
-
-

@@ -1,6 +1,6 @@
 package Feedback;
 
-import java.io.*;
+import java.io.Serializable;
 
 public class Suggestion implements Serializable{
     private String suggetionString;

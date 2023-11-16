@@ -1,10 +1,10 @@
 package Feedback;
-
-
+import java.io.Serializable;
 import java.util.*;
-import Camp.Camp; 
 
-public class EnquiriesController {
+import Camp.Camp;
+
+public class EnquiriesController implements Serializable {
 
     public void viewEnquiries(ArrayList<Camp> camps) {
         for (Camp camp : camps) {
@@ -58,7 +58,7 @@ public class EnquiriesController {
                             System.out.println("That enquiry sent by " + enquiries.get(index).getSenderName()
                                     + " is ALREADY replied.");
                         } else {
-                            System.out.println("Enter the reply: ");
+                            System.out.println("Enter the reply:");
                             String reply = sc.nextLine();
                             enquiries.get(index).setReply(reply);
                             enquiries.get(index).setProcessState(true);
@@ -86,4 +86,5 @@ public class EnquiriesController {
         }
         return false;
     }
+
 }

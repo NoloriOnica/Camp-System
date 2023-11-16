@@ -3,7 +3,6 @@ package Login;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-
 import Staff.StaffMain;
 import Student.StudentMain;
 
@@ -35,9 +34,8 @@ public class Login {
 
 		int loginChoice = 2;
 
-		
 		while (loginChoice != 0) {
-			System.out.println();
+			
 			System.out.println("0. Exit");
 			System.out.println("1. Change Password");
 			System.out.println("2. Go to Main Menu");
@@ -57,7 +55,8 @@ public class Login {
 					StaffMain.createStaff(curUser.getUserID(), curUser.getName(), curUser.getEmail(), curUser.getFaculty(), curUser.getUserType());
 					StaffMain.main(new String[] {});
 				}
-				else if(curUser.getUserType().equalsIgnoreCase("s")) {
+				
+				else if (curUser.getUserType().equalsIgnoreCase("s")){
 					StudentMain.createStudent(curUser.getUserID(), curUser.getName(), curUser.getEmail(), curUser.getFaculty(), curUser.getUserType());
 					StudentMain.main(new String[] {});
 				}

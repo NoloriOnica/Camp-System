@@ -15,9 +15,8 @@ public class StaffMain {
 	}
 	
 	
-	
 	public static void main(String[] args) {
-        ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();//AllCampToText.readCampsFromFile(); //get all camp Informations
+        ArrayList<Camp> allCamps = new ArrayList<>();//AllCampToText.readCampsFromFile(); //get all camp Informations
         //System.out.println(allCamps);
        
         Scanner scanner = new Scanner(System.in);
@@ -99,7 +98,7 @@ public class StaffMain {
             }
             
             AllCampToText.writeCampsToFile(allCamps);
-            System.out.println(allCamps);
+            //System.out.println(allCamps);
 
         } while (choice != 0);
 

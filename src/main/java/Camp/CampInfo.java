@@ -1,15 +1,15 @@
 package Camp;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.io.*;
 
-public class CampInfo implements Serializable {
+public class CampInfo implements Serializable{
 
     // Camp Information
     private String campName;
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate regClosingDate;
-    private CampUserGroup campUserGroup;
+    private String campUserGroup;
     private CampVisibility campVisibility;
     private String location;
     private int totalSlots;
@@ -19,7 +19,7 @@ public class CampInfo implements Serializable {
 
     // Constructor
     public CampInfo(String campName, LocalDate startDate, LocalDate endDate, LocalDate regClosingDate,
-                    CampUserGroup campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
+                    String campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
                     int campCommitteeSlot, String description, String staffInChargeID) {
         this.campName = campName;
         this.startDate = startDate;
@@ -67,11 +67,11 @@ public class CampInfo implements Serializable {
         this.regClosingDate = regClosingDate;
     }
 
-    public CampUserGroup getCampUserGroup() {
+    public String getCampUserGroup() {
         return this.campUserGroup;
     }
 
-    public void setCampUserGroup(CampUserGroup campUserGroup) {
+    public void setCampUserGroup(String campUserGroup) {
         this.campUserGroup = campUserGroup;
     }
 

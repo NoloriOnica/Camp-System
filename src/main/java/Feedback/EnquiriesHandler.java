@@ -1,9 +1,9 @@
 package Feedback;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.io.*;
 
 import Camp.Camp;
 import Student.Student;
@@ -51,13 +51,15 @@ public class EnquiriesHandler implements Serializable{
         }
     }
 
-    public ArrayList<Enquiries> viewEnquiries(Student student) {
+    public ArrayList<Enquiries> viewEnquiries(Student student) { //Return the enquiries that are not process yet
         ArrayList<Enquiries> enquiriesHolder = new ArrayList<>();
         int i = 0;
         ArrayList<Enquiries> enquiriesList = student.getEnquiriesList();
         if(enquiriesList == null) return null;
         for (Enquiries enquiry : enquiriesList) {
-            enquiriesHolder.add(enquiry);
+            if (!enquiry.getProcessState()) {
+                enquiriesHolder.add(enquiry);
+            }
             System.out.println((++i) + ") " + enquiry.toString());
         }
         return enquiriesHolder;
@@ -101,7 +103,7 @@ public class EnquiriesHandler implements Serializable{
             }
             enquiry.append(line).append("\n");
         }
-        Enquiries selectedEnquiry = availableEnquiries.get(index - 1);
+        // Enquiries selectedEnquiry = availableEnquiries.get(index - 1);
         availableEnquiries.get(index-1).setEnquiry(enquiry.toString());
         System.out.println("Enquiry updated!");
     }

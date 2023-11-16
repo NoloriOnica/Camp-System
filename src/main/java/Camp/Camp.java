@@ -1,15 +1,15 @@
 package Camp;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.io.*;
 
 import Feedback.Suggestion;
 import Feedback.Enquiries;
 
 import Student.Student;
-
+import java.io.*;
 
 public class Camp implements Serializable{
     private CampInfo campInfo;
@@ -20,7 +20,7 @@ public class Camp implements Serializable{
     private ArrayList<CampCommittee> registeredCampCommittees;
 
     public Camp(String campName, LocalDate startDate, LocalDate endDate, LocalDate regClosingDate,
-            CampUserGroup campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
+            String campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
             int campCommitteeSlot, String description, String staffInChargeID) {
         campInfo = new CampInfo(campName, startDate, endDate, regClosingDate, campUserGroup, campVisibility, 
                                 location, totalSlots, campCommitteeSlot, description, staffInChargeID);

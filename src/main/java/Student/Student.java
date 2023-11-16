@@ -1,10 +1,10 @@
 package Student;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.io.*;
 
 import Login.User;
 import Camp.Camp;
@@ -12,11 +12,11 @@ import Camp.CampUserGroup;
 import Camp.CampCommittee;
 import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
-import Student.StudentViewsCamps;
 
-public class Student extends User implements Serializable {
+public class Student extends User implements Serializable{
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
+    private CampUserGroup campUserGroup;
     private ArrayList<Camp> registeredCamps;
     private ArrayList<Camp> bannedCamps; //Student are not allow to register for the camp that he withdrawed before
     private ArrayList<Enquiries> enquiriesList; //Different from camp committee's suggestion, a student can send
@@ -149,7 +149,7 @@ public class Student extends User implements Serializable {
                         System.out.println("Cannot register as camp committee");
                         return;
                     }
-                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp);
+                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.campUserGroup);
                     selectedCamp.addRegisteredStudents(this); //Update camp's Registered Student list
                     selectedCamp.addRegisteredCampCommittee(campCommittee); //Update camp's Registered camp committee list
                     selectedCamp.getCampInfo().setCampCommitteeSlot(selectedCamp.getCampInfo().getCampCommitteeSlot() - 1);//Update Camp's remaining camp committee slot
@@ -253,8 +253,6 @@ public class Student extends User implements Serializable {
     }
 
     // Below are Getters and setters
-
-    
     
     public boolean isCampCommittee() {
         return isCampCommittee;

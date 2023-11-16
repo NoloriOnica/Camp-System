@@ -23,7 +23,7 @@ public class PerformanceReportGenerator {
                 // Write each attendee's information to the file
                 int i = 1;
                 for(CampCommittee campCommittee : campCommitteeList){
-                     writer.write((i++) + " "+ campCommittee.getName() + " Faculty: "+//campCommittee.getFaculty().name() + 
+                     writer.write((i++) + " "+ campCommittee.getName() + " Faculty: "+campCommittee.getCampUserGroup().name() + 
                      "Points : "+ campCommittee.getPoints() +"\n");
                 }
             }

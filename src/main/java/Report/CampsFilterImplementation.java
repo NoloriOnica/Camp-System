@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.time.LocalDate;
-
 import Report.CampsFilter;
 import Camp.Camp;
 
