@@ -702,10 +702,10 @@ public class Staff extends User implements Serializable{
         Camp camp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna edit
         if (camp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
             camp.getCampInfo().setCampVisibility(CampVisibility.ON);
-            System.out.println("The camp" + camp.getCampInfo().getCampName() + "now can be viewed by students.");
+            System.out.println("The camp " + camp.getCampInfo().getCampName() + " now can be viewed by students.");
         } else {
             camp.getCampInfo().setCampVisibility(CampVisibility.OFF);
-            System.out.println("The camp" + camp.getCampInfo().getCampName() + "now cannot be viewed by students.");
+            System.out.println("The camp " + camp.getCampInfo().getCampName() + " now cannot be viewed by students.");
         }
     }
 
@@ -739,5 +739,10 @@ public class Staff extends User implements Serializable{
 
     public void generatePerformanceReport() {
         performanceReportGenerator.generatePerformanceReport(this.createdCamps);
+    }
+
+    //Below are getters and setters
+    public  ArrayList<Camp> getCreatedCamp(){
+        return this.createdCamps;
     }
 }

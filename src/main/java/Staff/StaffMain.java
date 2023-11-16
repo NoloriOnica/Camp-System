@@ -18,7 +18,13 @@ public class StaffMain {
 	public static void main(String[] args) {
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile(); //get all camp Informations
         //System.out.println(allCamps);
-       
+        
+        for(Camp camp : allCamps){
+            if(camp.getCampInfo().getStaffInChargeID().equals(staff.getName())){
+                staff.getCreatedCamp().add(camp);
+            }
+        }
+
         Scanner scanner = new Scanner(System.in);
         int choice;
 
