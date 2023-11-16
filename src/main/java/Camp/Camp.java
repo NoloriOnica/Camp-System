@@ -19,11 +19,7 @@ public class Camp {
     private ArrayList<CampCommittee> registeredCampCommittees;
 
     public Camp(String campName, LocalDate startDate, LocalDate endDate, LocalDate regClosingDate,
-<<<<<<< HEAD
             String campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
-=======
-            CampUserGroup campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
->>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
             int campCommitteeSlot, String description, String staffInChargeID) {
         campInfo = new CampInfo(campName, startDate, endDate, regClosingDate, campUserGroup, campVisibility, 
                                 location, totalSlots, campCommitteeSlot, description, staffInChargeID);

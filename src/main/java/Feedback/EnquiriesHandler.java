@@ -50,11 +50,7 @@ public class EnquiriesHandler {
         }
     }
 
-<<<<<<< HEAD
     public ArrayList<Enquiries> viewEnquiries(Student student) { //Return the enquiries that are not process yet
-=======
-    public ArrayList<Enquiries> viewEnquiries(Student student) {
->>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
         ArrayList<Enquiries> enquiriesHolder = new ArrayList<>();
         int i = 0;
         ArrayList<Enquiries> enquiriesList = student.getEnquiriesList();
@@ -62,13 +58,8 @@ public class EnquiriesHandler {
         for (Enquiries enquiry : enquiriesList) {
             if (!enquiry.getProcessState()) {
                 enquiriesHolder.add(enquiry);
-<<<<<<< HEAD
             }
             System.out.println((++i) + ") " + enquiry.toString());
-=======
-                System.out.println((++i) + ") " + enquiry.toString());
-            }
->>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
         }
         return enquiriesHolder;
     }
@@ -111,11 +102,7 @@ public class EnquiriesHandler {
             }
             enquiry.append(line).append("\n");
         }
-<<<<<<< HEAD
         // Enquiries selectedEnquiry = availableEnquiries.get(index - 1);
-=======
-        Enquiries selectedEnquiry = availableEnquiries.get(index - 1);
->>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
         availableEnquiries.get(index-1).setEnquiry(enquiry.toString());
         System.out.println("Enquiry updated!");
     }
