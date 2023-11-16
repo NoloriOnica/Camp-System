@@ -1,11 +1,12 @@
 package Report;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Camp.Camp;
 import Camp.CampCommittee;
 import Student.Student;
 
-public class ReportFilterImplementation implements ReportFilter {
+public class ReportFilterImplementation implements ReportFilter,Serializable {
     public ArrayList<Camp> filterAttendee(ArrayList<Camp> camplist,String attendeeName){
 
         ArrayList<Camp> filteredCamps = new ArrayList<>();

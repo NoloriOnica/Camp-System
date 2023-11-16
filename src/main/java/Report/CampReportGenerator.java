@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
 import Camp.Camp;
 import Camp.CampCommittee;
 import Report.ReportFilter;
 import Student.Student;
 
-public class CampReportGenerator {
+public class CampReportGenerator implements Serializable{
     private ReportFilter reportFilter = new ReportFilterImplementation();
 
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList){

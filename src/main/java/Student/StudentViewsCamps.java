@@ -1,5 +1,6 @@
 package Student;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import Camp.Camp;
 import Camp.CampUserGroup;
 
 
-public class StudentViewsCamps{
+public class StudentViewsCamps implements Serializable{
 
     private CampsFilter campsFilter;
 

@@ -1,11 +1,12 @@
 package Feedback;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Camp.Camp;
 import Camp.CampCommittee;
 
-public class SuggestionsHandler {
+public class SuggestionsHandler implements Serializable{
 
     public void makeSuggestions(Camp camp, CampCommittee campCommittee) {
 		Scanner sc = new Scanner(System.in);

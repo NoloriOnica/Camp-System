@@ -3,12 +3,13 @@ package Report;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Camp.Camp;
 import Camp.CampCommittee;
 
-public class PerformanceReportGenerator {
+public class PerformanceReportGenerator implements Serializable{
     public void generatePerformanceReport(ArrayList<Camp> camplist){
         if(camplist.isEmpty() || camplist ==null){
             System.out.println("You have not created any camp/Your created camp has not camp committee");

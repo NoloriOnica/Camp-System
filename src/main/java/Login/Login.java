@@ -20,23 +20,26 @@ public class Login {
 
 		boolean loginValid = false;
 		while (!loginValid) {
+			System.out.println();
+			System.out.println("================================================");
 			System.out.println("Login");
 			System.out.print("Enter USERID: ");
 			userID = scanner.nextLine();
 			System.out.print("Enter password: ");
 			password = scanner.nextLine();
+			System.out.println("================================================");
 			loginValid = loginCheck(userID, password);
 		}
 
 		List<String> user = Database.getUser(userID);
 		User curUser = new User(user.get(0), user.get(2), user.get(3), user.get(4), user.get(5));
-		System.out.println("Welcome! You have successfully logged in.");
 
 		int loginChoice = 2;
 
 		while (loginChoice != 0) {
 			
-			System.out.println("0. Exit");
+			System.out.println();
+			System.out.println("0. Log Out");
 			System.out.println("1. Change Password");
 			System.out.println("2. Go to Main Menu");
 			System.out.print("Enter your choice: ");

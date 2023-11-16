@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class User {
+public class User implements Serializable{
     private String userID;
     private String name;
     private String email;

@@ -1,5 +1,6 @@
 package Staff;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import Report.CampsFilter;
 import Report.CampsFilterImplementation;
 import Camp.Camp;
 
-public class StaffViewsCamps {
+public class StaffViewsCamps implements Serializable{
     private CampsFilter campsFilter;
 
     public StaffViewsCamps() {

@@ -1,5 +1,6 @@
 package Feedback;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 import Camp.Camp;
 import Camp.CampCommittee;
 
-public class SuggestionController {
+public class SuggestionController implements Serializable{
 
     public void viewSuggestion(ArrayList<Camp> camps) {
         for (Camp camp : camps) {
