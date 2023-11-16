@@ -61,9 +61,16 @@ public class StaffViewsCamps{
         }
         for(Camp camp : filteredSortedCamps){
             int i = 1;
+<<<<<<< HEAD
             System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName()+ ", Start Date: "+ camp.getCampInfo().getStartDate()
             + ", Location: "+camp.getCampInfo().getLocation());
         }       
+=======
+            System.out.println((++i) + ") " + camp.getCampInfo().getCampName()+ " Start Date: "+ camp.getCampInfo().getStartDate()
+            + " Location: "+camp.getCampInfo().getLocation());
+        }
+            
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
     }   
 
     public void viewOwnCamps(ArrayList<Camp> campList){ 
@@ -74,8 +81,13 @@ public class StaffViewsCamps{
         }
         for(Camp camp : filteredSortedCamps){
             int i = 1;
+<<<<<<< HEAD
             System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName()+ ", Start Date: "+ camp.getCampInfo().getStartDate()
             + ", Location: "+camp.getCampInfo().getLocation());
+=======
+            System.out.println((++i) + ") " + camp.getCampInfo().getCampName()+ " Start Date: "+ camp.getCampInfo().getStartDate()
+            + " Location: "+camp.getCampInfo().getLocation());
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
         }
     }
 }

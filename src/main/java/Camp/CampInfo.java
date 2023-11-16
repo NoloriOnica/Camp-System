@@ -8,7 +8,11 @@ public class CampInfo {
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate regClosingDate;
+<<<<<<< HEAD
     private String campUserGroup;
+=======
+    private CampUserGroup campUserGroup;
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
     private CampVisibility campVisibility;
     private String location;
     private int totalSlots;
@@ -18,7 +22,11 @@ public class CampInfo {
 
     // Constructor
     public CampInfo(String campName, LocalDate startDate, LocalDate endDate, LocalDate regClosingDate,
+<<<<<<< HEAD
                     String campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
+=======
+                    CampUserGroup campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
                     int campCommitteeSlot, String description, String staffInChargeID) {
         this.campName = campName;
         this.startDate = startDate;
@@ -66,11 +74,19 @@ public class CampInfo {
         this.regClosingDate = regClosingDate;
     }
 
+<<<<<<< HEAD
     public String getCampUserGroup() {
         return this.campUserGroup;
     }
 
     public void setCampUserGroup(String campUserGroup) {
+=======
+    public CampUserGroup getCampUserGroup() {
+        return this.campUserGroup;
+    }
+
+    public void setCampUserGroup(CampUserGroup campUserGroup) {
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
         this.campUserGroup = campUserGroup;
     }
 

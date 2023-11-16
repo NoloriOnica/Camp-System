@@ -11,6 +11,10 @@ import Camp.CampUserGroup;
 import Camp.CampCommittee;
 import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
+<<<<<<< HEAD
+=======
+import Student.StudentViewsCamps;
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
 
 public class Student extends User {
     private boolean isCampCommittee;

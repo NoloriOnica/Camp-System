@@ -3,6 +3,7 @@ package Feedback;
 public class Enquiries {
     private String enquiry;
     private boolean isProcessed;
+<<<<<<< HEAD
     private String senderName;
     private String replierName;
     private String reply;
@@ -21,12 +22,30 @@ public class Enquiries {
     }
     public String getSenderName(){
         return this.senderName;
+=======
+    private String sendertName;
+
+    public Enquiries(String studentName) {
+        this.sendertName = studentName;
+        isProcessed = false;
+    }
+    
+    public boolean getProcessState(){
+        return isProcessed;
+    }
+    public void setProcessState(boolean state){
+        isProcessed = state;
+    }
+    public String getSenderName(){
+        return sendertName;
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
     }
 
     public void setEnquiry(String string){
         this.enquiry = string;
     }
 
+<<<<<<< HEAD
     public void setReply(String string){
         this.reply = string;
     }
@@ -44,3 +63,11 @@ public class Enquiries {
     }
 }
 
+=======
+    public String toString() {
+
+        String line =  "Enquiry {" + enquiry + ", name = " + sendertName+" } Reply State = " + isProcessed + "\n";
+        return line;
+    }
+}
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa

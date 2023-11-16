@@ -3,6 +3,10 @@ package Login;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d1526f33a465bfbd7f6b99f7d459f10f43b0a0fa
 import Staff.StaffMain;
 
 public class Login {
