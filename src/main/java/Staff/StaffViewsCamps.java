@@ -16,7 +16,7 @@ public class StaffViewsCamps {
     }
 
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
-        ArrayList<Camp> filteredCamps;
+        ArrayList<Camp> filteredCamps = null;
         int choice = 0, index, maxTries = 3;
         Scanner sc = new Scanner(System.in);
         for (int tries = 0; tries < maxTries; tries++) {
@@ -46,8 +46,24 @@ public class StaffViewsCamps {
         sc.nextLine();// consume next line
         switch (choice) {
             case 1:
-                System.out.println("Enter Date (YYYY-MM-DD):");
-                LocalDate desiredDate = LocalDate.parse(sc.nextLine());
+                int tries = 0;
+                LocalDate desiredDate = null;
+
+                while (tries < maxTries) {
+                    try {
+                        System.out.println("Enter Date (YYYY-MM-DD):");
+                        desiredDate = LocalDate.parse(sc.nextLine());
+                        // Additional checks if needed
+                        break; // If the input is valid, break out of the loop
+                    } catch (Exception e) {
+                        System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
+                        tries++;
+                    }
+                }
+                if (tries == maxTries) {
+                    System.out.println("You've reached the maximum number of tries. Please try again later.");
+                    return null;
+                }
                 filteredCamps = this.campsFilter.byDate(campList, desiredDate);
                 break;
             case 2:
@@ -67,7 +83,7 @@ public class StaffViewsCamps {
 
     public void viewCamps(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
-        if (filteredSortedCamps.isEmpty() || filteredSortedCamps == null) {
+        if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {
             System.out.println("NOT FOUND");
             return;
         }
@@ -82,7 +98,7 @@ public class StaffViewsCamps {
 
     public void viewOwnCamps(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
-        if (filteredSortedCamps.isEmpty() || filteredSortedCamps == null) {
+        if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {
             System.out.println("NOT FOUND");
             return;
         }

@@ -29,6 +29,7 @@ public class Camp implements Serializable{
         enquiriesList = new ArrayList<>();
         suggestionsList = new ArrayList<>();
         registeredStudents = new ArrayList<>();
+        bannedStudents = new ArrayList<>();
         registeredCampCommittees = new ArrayList<>();
     }
 
@@ -61,6 +62,10 @@ public class Camp implements Serializable{
 
     public ArrayList<Student> getRegisteredStudents(){
         return this.registeredStudents;
+    }
+
+    public void addBannedStudents(Student student){
+        this.bannedStudents.add(student);
     }
 
     public ArrayList<Student> getBannedStudents(){

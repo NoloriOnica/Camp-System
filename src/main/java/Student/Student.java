@@ -229,7 +229,7 @@ public class Student extends User implements Serializable{
                 //update on Camp's end
                 selectedCamp.getRegisteredStudents().remove(this);
                 selectedCamp.setRemainingAttendeeSlot(selectedCamp.getRemainingAttendeeSlot() + 1);
-                selectedCamp.getBannedStudents().add(this);
+                selectedCamp.addBannedStudents(this);
                 selectedCamp.getCampInfo().setTotalSlots(selectedCamp.getCampInfo().getCampCommitteeSlot() + selectedCamp.getRemainingAttendeeSlot()); //Update total Slot
                 System.out.println("Successfully withdrawn from camp: " + selectedCamp.getCampInfo().getCampName());
             }

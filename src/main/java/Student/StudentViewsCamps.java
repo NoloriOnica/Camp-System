@@ -25,33 +25,61 @@ public class StudentViewsCamps{
         return isVisible && isUserGroupAllowed;
     }
     
-    private ArrayList<Camp> filterSelection( ArrayList<Camp> campList){
-        ArrayList<Camp> filteredCamps;
+    private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
+        ArrayList<Camp> filteredCamps = null;
+        int choice = 0, index, maxTries = 3;
         Scanner sc = new Scanner(System.in);
-        int choice , index;
-        System.out.println("Do you want to filter to view Camps?");
-        System.out.println("1)Yes\n2)No");
-        index = sc.nextInt();
-        if(index == 2){
-            choice = 3;
-        }else if(index == 1){
-            System.out.println("Choose the filter types?");
-            System.out.println("1)By Date Before\n2)By Location");
-            choice = sc.nextInt();
-        }else{
-            System.out.println("Invalid Choice");
-            return null;
+        for (int tries = 0; tries < maxTries; tries++) {
+            System.out.println("Do you want to filter to view Camps?");
+            System.out.println("1) Yes\n2) No");
+            index = sc.nextInt();
+
+            if (index == 2) {
+                choice = 3;
+                break; // Exit the loop if the input is valid
+            } else if (index == 1) {
+                System.out.println("Choose the filter types?");
+                System.out.println("1) By Date Before\n2) By Location");
+                choice = sc.nextInt();
+                break; // Exit the loop if the input is valid
+            } else {
+                System.out.println("Invalid Choice. Try again.");
+            }
         }
-        switch(choice){
+
+        if (choice == 0) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            return null;
+            // Handle accordingly, for example, return null or perform some other action.
+        }
+
+        sc.nextLine();// consume next line
+        switch (choice) {
             case 1:
-                System.out.println("Enter Start Date (YYYY-MM-DD):");
-                LocalDate desiredDate = LocalDate.parse(sc.nextLine());
-                filteredCamps = this.campsFilter.byDate(campList,desiredDate);
+                int tries = 0;
+                LocalDate desiredDate = null;
+                
+                while (tries < maxTries) {
+                    try {
+                        System.out.println("Enter Date (YYYY-MM-DD):");
+                        desiredDate = LocalDate.parse(sc.nextLine());
+                        // Additional checks if needed
+                        break; // If the input is valid, break out of the loop
+                    } catch (Exception e) {
+                        System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
+                        tries++;
+                    }
+                }
+                if (tries == maxTries) {
+                    System.out.println("You've reached the maximum number of tries. Please try again later.");
+                    return null;
+                }
+                filteredCamps = this.campsFilter.byDate(campList, desiredDate);
                 break;
             case 2:
                 System.out.println("Enter desired Location");
                 String desiredLocation = sc.nextLine();
-                filteredCamps = this.campsFilter.byLocation(campList,desiredLocation);
+                filteredCamps = this.campsFilter.byLocation(campList, desiredLocation);
                 break;
             case 3:
                 filteredCamps = this.campsFilter.sortByAlphabet(campList);
@@ -59,19 +87,19 @@ public class StudentViewsCamps{
             default:
                 System.out.println("Invalid Choice");
                 return null;
-        } 
+        }
         return filteredCamps;
     }
     
     public void viewRegisteredCamps(Student student){
         ArrayList<Camp> registeredCamps = student.getRegisteredCamps();
-        ArrayList<Camp> filterSortedCamps = filterSelection(registeredCamps);
-        if(filterSortedCamps.isEmpty() || filterSortedCamps ==null){
+        ArrayList<Camp> filteredSortedCamps = filterSelection(registeredCamps);
+        if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()){
             System.out.println("NOT FOUND");
             return;
         }
         int i = 0;
-        for(Camp camp:filterSortedCamps){
+        for(Camp camp:filteredSortedCamps){
             if(camp.equals(student.getCommitteeForCamp()))
                 System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + "role: Camp Committee"+ " Start Date: "+ camp.getCampInfo().getStartDate()
                 + " Location: "+camp.getCampInfo().getLocation());
@@ -84,12 +112,12 @@ public class StudentViewsCamps{
     public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps, Student student){
         int i = 0;
         ArrayList<Camp> campHolder = new ArrayList<>();
-        ArrayList<Camp> filterSortedCamps = filterSelection(allCamps);
-        if(filterSortedCamps.isEmpty() || filterSortedCamps ==null){
+        ArrayList<Camp> filteredSortedCamps = filterSelection(allCamps);
+        if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()){
             System.out.println("NOT FOUND");
             return null;
         }
-        for (Camp camp : filterSortedCamps) {
+        for (Camp camp : filteredSortedCamps) {
             if (isCampVisibleToStudent(camp, student)) {
                 System.out.println((++i) + ") Camp Name: " + camp.getCampInfo().getCampName() + " Start Date: "+ camp.getCampInfo().getStartDate()
                 + " Location: "+camp.getCampInfo().getLocation());
@@ -100,12 +128,12 @@ public class StudentViewsCamps{
     }
 
     public void viewCampSlots(ArrayList<Camp> allCamps, Student student){
-        ArrayList<Camp> filterSortedCamps = filterSelection(allCamps);
-        if(filterSortedCamps.isEmpty() || filterSortedCamps ==null){
+        ArrayList<Camp> filteredSortedCamps = filterSelection(allCamps);
+        if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()){
             System.out.println("NOT FOUND");
             return;
         }
-        for (Camp camp : filterSortedCamps) {
+        for (Camp camp : filteredSortedCamps) {
             if (isCampVisibleToStudent(camp, student)) { //Only can view certian camps
                 int remainingSlots = camp.getCampInfo().getTotalSlots();//gets number of remaining slots
                 System.out.println("Camp Name: " + camp.getCampInfo().getCampName() + " - Remaining Slots: " + remainingSlots);
