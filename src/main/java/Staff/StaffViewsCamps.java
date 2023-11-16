@@ -8,40 +8,52 @@ import Report.CampsFilter;
 import Report.CampsFilterImplementation;
 import Camp.Camp;
 
-public class StaffViewsCamps{
+public class StaffViewsCamps {
     private CampsFilter campsFilter;
 
-    public StaffViewsCamps(){
+    public StaffViewsCamps() {
         campsFilter = new CampsFilterImplementation();
     }
 
-    private ArrayList<Camp> filterSelection( ArrayList<Camp> campList){
+    private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps;
+        int choice = 0, index, maxTries = 3;
         Scanner sc = new Scanner(System.in);
-        int choice , index;
-        System.out.println("Do you want to filter to view Camps?");
-        System.out.println("1)Yes\n2)No");
-        index = sc.nextInt();
-        if(index == 2){
-            choice = 3;
-        }else if(index == 1){
-            System.out.println("Choose the filter types?");
-            System.out.println("1)By Date Before\n2)By Location");
-            choice = sc.nextInt();
-        }else{
-            System.out.println("Invalid Choice");
-            return null;
+        for (int tries = 0; tries < maxTries; tries++) {
+            System.out.println("Do you want to filter to view Camps?");
+            System.out.println("1) Yes\n2) No");
+            index = sc.nextInt();
+
+            if (index == 2) {
+                choice = 3;
+                break; // Exit the loop if the input is valid
+            } else if (index == 1) {
+                System.out.println("Choose the filter types?");
+                System.out.println("1) By Date Before\n2) By Location");
+                choice = sc.nextInt();
+                break; // Exit the loop if the input is valid
+            } else {
+                System.out.println("Invalid Choice. Try again.");
+            }
         }
-        switch(choice){
+
+        if (choice == 0) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            return null;
+            // Handle accordingly, for example, return null or perform some other action.
+        }
+
+        sc.nextLine();// consume next line
+        switch (choice) {
             case 1:
-                System.out.println("Enter Start Date (YYYY-MM-DD):");
+                System.out.println("Enter Date (YYYY-MM-DD):");
                 LocalDate desiredDate = LocalDate.parse(sc.nextLine());
-                filteredCamps = this.campsFilter.byDate(campList,desiredDate);
+                filteredCamps = this.campsFilter.byDate(campList, desiredDate);
                 break;
             case 2:
                 System.out.println("Enter desired Location");
                 String desiredLocation = sc.nextLine();
-                filteredCamps = this.campsFilter.byLocation(campList,desiredLocation);
+                filteredCamps = this.campsFilter.byLocation(campList, desiredLocation);
                 break;
             case 3:
                 filteredCamps = this.campsFilter.sortByAlphabet(campList);
@@ -49,33 +61,37 @@ public class StaffViewsCamps{
             default:
                 System.out.println("Invalid Choice");
                 return null;
-        } 
+        }
         return filteredCamps;
     }
 
-    public void viewCamps(ArrayList<Camp> campList){  
+    public void viewCamps(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
-        if(filteredSortedCamps.isEmpty() || filteredSortedCamps ==null){
+        if (filteredSortedCamps.isEmpty() || filteredSortedCamps == null) {
             System.out.println("NOT FOUND");
             return;
         }
-        for(Camp camp : filteredSortedCamps){
+        for (Camp camp : filteredSortedCamps) {
             int i = 1;
-            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName()+ ", Start Date: "+ camp.getCampInfo().getStartDate()
-            + ", Location: "+camp.getCampInfo().getLocation());
-        }       
-    }   
+            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
+                    + camp.getCampInfo().getStartDate()
+                    + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
+                    + camp.getCampInfo().getStaffInChargeID());
+        }
+    }
 
-    public void viewOwnCamps(ArrayList<Camp> campList){ 
+    public void viewOwnCamps(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
-        if(filteredSortedCamps.isEmpty() || filteredSortedCamps ==null){
+        if (filteredSortedCamps.isEmpty() || filteredSortedCamps == null) {
             System.out.println("NOT FOUND");
             return;
         }
-        for(Camp camp : filteredSortedCamps){
+        for (Camp camp : filteredSortedCamps) {
             int i = 1;
-            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName()+ ", Start Date: "+ camp.getCampInfo().getStartDate()
-            + ", Location: "+camp.getCampInfo().getLocation());
+            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
+                    + camp.getCampInfo().getStartDate()
+                    + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
+                    + camp.getCampInfo().getStaffInChargeID());
         }
     }
 }

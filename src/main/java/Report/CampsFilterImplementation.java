@@ -34,9 +34,13 @@ public class CampsFilterImplementation implements CampsFilter{
     public ArrayList<Camp> byLocation(ArrayList<Camp> campList, String desiredLocation){ //Select the camp that have the desired location
         ArrayList<Camp> filteredCamp = new ArrayList<>();
         // Sort the copy using a custom comparator
-        for(Camp camp : campList){
-            if(camp.getCampInfo().getLocation().equals(desiredLocation))
+
+        // Case-insensitive comparison
+        String desiredLocationLowerCase = desiredLocation.toLowerCase();
+        for (Camp camp : campList) {
+            if (camp.getCampInfo().getLocation().toLowerCase().equals(desiredLocationLowerCase)) {
                 filteredCamp.add(camp);
+            }
         }
         // Return the sorted copy
         ArrayList<Camp> filteredSortedCamps = sortByAlphabet(filteredCamp);
