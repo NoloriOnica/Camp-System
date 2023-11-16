@@ -23,7 +23,8 @@ public class Student extends User implements Serializable{
                                             //enquiries to multiple camps
     private StudentViewsCamps studentViewsCamps;
     private EnquiriesHandler enquiriesHandler;
-    
+    private final static int MAX_TRIES = 3;
+
     public Student(String userID, String name, String email, String faculty, String userType) {
         super(userID, name, email,faculty,userType);
         this.registeredCamps = new ArrayList<>();
@@ -70,25 +71,35 @@ public class Student extends User implements Serializable{
     public void registerForCamp(ArrayList<Camp> allCamps) {
         // View available camps
         ArrayList<Camp> availableCamps = viewCamps(allCamps);
-    
-        // Ask the user to select a camp
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the index of the camp you want to register for:");
-    
-        int campIndex;
-        while (true) {
+        int tries;
+        int campIndex = 0;
+        // Ask user to select a camp
+        tries = 0;
+        while (tries < MAX_TRIES) {
             try {
-                campIndex = sc.nextInt();
+                System.out.println("Enter the index of the camp you want to register for:");
+                campIndex = sc.nextInt() - 1;
                 sc.nextLine(); // Consume the newline character
+
                 if (campIndex >= 0 && campIndex < availableCamps.size()) {
                     break; // Valid index, break the loop
                 } else {
                     System.out.println("Invalid camp index. Please enter a valid index.");
+                    tries++;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
                 sc.next(); // Consume the invalid input to prevent an infinite loop
+                tries++;
             }
+        }
+
+        if (tries == MAX_TRIES) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            // Handle the case where the user exceeds the maximum number of tries
+            return;
         }
     
         Camp selectedCamp = availableCamps.get(campIndex);

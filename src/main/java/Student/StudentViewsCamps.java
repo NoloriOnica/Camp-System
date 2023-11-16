@@ -101,11 +101,11 @@ public class StudentViewsCamps{
         int i = 0;
         for(Camp camp:filteredSortedCamps){
             if(camp.equals(student.getCommitteeForCamp()))
-                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + "role: Camp Committee"+ " Start Date: "+ camp.getCampInfo().getStartDate()
-                + " Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + " ,Role: Camp Committee"+ " Start Date: "+ camp.getCampInfo().getStartDate()
+                + " ,Location: "+camp.getCampInfo().getLocation());
             else
-                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + "role : Attendee" + " Start Date: "+ camp.getCampInfo().getStartDate()
-                + " Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + " ,Role : Attendee" + " Start Date: "+ camp.getCampInfo().getStartDate()
+                + " ,Location: "+camp.getCampInfo().getLocation());
         }
     }
 
@@ -119,8 +119,8 @@ public class StudentViewsCamps{
         }
         for (Camp camp : filteredSortedCamps) {
             if (isCampVisibleToStudent(camp, student)) {
-                System.out.println((++i) + ") Camp Name: " + camp.getCampInfo().getCampName() + " Start Date: "+ camp.getCampInfo().getStartDate()
-                + " Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Camp Name: " + camp.getCampInfo().getCampName() + " ,Start Date: "+ camp.getCampInfo().getStartDate()
+                + " ,Location: "+camp.getCampInfo().getLocation());
                 campHolder.add(camp);
             }
         }
