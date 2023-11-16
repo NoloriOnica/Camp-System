@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import Camp.Camp;
 import Camp.CampUserGroup;
+import Feedback.Enquiries;
 import Login.AllCampToText;
 import Login.User;
 import Staff.Staff;
@@ -22,6 +23,23 @@ public class StudentMain {
 
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
 
+        //Initialisation
+        for(Camp camp : allCamps){
+            if(camp.getRegisteredStudents().contains(student)){
+                student.getRegisteredCamps().add(camp);
+            }
+            else if(camp.getBannedStudents().contains(student)){
+                student.getbannedCamps().add(camp);
+            }
+            //Load the enquiries
+            ArrayList<Enquiries> campEnquiries = camp.getEnquiriesList();
+            for(Enquiries enquiry : campEnquiries){
+                if(enquiry.getSenderName().equals(student.getName())){
+                    student.getEnquiriesList().add(enquiry);
+                }
+            }
+        }
+        
         Scanner scanner = new Scanner(System.in);
         int choice;
 

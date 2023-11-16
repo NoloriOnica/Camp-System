@@ -223,13 +223,16 @@ public class Student extends User implements Serializable{
                 return;
             } else {
                 System.out.println("You are currently an attendee for this camp, we will now proceed to withdraw you from this camp");
+                //Update on student's end
                 this.registeredCamps.remove(selectedCamp);
+                this.bannedCamps.add(selectedCamp);
+                //update on Camp's end
                 selectedCamp.getRegisteredStudents().remove(this);
                 selectedCamp.setRemainingAttendeeSlot(selectedCamp.getRemainingAttendeeSlot() + 1);
+                selectedCamp.getBannedStudents().add(this);
+                selectedCamp.getCampInfo().setTotalSlots(selectedCamp.getCampInfo().getCampCommitteeSlot() + selectedCamp.getRemainingAttendeeSlot()); //Update total Slot
+                System.out.println("Successfully withdrawn from camp: " + selectedCamp.getCampInfo().getCampName());
             }
-            this.bannedCamps.add(selectedCamp);
-            selectedCamp.getCampInfo().setTotalSlots(selectedCamp.getCampInfo().getCampCommitteeSlot() + selectedCamp.getRemainingAttendeeSlot()); //Update total Slot
-            System.out.println("Successfully withdrawn from camp: " + selectedCamp.getCampInfo().getCampName());
         } else {
             System.out.println("Withdrawal canceled.");
         }
@@ -265,6 +268,11 @@ public class Student extends User implements Serializable{
     public ArrayList<Camp> getRegisteredCamps(){
         return this.registeredCamps;
     }
+
+    public ArrayList<Camp> getbannedCamps(){
+        return this.bannedCamps;
+    }
+
 
     public Camp getCommitteeForCamp() {
         return this.committeeForCamp;
