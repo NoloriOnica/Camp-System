@@ -12,14 +12,7 @@ public class Login {
 		String userID = null;
 		String password;
 		
-		
-
-
-<<<<<<< HEAD
-		System.out.println("Welcome to the School System!!!!!!!");
-=======
-		System.out.println("Welcome to the School System!!!@@");
->>>>>>> 6dc21d2d348687150222a889a86af2e98916e50c
+		System.out.println("Welcome to the School System!");
 		System.out.println("Initialising Database!");
 		Database.initializeDatabase();
 		System.out.println("Initialising Complete!");
