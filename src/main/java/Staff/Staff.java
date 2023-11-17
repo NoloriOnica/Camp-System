@@ -630,12 +630,12 @@ public class Staff extends User implements Serializable{
 
     public boolean deleteCamp(ArrayList<Camp> allCamps) {
         // Implementation for deleting a camp
-
+        
         if(this.createdCamps == null || this.createdCamps.isEmpty()){
             System.out.println("You have not created any camps!");
             return false;
         }
-        
+
         Scanner sc = new Scanner(System.in);
         int index = 0;
         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
@@ -681,6 +681,12 @@ public class Staff extends User implements Serializable{
 
     public void toggleCampVisibility() {
         // Implementation for toggling the CampVisibility
+
+        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+            System.out.println("You have not created any camps!");
+            return;
+        }
+
         Scanner sc = new Scanner(System.in);
         int index = 0;
         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
