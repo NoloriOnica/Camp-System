@@ -656,7 +656,7 @@ public class Staff extends User implements Serializable{
             }
         }
         Camp selectedCamp = filterSortedCreatedCamp.get(index - 1); // Get the camp that the staff wanna delete
-        
+
         if (selectedCamp.getRegisteredStudents().isEmpty()) { // Only can delete the empty camp
             allCamps.remove(selectedCamp); // Remove the Camp on global
             this.createdCamps.remove(selectedCamp); // Remove the Camp on Staff's end
@@ -672,7 +672,7 @@ public class Staff extends User implements Serializable{
         // Implementation for toggling the CampVisibility
         Scanner sc = new Scanner(System.in);
         int index = 0;
-        this.viewOwnCamps();
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
 
         // Validate user input
         int tries = 0;
@@ -682,7 +682,7 @@ public class Staff extends User implements Serializable{
             try {
                 index = sc.nextInt();
 
-                if (index >= 1 && index <= this.createdCamps.size()) {
+                if (index >= 1 && index <= filterSortedCreatedCamp.size()) {
                     // Valid input, break the loop
                     break;
                 } else {
@@ -701,13 +701,14 @@ public class Staff extends User implements Serializable{
             }
         }
 
-        Camp camp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna edit
-        if (camp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
-            camp.getCampInfo().setCampVisibility(CampVisibility.ON);
-            System.out.println("The camp " + camp.getCampInfo().getCampName() + " now can be viewed by students.");
+        Camp selectedCamp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna edit
+
+        if (selectedCamp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
+            selectedCamp.getCampInfo().setCampVisibility(CampVisibility.ON);
+            System.out.println("The camp " + selectedCamp.getCampInfo().getCampName() + " now can be viewed by students.");
         } else {
-            camp.getCampInfo().setCampVisibility(CampVisibility.OFF);
-            System.out.println("The camp " + camp.getCampInfo().getCampName() + " now cannot be viewed by students.");
+            selectedCamp.getCampInfo().setCampVisibility(CampVisibility.OFF);
+            System.out.println("The camp " + selectedCamp.getCampInfo().getCampName() + " now cannot be viewed by students.");
         }
     }
 
