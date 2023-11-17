@@ -299,10 +299,14 @@ public class Staff extends User implements Serializable{
     public boolean editCamp(ArrayList<Camp> allCamps) {
         // Implementation for editing a camp
         // Check if the camp object is in the createdCamps (Created by this staff)
+        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+            System.out.println("You have not created any camps!");
+            return false;
+        }
+
         Scanner sc = new Scanner(System.in);
         int index = 0;
         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
-        
         int tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select which camp you want to edit:");
@@ -567,6 +571,7 @@ public class Staff extends User implements Serializable{
 
                         if (newTotalSlots >= 0) {
                             selectedCamp.getCampInfo().setTotalSlots(newTotalSlots);
+                            selectedCamp.setRemainingAttendeeSlot(selectedCamp.getCampInfo().getTotalSlots()-selectedCamp.getCampInfo().getCampCommitteeSlot());
                             System.out.println("The Total Slots has changed to " + newTotalSlots);
                             return true; // Return true if the user input is valid
                         } else {
@@ -625,9 +630,15 @@ public class Staff extends User implements Serializable{
 
     public boolean deleteCamp(ArrayList<Camp> allCamps) {
         // Implementation for deleting a camp
+
+        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+            System.out.println("You have not created any camps!");
+            return false;
+        }
+        
         Scanner sc = new Scanner(System.in);
         int index = 0;
-         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
 
         // Validate user input
         int tries = 0;

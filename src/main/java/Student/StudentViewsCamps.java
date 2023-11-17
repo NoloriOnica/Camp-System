@@ -92,22 +92,24 @@ public class StudentViewsCamps implements Serializable{
         return filteredCamps;
     }
     
-    public void viewRegisteredCamps(Student student){
+    public ArrayList<Camp> viewRegisteredCamps(Student student){ 
         ArrayList<Camp> registeredCamps = student.getRegisteredCamps();
         ArrayList<Camp> filteredSortedCamps = filterSelection(registeredCamps);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()){
             System.out.println("NOT FOUND");
-            return;
+            return null;
         }
         int i = 0;
         for(Camp camp:filteredSortedCamps){
+
             if(camp.equals(student.getCommitteeForCamp()))
-                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + " ,Role: Camp Committee"+ " Start Date: "+ camp.getCampInfo().getStartDate()
-                + " ,Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + ", Role: Camp Committee,"+ " Start Date: "+ camp.getCampInfo().getStartDate()
+                + ", Location: "+camp.getCampInfo().getLocation());
             else
-                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + " ,Role : Attendee" + " Start Date: "+ camp.getCampInfo().getStartDate()
-                + " ,Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Registered Camp Name: " + camp.getCampInfo().getCampName() + ", Role : Attendee," + " Start Date: "+ camp.getCampInfo().getStartDate()
+                + ", Location: "+camp.getCampInfo().getLocation());
         }
+        return filteredSortedCamps;
     }
 
     public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps, Student student){
@@ -120,8 +122,8 @@ public class StudentViewsCamps implements Serializable{
         }
         for (Camp camp : filteredSortedCamps) {
             if (isCampVisibleToStudent(camp, student)) {
-                System.out.println((++i) + ") Camp Name: " + camp.getCampInfo().getCampName() + " ,Start Date: "+ camp.getCampInfo().getStartDate()
-                + " ,Location: "+camp.getCampInfo().getLocation());
+                System.out.println((++i) + ") Camp Name: " + camp.getCampInfo().getCampName() + ", Registration Close Date: "+camp.getCampInfo().getRegClosingDate()
+                +", Start Date: "+ camp.getCampInfo().getStartDate()+ ", Location: "+camp.getCampInfo().getLocation());
                 campHolder.add(camp);
             }
         }

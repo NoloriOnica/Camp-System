@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import Camp.Camp;
+import Camp.CampCommittee;
 import Camp.CampUserGroup;
 import Feedback.Enquiries;
 import Login.AllCampToText;
@@ -22,23 +23,46 @@ public class StudentMain {
     public static void main(String[] args) {
 
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
+        
+        // Initialisation
+        for (Camp camp : allCamps) {
+            //Registered student
+            ArrayList<Student> registeredStudentList = camp.getRegisteredStudents();
+            for (Student registeredStudent : registeredStudentList) {
+                if (registeredStudent.getName().equals(student.getName())) {
+                    student.getRegisteredCamps().add(camp);
+                    break;
+                }
+            }
 
-        //Initialisation
-        for(Camp camp : allCamps){
-            if(camp.getRegisteredStudents().contains(student)){
-                student.getRegisteredCamps().add(camp);
+            //Banned student
+            ArrayList<Student> bannedStudentList = camp.getBannedStudents();
+            for (Student bannedStudent : bannedStudentList) {
+                if (bannedStudent.getName().equals(student.getName())) {
+                    student.getbannedCamps().add(camp);
+                    break;
+                }
             }
-            else if(camp.getBannedStudents().contains(student)){
-                student.getbannedCamps().add(camp);
+
+            //Registered camp committee
+            ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
+            for (CampCommittee campCommittee : campCommitteeList) {
+                if (campCommittee.getName().equals(student.getName())) {
+                    student.setCommitteeForCamp(camp);
+                    student.setCampCommittee(true);
+                    break;
+                }
             }
-            //Load the enquiries
+
+            // Load the enquiries
             ArrayList<Enquiries> campEnquiries = camp.getEnquiriesList();
-            for(Enquiries enquiry : campEnquiries){
-                if(enquiry.getSenderName().equals(student.getName())){
+            for (Enquiries enquiry : campEnquiries) {
+                if (enquiry.getSenderName().equals(student.getName())) {
                     student.getEnquiriesList().add(enquiry);
                 }
             }
         }
+        
         
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -80,7 +104,7 @@ public class StudentMain {
                     student.registerForCamp(allCamps);
                     break;
                 case 5:
-                    student.withdrawFromCamp(allCamps);
+                    student.withdrawFromCamp();
                     break;
                 case 6:
                     student.makeEnquiries(allCamps);
