@@ -97,11 +97,11 @@ public class StaffViewsCamps implements Serializable{
         }
     }
 
-    public void viewOwnCamps(ArrayList<Camp> campList) {
+    public ArrayList<Camp> viewOwnCamps(ArrayList<Camp> campList) { //return a list of sortedfiltercamp
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {
             System.out.println("NOT FOUND");
-            return;
+            return null;
         }
         int i = 1;
         for (Camp camp : filteredSortedCamps) {
@@ -110,5 +110,7 @@ public class StaffViewsCamps implements Serializable{
                     + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
                     + camp.getCampInfo().getStaffInChargeID());
         }
+
+        return filteredSortedCamps;
     }
 }

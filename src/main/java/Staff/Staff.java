@@ -301,16 +301,17 @@ public class Staff extends User implements Serializable{
         // Check if the camp object is in the createdCamps (Created by this staff)
         Scanner sc = new Scanner(System.in);
         int index = 0;
-        this.viewOwnCamps();
-
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
+        
         int tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select which camp you want to edit:");
-
+        
             try {
                 index = sc.nextInt();
-
-                if (index >= 1 && index <= this.createdCamps.size()) {
+                index--; // Decrement the index to match the zero-based index of the list
+        
+                if (index >= 0 && index < filterSortedCreatedCamp.size()) {
                     // Valid input, break the loop
                     break;
                 } else {
@@ -323,14 +324,14 @@ public class Staff extends User implements Serializable{
                 tries++;
             }
         }
-
+        
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             // Handle the case where the user exceeds the maximum number of tries
             return false;
         }
-
-        Camp selectedCamp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna edit
+        
+        Camp selectedCamp = filterSortedCreatedCamp.get(index); // Get the camp that the staff wanna edit
 
         tries = 0;
         int choice = 0;
@@ -626,7 +627,7 @@ public class Staff extends User implements Serializable{
         // Implementation for deleting a camp
         Scanner sc = new Scanner(System.in);
         int index = 0;
-        this.viewOwnCamps();
+         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
 
         // Validate user input
         int tries = 0;
@@ -636,7 +637,7 @@ public class Staff extends User implements Serializable{
             try {
                 index = sc.nextInt();
 
-                if (index >= 1 && index <= this.createdCamps.size()) {
+                if (index >= 1 && index <= filterSortedCreatedCamp.size()) {
                     // Valid input, break the loop
                     break;
                 } else {
@@ -654,7 +655,8 @@ public class Staff extends User implements Serializable{
                 return false; // Or handle it as needed in your code
             }
         }
-        Camp selectedCamp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna delete
+        Camp selectedCamp = filterSortedCreatedCamp.get(index - 1); // Get the camp that the staff wanna delete
+        
         if (selectedCamp.getRegisteredStudents().isEmpty()) { // Only can delete the empty camp
             allCamps.remove(selectedCamp); // Remove the Camp on global
             this.createdCamps.remove(selectedCamp); // Remove the Camp on Staff's end
@@ -713,8 +715,8 @@ public class Staff extends User implements Serializable{
         staffViewsCamps.viewCamps(allCamps);
     }
 
-    public void viewOwnCamps() {
-        staffViewsCamps.viewOwnCamps(this.createdCamps); // Pass in Staff's attribute as parameter
+    public ArrayList<Camp> viewOwnCamps() {
+        return staffViewsCamps.viewOwnCamps(this.createdCamps); // Pass in Staff's attribute as parameter
     }
 
     public void viewEnquiries() {
