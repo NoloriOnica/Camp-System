@@ -221,6 +221,10 @@ public class Student extends User implements Serializable {
     }
 
     public void withdrawFromCamp() {
+    	Scanner sc = new Scanner(System.in);
+    	int tries;             
+    	int campIndex = 0;
+       
         // View registered camps
         if(this.registeredCamps==null || this.registeredCamps.isEmpty()){
             System.out.println("You have not registered for any camp!");
@@ -228,47 +232,55 @@ public class Student extends User implements Serializable {
         }
 
         ArrayList<Camp> filteredSortedCmaps = this.viewRegisteredCamps();
-
-        // Ask the user to select a camp to withdraw from
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the index of the camp you want to withdraw from:");
-
-        int campIndex;
-        while (true) {
-            try {
-                campIndex = sc.nextInt();
+        tries = 0;
+        while (tries < MAX_TRIES) {
+            try {        
+		        // Ask the user to select a camp to withdraw from
+		        System.out.println("Enter the index of the camp you want to withdraw from:");
+                campIndex = sc.nextInt() - 1;
                 sc.nextLine(); // Consume the newline character
+                
                 if (campIndex >= 0 && campIndex < filteredSortedCmaps.size()) {
                     break; // Valid index, break the loop
-                } else {
+                } 
+                else {
                     System.out.println("Invalid camp index. Please enter a valid index.");
+                    tries++;
                 }
+                
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
                 sc.next(); // Consume the invalid input to prevent an infinite loop
+                tries++;
             }
         }
-
+        if (tries == MAX_TRIES) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            return;
+        }
         Camp selectedCamp = filteredSortedCmaps.get(campIndex);
 
         System.out.println("Are you sure you want to withdraw from the camp? (1 for Yes, 2 for No)");
 
-        int choice;
-        while (true) {
+        int choice = 0;
+        while (tries < MAX_TRIES) {
             try {
                 choice = sc.nextInt();
                 sc.nextLine(); // Consume the newline character
                 if (choice == 1 || choice == 2) {
                     break; // Valid choice, break the loop
-                } else {
+                } 
+                else {
                     System.out.println("Invalid choice. Please enter 1 or 2.");
+                    tries++;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter 1 or 2.");
                 sc.next(); // Consume the invalid input to prevent an infinite loop
+                tries++;
             }
         }
-
+        
         if (choice == 1) {
             // Withdraw the student from the camp
             if (selectedCamp == this.committeeForCamp) { // Check if the student is the committee in the selected camp
@@ -294,6 +306,7 @@ public class Student extends User implements Serializable {
         } else {
             System.out.println("Withdrawal canceled.");
         }
+        
     }
 
     public void makeEnquiries(ArrayList<Camp> allCamps) {
