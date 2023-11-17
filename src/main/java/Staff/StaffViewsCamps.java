@@ -88,8 +88,8 @@ public class StaffViewsCamps implements Serializable{
             System.out.println("NOT FOUND");
             return;
         }
+        int i = 1;
         for (Camp camp : filteredSortedCamps) {
-            int i = 1;
             System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
                     + camp.getCampInfo().getStartDate()
                     + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
@@ -103,8 +103,8 @@ public class StaffViewsCamps implements Serializable{
             System.out.println("NOT FOUND");
             return;
         }
+        int i = 1;
         for (Camp camp : filteredSortedCamps) {
-            int i = 1;
             System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
                     + camp.getCampInfo().getStartDate()
                     + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
