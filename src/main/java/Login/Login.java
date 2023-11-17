@@ -13,11 +13,12 @@ public class Login {
 		String password;
 
 
-		System.out.println("Welcome to the School System!");
+		System.out.println("Welcome to the School System!!!");
 		System.out.println("Initialising Database!");
 		Database.initializeDatabase();
 		System.out.println("Initialising Complete!");
 
+		
 		boolean loginValid = false;
 		while (!loginValid) {
 			System.out.println();
