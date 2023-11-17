@@ -11,6 +11,8 @@ public class Login {
 		Scanner scanner = new Scanner(System.in);
 		String userID = null;
 		String password;
+		
+		System.out.println("Santosh");
 
 
 		System.out.println("Welcome to the School System!");
