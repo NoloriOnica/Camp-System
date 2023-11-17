@@ -1,6 +1,8 @@
 package Report;
 
 import java.io.BufferedWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,11 +18,18 @@ public class PerformanceReportGenerator implements Serializable{
             return;
         }
          // Create a .txt file to write the report
-         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Performance_Report.txt"))) {
+        File reportFile = new File("Performance_Report.txt");
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter(reportFile))) {
             // Write the header of the report
             for (Camp camp : camplist){
                 ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
-                writer.write(campCommitteeList.get(0).viewCampDetails()); //Print camp detail
+                if (!campCommitteeList.isEmpty()) { // Check if the list is not empty
+        	        CampCommittee campCommittee = campCommitteeList.get(0);
+        	        writer.write(campCommittee.viewCampDetails()); //Print camp detail
+        	    } else {
+        	        // Handle the case where there are no registered camp committees
+        	        writer.write("No registered camp committee details available.");
+        	    }
                 // Write each attendee's information to the file
                 int i = 1;
                 for(CampCommittee campCommittee : campCommitteeList){
@@ -33,5 +42,19 @@ public class PerformanceReportGenerator implements Serializable{
             System.out.println("An error occurred while writing the report.");
             e.printStackTrace();
         }
+      // After writing the report, try to open it
+         if (Desktop.isDesktopSupported()) {
+             try {
+                 Desktop.getDesktop().open(reportFile);
+                 System.out.println("Report generated and opened successfully.");
+             } catch (IOException e) {
+                 System.out.println("The report was generated, but there was an error opening it.");
+                 e.printStackTrace();
+             }
+         } else {
+             System.out.println("Desktop is not supported on this platform.");
+         }
     }
+    
+    
 }

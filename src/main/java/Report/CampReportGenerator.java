@@ -6,6 +6,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.awt.Desktop;
+import java.io.File;
 
 import Camp.Camp;
 import Camp.CampCommittee;
@@ -36,6 +38,7 @@ public class CampReportGenerator implements Serializable{
                 break;
             case 3:
                 filteredCamps = campList;
+                break;
             default:
                 System.out.println("Invalid choice.");
         }
@@ -49,12 +52,21 @@ public class CampReportGenerator implements Serializable{
             return;
         }
         // Create a .txt file to write the report
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Camp_Report.txt"))) {
+        File reportFile = new File("Camp_Report.txt");
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(reportFile))) {
             // Write the header of the report
-            for (Camp camp : filteredCamps){
-                //Use Camp Committee's object to Call viewCampDetails()
-                CampCommittee campCommittee = camp.getRegisteredCampCommittee().get(0);
-                writer.write(campCommittee.viewCampDetails()); //Print camp detail
+        	for (Camp camp : filteredCamps){
+        	    // Use Camp Committee's object to Call viewCampDetails()
+        	    //writer.write(camp.getRemainingAttendeeSlot());
+        	    ArrayList<CampCommittee> registeredCampCommittee = camp.getRegisteredCampCommittee();
+        	    if (!registeredCampCommittee.isEmpty()) { // Check if the list is not empty
+        	        CampCommittee campCommittee = registeredCampCommittee.get(0);
+        	        writer.write(campCommittee.viewCampDetails()); //Print camp detail
+        	    } else {
+        	        // Handle the case where there are no registered camp committees
+        	        writer.write("No registered camp committee details available.");
+        	    }
                 // Write each attendee's information to the file
                 int i = 1;
                 ArrayList<Student> studentList = camp.getRegisteredStudents();
@@ -66,6 +78,23 @@ public class CampReportGenerator implements Serializable{
         } catch (IOException e) {
             System.out.println("An error occurred while writing the report.");
             e.printStackTrace();
+            return;
         }
+        
+     // After writing the report, try to open it
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().open(reportFile);
+                System.out.println("Report generated and opened successfully.");
+            } catch (IOException e) {
+                System.out.println("The report was generated, but there was an error opening it.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Desktop is not supported on this platform.");
+        }
+        
+        
+        
     }
 }
