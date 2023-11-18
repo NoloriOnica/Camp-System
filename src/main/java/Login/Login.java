@@ -38,11 +38,14 @@ public class Login {
 
 		while (loginChoice != 0) {
 			
+			
 			System.out.println();
+			System.out.println("\n#################################################");
 			System.out.println("0. Log Out");
 			System.out.println("1. Change Password");
 			System.out.println("2. Go to Main Menu");
-			System.out.print("Enter your choice: ");
+			System.out.println("#################################################");
+			System.out.print("\nENTER YOU CHOICE: ");
 			loginChoice = scanner.nextInt();
 			scanner.nextLine(); // Consume the newline character
 

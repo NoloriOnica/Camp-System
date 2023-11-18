@@ -30,7 +30,10 @@ public class StaffMain {
         int choice;
 
         do {
-            System.out.println("\nStaff Menu:");
+        	allCamps = AllCampToText.readCampsFromFile();
+        	
+        	System.out.println("\n#################################################");
+        	System.out.println(":::STAFF MENU:::");
             System.out.println("1. Create a Camp");
             System.out.println("2. Edit a Camp");
             System.out.println("3. Delete a Camp");
@@ -44,7 +47,8 @@ public class StaffMain {
             System.out.println("11. Generate Camp Report");
             System.out.println("12. Generate Performance Report");
             System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("#################################################");
+            System.out.print("\nENTER YOU CHOICE: ");
 
             try {
                 choice = scanner.nextInt();
@@ -96,7 +100,7 @@ public class StaffMain {
                     staff.generatePerformanceReport();
                     break;
                 case 0:
-                    System.out.println("Going back to Login Page!");
+                    System.out.println("Going back to Login Menu!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a number between 0 and 12.");

@@ -25,12 +25,12 @@ public class AllCampToText {
             while (obj != null) {
                 if (obj instanceof ArrayList) {
                     allCamps = (ArrayList<Camp>) obj;
-                    System.out.println("Camps read from file successfully.");
+                    //System.out.println("Camps read from file successfully.");
                 }
                 obj = ois.readObject();
             }
         } catch (EOFException e) {
-            // End of file reached, do nothing
+            
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -302,6 +302,15 @@ public class Student extends User implements Serializable {
         }
         
     }
+    
+    public void viewCampCommitteeCamp() {
+    	if (!this.isCampCommittee) {
+    		System.out.println("You are not a camp committee member in any camps!!");
+    	}
+    	else {
+    		 System.out.println("Registered Camp Name: " + this.getCommitteeForCamp().getCampInfo().getCampName() + ", Role: Camp Committee,"+ " Start Date: "+ this.getCommitteeForCamp().getCampInfo().getStartDate() + ", Location: "+ this.getCommitteeForCamp().getCampInfo().getLocation());
+    	}
+    }
 
     public void makeEnquiries(ArrayList<Camp> allCamps) {
         enquiriesHandler.makeEnquiries(allCamps, this);
