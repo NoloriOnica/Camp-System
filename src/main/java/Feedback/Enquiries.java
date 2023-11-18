@@ -4,6 +4,7 @@ import java.io.Serializable;
 import Camp.Camp;
 
 public class Enquiries implements Serializable{
+	
     private String enquiryString;
     private boolean isProcessed;
     private String senderName;
@@ -17,6 +18,10 @@ public class Enquiries implements Serializable{
         this.isProcessed = false;
         this.belongedCamp = belongedCamp;
     }
+    public void setReplierName(String replierName) {
+        this.replierName = replierName;
+    }
+
     public String getEnquireString(){
         return this.enquiryString;
     }
@@ -48,7 +53,7 @@ public class Enquiries implements Serializable{
         String line;
         if (this.isProcessed && reply != null) {
             line = "To Camp "+ belongedCamp.getCampInfo().getCampName()+ "\n"+ "Enquiry {" + enquiryString + ", sender's name = " + senderName+" }\n" +
-            "Replied by " + replierName + "Reply: " + reply + ", Reply State = " + isProcessed;
+            "Replied by " + replierName + " Reply: " + reply + ", Reply State = " + isProcessed;
         }else{
             line =  "To Camp "+ belongedCamp.getCampInfo().getCampName()+ "\n" +"Enquiry {" + enquiryString + ", sender's name = " + senderName+" } Reply State = " + isProcessed;
         }
