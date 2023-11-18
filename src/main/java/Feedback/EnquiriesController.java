@@ -80,6 +80,19 @@ public class EnquiriesController implements Serializable {
                         sc.nextLine(); // Consume the rest of the line
                         System.out.println("Enter the reply:");
                         String reply = sc.nextLine();
+                        
+                        while(tries < maxTries) {
+                            if (reply.trim().isEmpty()) {
+                                System.out.println("Please enter a reply: ");
+                                reply = sc.nextLine();
+                                tries++;
+                            }
+                          }
+                          if (tries >= maxTries) {
+                              System.out.println("Please try again later.");
+                              return false; // Return false if the user exceeds the maximum number of tries
+                          }
+                          
                         enquiries.get(index).setReply(reply);
                         enquiries.get(index).setProcessState(true);
                         enquiries.get(index).setReplierName(replierName);
