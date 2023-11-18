@@ -18,6 +18,7 @@ public class Enquiries implements Serializable{
         this.isProcessed = false;
         this.belongedCamp = belongedCamp;
     }
+    
     public void setReplierName(String replierName) {
         this.replierName = replierName;
     }

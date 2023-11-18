@@ -98,10 +98,10 @@ public class CampReportGenerator implements Serializable {
                     System.out.println();
                     if(student.getCommitteeForCamp()!=null && student.getCommitteeForCamp().equals(camp)){
                         writer.write(
-                            (i++) + " " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Camp Committee\n");
+                            (i++) + ") " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Camp Committee\n");
                     }else{
                         writer.write(
-                            (i++) + " " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Attendee\n");
+                            (i++) + ") " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Attendee\n");
                     }
                 }
                 writer.write("\n");
