@@ -1,0 +1,14 @@
+Camp Name: Pegasus
+Start Date: 2024-02-11
+End Date: 2024-02-12
+Registration Closing Date: 2023-11-19
+User Group: Whole NTU
+Camp Visibility: ON
+Location: near ntu
+Total Slots: 8
+Camp Committee Slot: 3
+Description: very nice
+Staff In Charge ID: Yonan
+1 RAWAL Faculty: SSS
+2 LIU  Faculty: NBS
+

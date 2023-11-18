@@ -33,6 +33,23 @@ public class CampInfo implements Serializable{
         this.description = description;
         this.staffInChargeID = staffInChargeID;
     }
+    @Override
+    public String toString() {
+        return "Camp Name: " + campName +
+               "\nStart Date: " + startDate +
+               "\nEnd Date: " + endDate +
+               "\nRegistration Closing Date: " + regClosingDate +
+               "\nUser Group: " + campUserGroup +
+               "\nCamp Visibility: " + campVisibility +
+               "\nLocation: " + location +
+               "\nTotal Slots: " + totalSlots +
+               "\nCamp Committee Slot: " + campCommitteeSlot +
+               "\nDescription: " + description +
+               "\nStaff In Charge ID: " + staffInChargeID;
+    }
+
+
+
 
     // //Below are all getters and setters
     public String getCampName() {

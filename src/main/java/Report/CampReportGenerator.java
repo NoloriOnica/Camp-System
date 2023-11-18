@@ -23,6 +23,7 @@ public class CampReportGenerator implements Serializable{
         System.out.println("1)Attendee\n2)Camp Committee\n3)None");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
+        sc.nextLine();
         switch(choice){
             case 1:
                 System.out.println("Enter attendee's name:");
@@ -47,7 +48,7 @@ public class CampReportGenerator implements Serializable{
 
     public void generateCampReport(ArrayList<Camp> campList){
         ArrayList<Camp> filteredCamps = filterSelection(campList);
-        if(filteredCamps.isEmpty() || filteredCamps == null){
+        if(filteredCamps == null || filteredCamps.isEmpty() ){
             System.out.println("NOT FOUND!");
             return;
         }
@@ -65,14 +66,17 @@ public class CampReportGenerator implements Serializable{
         	        writer.write(campCommittee.viewCampDetails()); //Print camp detail
         	    } else {
         	        // Handle the case where there are no registered camp committees
-        	        writer.write("No registered camp committee details available.");
+        	        writer.write("No registered camp committee details available."+ "\n" + camp.getCampInfo().toString() + "\n");
         	    }
                 // Write each attendee's information to the file
                 int i = 1;
                 ArrayList<Student> studentList = camp.getRegisteredStudents();
                 for(Student student : studentList){
+                	System.out.println();
                      writer.write((i++) +" "+ student.getName() + " Faculty: "+student.getFaculty().toString() + "\n");
-                }
+                                     
+                     }
+                writer.write("\n");
             }
             System.out.println("Report generated successfully.");
         } catch (IOException e) {
