@@ -36,8 +36,7 @@ public class Staff extends User implements Serializable {
         this.performanceReportGenerator = new PerformanceReportGenerator();
     }
 
-    public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is
-                                                       // not created
+    public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is not created
         // Implementation for creating a camp
         // Declaration for the attribute needed for a Camp
         String campName = null;
@@ -163,7 +162,7 @@ public class Staff extends User implements Serializable {
         tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select Camp User Group");
-            System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS");
+            System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS");
             try {
                 int index = sc.nextInt();
                 sc.nextLine(); // Consume the newline character after reading the integer
@@ -292,12 +291,12 @@ public class Staff extends User implements Serializable {
 
                 // Perform additional error checking if needed
                 if(totalSlots < campCommitteeSlot){
-                    System.out.println("Error: Camp Committee Slotw cannot be lesser than the camp's total slot.");
+                    System.out.println("Error: Camp Committee Slot cannot be more than the camp's total slot.");
                     tries++;
                     continue;
                 }
 
-                if(campCommitteeSlot<0){
+                if(campCommitteeSlot < 0){
                     System.out.println("Error: Camp Committee Slots cannot be negative.");
                     tries++;
                     continue;
@@ -519,7 +518,7 @@ public class Staff extends User implements Serializable {
                 tries = 0;
                 while (tries < MAX_TRIES) {
                     System.out.println("Select the new Camp User Group:");
-                    System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS");
+                    System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS");
 
                     int index1 = sc.nextInt();
 
@@ -535,6 +534,9 @@ public class Staff extends User implements Serializable {
                             break;
                         case 4:
                             selectedCamp.getCampInfo().setCampUserGroup("SPMS");
+                            break;
+                        case 5:
+                            selectedCamp.getCampInfo().setCampUserGroup("SSS");
                             break;
                         default:
                             System.out.println("Invalid input. Please enter again.");
@@ -618,10 +620,19 @@ public class Staff extends User implements Serializable {
                 tries = 0;
                 while (tries < MAX_TRIES) {
                     System.out.println("Enter the new Total Slots:");
-
-                    if (sc.hasNextInt()) {
+                    try {
                         int newTotalSlots = sc.nextInt();
 
+                        if(newTotalSlots < 0){
+                            System.out.println("Camp's total slot cannot be negative number.");
+                            tries++;
+                            continue;
+                        }
+                        if(newTotalSlots < selectedCamp.getCampInfo().getCampCommitteeSlot()){
+                            System.out.println("Camp's total slot cannot be lesser than camp committee slot.");
+                            tries++;
+                            continue;
+                        }
                         if (newTotalSlots >= 0) {
                             selectedCamp.getCampInfo().setTotalSlots(newTotalSlots);
                             selectedCamp.setRemainingAttendeeSlot(selectedCamp.getCampInfo().getTotalSlots()
@@ -632,14 +643,13 @@ public class Staff extends User implements Serializable {
                             System.out.println("Invalid input. Please enter a non-negative integer.");
                             tries++;
                         }
-                    } else {
+                    } catch (InputMismatchException e) {
                         System.out.println("Invalid input. Please enter a valid integer.");
                         sc.next(); // Consume the invalid input to prevent an infinite loop
                         tries++;
                     }
                 }
-                // If the user exceeds the maximum number of tries, print a message and return
-                // false
+                // If the user exceeds the maximum number of tries, print a message and return false
                 System.out.println("Please try again later.");
                 return false;
 
@@ -648,10 +658,13 @@ public class Staff extends User implements Serializable {
 
                 while (tries < MAX_TRIES) {
                     System.out.println("Enter the new Camp Committee Slot (Max = 10):");
-
                     try {
                         int newCampCommitteeSlot = sc.nextInt();
-
+                        if(newCampCommitteeSlot > selectedCamp.getCampInfo().getTotalSlots()){
+                            System.out.println("Camp committee slot cannot be more than camp's total slot.");
+                            tries++;
+                            continue;
+                        }
                         if (newCampCommitteeSlot >= 0 && newCampCommitteeSlot <= 10) {
                             selectedCamp.getCampInfo().setCampCommitteeSlot(newCampCommitteeSlot);
                             System.out.println("The Camp Committee slot has changed to " + newCampCommitteeSlot);
