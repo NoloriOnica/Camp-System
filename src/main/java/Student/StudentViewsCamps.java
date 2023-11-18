@@ -8,7 +8,7 @@ import Report.CampsFilter;
 import Report.CampsFilterImplementation;
 import Camp.CampVisibility;
 import Camp.Camp;
-import Camp.CampUserGroup;
+
 
 
 public class StudentViewsCamps implements Serializable{

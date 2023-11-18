@@ -12,42 +12,22 @@ import Report.CampReportGenerator;
 public class CampCommittee implements Serializable{
     private Camp camp;
 	private String name;
-	private CampUserGroup campUserGroup;
+	private String faculty;
 	private int point = 0;
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
 
-	public CampCommittee(String name, Camp camp, CampUserGroup campUserGroup)
+	public CampCommittee(String name, Camp camp, String faculty)
 	{
 		this.name = name;
         this.camp = camp;
-		this.campUserGroup = campUserGroup;
+		this.faculty = faculty;
 		enquiriesController = new EnquiriesController();
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
 	}
 	
-	public String viewCampDetails() {
-		StringBuilder details = new StringBuilder();
-		details.append("Camp Name: ").append(this.camp.getCampInfo().getCampName()).append("\n");
-		details.append("Start Date: ").append(this.camp.getCampInfo().getStartDate()).append("\n");
-		details.append("End Date: ").append(this.camp.getCampInfo().getEndDate()).append("\n");
-		details.append("Registration Closing Date: ").append(this.camp.getCampInfo().getRegClosingDate()).append("\n");
-		details.append("User Group: ").append(this.camp.getCampInfo().getCampUserGroup().toString()).append("\n");
-		details.append("Camp Visibility: ").append(this.camp.getCampInfo().getCampVisibility().toString()).append("\n");
-		details.append("Location: ").append(this.camp.getCampInfo().getLocation()).append("\n");
-		details.append("Total Slots: ").append(this.camp.getCampInfo().getTotalSlots()).append("\n");
-		details.append("Camp Committee Slot: ").append(this.camp.getCampInfo().getCampCommitteeSlot()).append("\n");
-		details.append("Description: ").append(this.camp.getCampInfo().getDescription()).append("\n");
-		details.append("Staff In Charge ID: ").append(this.camp.getCampInfo().getStaffInChargeID()).append("\n");
-	
-		// Print to the console
-		System.out.println(details.toString());
-	
-		// Return the details as a string
-		return details.toString();
-	}
 	
 	public void viewEnquiries() {
 		//view enquiries
@@ -98,7 +78,8 @@ public void setPoint(int point){
 public String getName(){
 	return this.name;
 }
-public CampUserGroup getCampUserGroup(){
-	return this.campUserGroup;
+
+public String getFaculty(){
+	return this.faculty;
 }
 }

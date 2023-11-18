@@ -1,13 +1,12 @@
-Camp Name: TESTING
+Camp Name: Orion
 Start Date: 2024-01-01
 End Date: 2024-01-03
 Registration Closing Date: 2023-12-12
 User Group: Whole NTU
 Camp Visibility: ON
-Location: Singapore
-Total Slots: 49
-Camp Committee Slot: 3
-Description: Testing Vas
+Location: Singpaore
+Total Slots: 39
+Camp Committee Slot: 9
+Description: Asdasd
 Staff In Charge ID: Yonan
-1 VASANTH Faculty: SCSE Role: Camp Committee
-
+1 VASANTH Faculty: SCSEPoints : 0

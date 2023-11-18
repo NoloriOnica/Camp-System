@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import Login.User;
 import Camp.Camp;
-import Camp.CampUserGroup;
 import Camp.CampCommittee;
 import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
@@ -16,7 +15,6 @@ import Feedback.EnquiriesHandler;
 public class Student extends User implements Serializable {
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
-    private CampUserGroup campUserGroup;
     private ArrayList<Camp> registeredCamps;
     private ArrayList<Camp> bannedCamps; // Student are not allow to register for the camp that he withdrawed before
     private ArrayList<Enquiries> enquiriesList; // Different from camp committee's suggestion, a student can send enquiries to multiple camps
@@ -183,7 +181,7 @@ public class Student extends User implements Serializable {
                                 "Cannot register as camp committee as you are a camp committee for other camp");
                         return;
                     }
-                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.campUserGroup);
+                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.getFaculty());
                     selectedCamp.addRegisteredStudents(this); // Update camp's Registered Student list
                     selectedCamp.addRegisteredCampCommittee(campCommittee); // Update camp's Registered camp committee
                                                                             // list

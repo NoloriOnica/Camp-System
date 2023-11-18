@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import Camp.Camp;
 import Camp.CampCommittee;
-import Camp.CampUserGroup;
 import Feedback.Enquiries;
 import Login.AllCampToText;
 import Login.User;

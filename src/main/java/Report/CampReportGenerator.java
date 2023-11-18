@@ -91,6 +91,9 @@ public class CampReportGenerator implements Serializable {
                 // Write each attendee's information to the file
                 int i = 1;
                 ArrayList<Student> studentList = camp.getRegisteredStudents();
+                if(studentList.isEmpty()){
+                    System.out.println("No registered attendee/camp committee details available.");
+                }
                 for (Student student : studentList) {
                     System.out.println();
                     if(student.getCommitteeForCamp()!=null && student.getCommitteeForCamp().equals(camp)){
