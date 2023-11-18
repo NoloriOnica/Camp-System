@@ -19,8 +19,7 @@ public class Student extends User implements Serializable {
     private CampUserGroup campUserGroup;
     private ArrayList<Camp> registeredCamps;
     private ArrayList<Camp> bannedCamps; // Student are not allow to register for the camp that he withdrawed before
-    private ArrayList<Enquiries> enquiriesList; // Different from camp committee's suggestion, a student can send
-    // enquiries to multiple camps
+    private ArrayList<Enquiries> enquiriesList; // Different from camp committee's suggestion, a student can send enquiries to multiple camps
     private StudentViewsCamps studentViewsCamps;
     private EnquiriesHandler enquiriesHandler;
     private final static int MAX_TRIES = 3;
@@ -221,7 +220,6 @@ public class Student extends User implements Serializable {
     }
 
     public void withdrawFromCamp() {
-
     	Scanner sc = new Scanner(System.in);
     	int tries;             
     	int campIndex = 0;
@@ -233,15 +231,12 @@ public class Student extends User implements Serializable {
         }
 
         ArrayList<Camp> filteredSortedCmaps = this.viewRegisteredCamps();
-        if(filteredSortedCmaps == null || filteredSortedCmaps.isEmpty()) {
-        	return;
-        }
         tries = 0;
         while (tries < MAX_TRIES) {
             try {        
 		        // Ask the user to select a camp to withdraw from
 		        System.out.println("Enter the index of the camp you want to withdraw from:");
-                campIndex = sc.nextInt() - 1; 
+                campIndex = sc.nextInt() - 1;
                 sc.nextLine(); // Consume the newline character
                 
                 if (campIndex >= 0 && campIndex < filteredSortedCmaps.size()) {
@@ -258,7 +253,6 @@ public class Student extends User implements Serializable {
                 tries++;
             }
         }
-
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             return;
@@ -289,16 +283,15 @@ public class Student extends User implements Serializable {
         if (choice == 1) {
             // Withdraw the student from the camp
             if (selectedCamp == this.committeeForCamp) { // Check if the student is the committee in the selected camp
-                System.out.println("You are currently a camp committee for this camp, thus you cannot be withdrawn from this camp!");
+                System.out.println(
+                        "You are currently a camp committee for this camp, thus you cannot be withdrawn from this camp!");
                 return;
-            } 
-            else {
-                System.out.println("You are currently an attendee for this camp, we will now proceed to withdraw you from this camp");
-
+            } else {
+                System.out.println(
+                        "You are currently an attendee for this camp, we will now proceed to withdraw you from this camp");
                 // Update on student's end
                 this.registeredCamps.remove(selectedCamp);
                 this.bannedCamps.add(selectedCamp);
-
                 // update on Camp's end
                 ArrayList<Student> studentList = selectedCamp.getRegisteredStudents();
                 for(Student student : studentList){
@@ -307,7 +300,6 @@ public class Student extends User implements Serializable {
                         break;
                     }
                 }
-
                 selectedCamp.setRemainingAttendeeSlot(selectedCamp.getRemainingAttendeeSlot() + 1);
                 selectedCamp.addBannedStudents(this);
                 selectedCamp.getCampInfo().setTotalSlots(
@@ -317,6 +309,7 @@ public class Student extends User implements Serializable {
         } else {
             System.out.println("Withdrawal canceled.");
         }
+        
     }
 
     public void makeEnquiries(ArrayList<Camp> allCamps) {
