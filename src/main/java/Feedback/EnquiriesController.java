@@ -26,7 +26,7 @@ public class EnquiriesController implements Serializable {
         }
     }
 
-    public boolean replyEnquiries(ArrayList<Camp> camps) {
+    public boolean replyEnquiries(ArrayList<Camp> camps, String staffName) {
         Scanner sc = new Scanner(System.in);
         int maxTries = 3;
         
@@ -82,6 +82,7 @@ public class EnquiriesController implements Serializable {
                         String reply = sc.nextLine();
                         enquiries.get(index).setReply(reply);
                         enquiries.get(index).setProcessState(true);
+                        enquiries.get(index).setReplierName(staffName);
                         System.out.println("Enquiry replied to successfully.");
                         return true;
                     } else {

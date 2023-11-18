@@ -24,9 +24,12 @@ public class Staff extends User implements Serializable{
     private CampReportGenerator campReportGenerator;
     private PerformanceReportGenerator performanceReportGenerator;
     private static final int MAX_TRIES = 3;
+    
+ 
 
     public Staff(String userID, String name, String email, String faculty, String userType) {
         super(userID, name, email, faculty, userType);
+     
         this.createdCamps = new ArrayList<>();
         this.staffViewsCamps = new StaffViewsCamps();
         this.enquiriesController = new EnquiriesController();
@@ -34,6 +37,8 @@ public class Staff extends User implements Serializable{
         this.campReportGenerator = new CampReportGenerator();
         this.performanceReportGenerator = new PerformanceReportGenerator();
     }
+    
+  
 
     public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is
                                                        // not created
@@ -770,9 +775,11 @@ public class Staff extends User implements Serializable{
     public void viewEnquiries() {
         enquiriesController.viewEnquiries(this.createdCamps);// Pass in Staff's attribute as parameter
     }
+    
 
     public void replyEnquiries() {
-        enquiriesController.replyEnquiries(this.createdCamps);// Pass in Staff's attribute as parameter
+    	
+        enquiriesController.replyEnquiries(this.createdCamps,  super.getName());// Pass in Staff's attribute as parameter
     }
 
     public void viewSuggestion() {

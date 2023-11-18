@@ -61,7 +61,7 @@ public class CampCommittee implements Serializable{
 		//reply enquiries
 		ArrayList<Camp> singleCampHolder = new ArrayList<>(); 
         singleCampHolder.add(this.camp);
-        if(enquiriesController.replyEnquiries(singleCampHolder))//return boolean
+        if(enquiriesController.replyEnquiries(singleCampHolder, this.name))//return boolean
             this.point++;
 	}
 	
