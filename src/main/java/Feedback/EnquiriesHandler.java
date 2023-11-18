@@ -51,6 +51,19 @@ public class EnquiriesHandler implements Serializable{
         System.out.println("Type the enquiry:");
         String enquiryLine = sc.nextLine();
         Enquiries enquiry = new Enquiries(student.getName(), selectedCamp);
+        tries = 0;
+        while (tries < maxTries) {
+            if (enquiryLine.trim().isEmpty()) {
+                System.out.println("Enquiry cannot be blank. Please enter a valid enquiry:");
+                enquiryLine = sc.nextLine();
+                tries++;
+            }
+        }
+        if (tries >= maxTries) {
+            System.out.println("Please try again later.");
+            return; // Return if the user exceeds the maximum number of tries
+        }
+
         enquiry.setEnquiryString(enquiryLine);
         student.getEnquiriesList().add(enquiry); // Store the enquiry inside the correspinding student
         selectedCamp.addEnquiriesList(enquiry); // Store the enquiry inside the corresponding camp
@@ -117,6 +130,20 @@ public class EnquiriesHandler implements Serializable{
         
         System.out.println("What would you like to change it to?");
         String enquiryString = sc.nextLine();
+        tries = 0;
+        while (tries < maxTries) {
+            if (enquiryString.trim().isEmpty()) {
+                System.out.println("Enquiry cannot be blank. Please enter a valid enquiry:");
+                enquiryString = sc.nextLine();
+                tries++;
+            }
+        }
+
+        if (tries >= maxTries) {
+            System.out.println("Please try again later.");
+            return; // Return if the user exceeds the maximum number of tries
+        }
+
         enquiry.setEnquiryString(enquiryString.toString());
         System.out.println("Enquiry updated!");
     }
