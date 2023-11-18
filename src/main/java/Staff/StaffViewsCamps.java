@@ -56,7 +56,6 @@ public class StaffViewsCamps implements Serializable{
             case 1:
                 tries = 0;
                 LocalDate desiredDate = null;
-
                 while (tries < maxTries) {
                     try {
                         System.out.println("Enter Date (YYYY-MM-DD):");
@@ -75,8 +74,22 @@ public class StaffViewsCamps implements Serializable{
                 filteredCamps = this.campsFilter.byDate(campList, desiredDate);
                 break;
             case 2:
-                System.out.println("Enter desired Location");
+                System.out.println("Enter desired location");
                 String desiredLocation = sc.nextLine();
+                tries = 0;
+                while (tries < maxTries) {
+                    if (desiredLocation.trim().isEmpty()) {
+                        System.out.println("Desired location cannot be blank. Please enter a valid desired location:");
+                        desiredLocation = sc.nextLine();
+                        tries++;
+                    } else {
+                        break;
+                    }
+                }
+                if (tries == maxTries) {
+                    System.out.println("Please try again later.");
+                    return null; // Return false if the user exceeds the maximum number of tries
+                }
                 filteredCamps = this.campsFilter.byLocation(campList, desiredLocation);
                 break;
             case 3:
