@@ -1,0 +1,42 @@
+Camp Name: Orion
+Start Date: 2024-01-11
+End Date: 2024-01-20
+Registration Closing Date: 2023-11-20
+User Group: Whole NTU
+Camp Visibility: ON
+Location: near ntu
+Total Slots: 7
+Camp Committee Slot: 4
+Description: very nice
+Staff In Charge ID: Yonan
+1 VASANTH Faculty: SCSE Role: Attendee
+2 AARON Faculty: SCSE Role: Attendee
+3 LEE  Faculty: SCSE Role: Camp Committee
+
+Camp Name: Pegasus
+Start Date: 2024-02-11
+End Date: 2024-02-12
+Registration Closing Date: 2023-11-19
+User Group: Whole NTU
+Camp Visibility: ON
+Location: near ntu
+Total Slots: 8
+Camp Committee Slot: 3
+Description: very nice
+Staff In Charge ID: Yonan
+1 RAWAL Faculty: SSS Role: Camp Committee
+2 LIU  Faculty: NBS Role: Camp Committee
+
+Camp Name: TESTING
+Start Date: 2024-01-01
+End Date: 2024-01-03
+Registration Closing Date: 2023-12-12
+User Group: Whole NTU
+Camp Visibility: ON
+Location: Singapore
+Total Slots: 49
+Camp Committee Slot: 3
+Description: Testing Vas
+Staff In Charge ID: Yonan
+1 VASANTH Faculty: SCSE Role: Camp Committee
+

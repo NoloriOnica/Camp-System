@@ -14,68 +14,93 @@ import Camp.CampCommittee;
 import Report.ReportFilter;
 import Student.Student;
 
-public class CampReportGenerator implements Serializable{
+public class CampReportGenerator implements Serializable {
     private ReportFilter reportFilter = new ReportFilterImplementation();
 
-    private ArrayList<Camp> filterSelection(ArrayList<Camp> campList){
+    private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
         System.out.println("Enter what filter you want to apply for generating Camp Report: ");
         System.out.println("1)Attendee\n2)Camp Committee\n3)None");
         Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        sc.nextLine();
-        switch(choice){
-            case 1:
-                System.out.println("Enter attendee's name:");
-                String desiredAttendeeName = sc.nextLine();
-                filteredCamps = this.reportFilter.filterAttendee(campList,desiredAttendeeName);
-                if(filteredCamps.isEmpty()) return null;
-                break;
-            case 2:
-                System.out.println("Enter Camp Committee's name:");
-                String desiredCampCommitteeName = sc.nextLine();
-                filteredCamps = this.reportFilter.filterCampCommittee(campList,desiredCampCommitteeName);
-                if(filteredCamps.isEmpty()) return null;
-                break;
-            case 3:
-                filteredCamps = campList;
-                break;
-            default:
-                System.out.println("Invalid choice.");
+        int maxTries = 3;
+        int tries = 0;
+        int choice = 0;
+        while (tries < maxTries) {
+            if (sc.hasNextInt()) {
+                choice = sc.nextInt();
+                sc.nextLine(); // Consume the newline character
+                switch (choice) {
+                    case 1:
+                        System.out.println("Enter attendee's name:");
+                        String desiredAttendeeName = sc.nextLine();
+                        filteredCamps = this.reportFilter.filterAttendee(campList, desiredAttendeeName);
+                        if (filteredCamps.isEmpty()) {
+                            return null;
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Enter Camp Committee's name:");
+                        String desiredCampCommitteeName = sc.nextLine();
+                        filteredCamps = this.reportFilter.filterCampCommittee(campList, desiredCampCommitteeName);
+                        if (filteredCamps.isEmpty()) {
+                            return null;
+                        }
+                        break;
+                    case 3:
+                        filteredCamps = campList;
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+                        tries++;
+                        break;
+                }
+
+                // Break out of the loop if the choice was valid
+                if (choice >= 1 && choice <= 3) {
+                    break;
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                sc.nextLine(); // Consume the invalid input
+                tries++;
+            }
         }
+
+        if (tries == maxTries) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            return null;
+        }
+
         return filteredCamps;
     }
 
-    public void generateCampReport(ArrayList<Camp> campList){
+    public void generateCampReport(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = filterSelection(campList);
-        if(filteredCamps == null || filteredCamps.isEmpty() ){
+        if (filteredCamps == null || filteredCamps.isEmpty()) {
             System.out.println("NOT FOUND!");
             return;
         }
         // Create a .txt file to write the report
         File reportFile = new File("Camp_Report.txt");
-        
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(reportFile))) {
             // Write the header of the report
-        	for (Camp camp : filteredCamps){
-        	    // Use Camp Committee's object to Call viewCampDetails()
-        	    //writer.write(camp.getRemainingAttendeeSlot());
-        	    ArrayList<CampCommittee> registeredCampCommittee = camp.getRegisteredCampCommittee();
-        	    if (!registeredCampCommittee.isEmpty()) { // Check if the list is not empty
-        	        CampCommittee campCommittee = registeredCampCommittee.get(0);
-        	        writer.write(campCommittee.viewCampDetails()); //Print camp detail
-        	    } else {
-        	        // Handle the case where there are no registered camp committees
-        	        writer.write("No registered camp committee details available."+ "\n" + camp.getCampInfo().toString() + "\n");
-        	    }
+            for (Camp camp : filteredCamps) {
+                // Use Camp Committee's object to Call viewCampDetails()
+                writer.write(camp.getCampInfo().toString() + "\n");
                 // Write each attendee's information to the file
                 int i = 1;
                 ArrayList<Student> studentList = camp.getRegisteredStudents();
-                for(Student student : studentList){
-                	System.out.println();
-                     writer.write((i++) +" "+ student.getName() + " Faculty: "+student.getFaculty().toString() + "\n");
-                                     
-                     }
+                for (Student student : studentList) {
+                    System.out.println();
+                    if(student.getCommitteeForCamp()!=null && student.getCommitteeForCamp().equals(camp)){
+                        writer.write(
+                            (i++) + " " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Camp Committee\n");
+                    }else{
+                        writer.write(
+                            (i++) + " " + student.getName() + " Faculty: " + student.getFaculty().toString() + " Role: Attendee\n");
+                    }
+                }
                 writer.write("\n");
             }
             System.out.println("Report generated successfully.");
@@ -84,8 +109,8 @@ public class CampReportGenerator implements Serializable{
             e.printStackTrace();
             return;
         }
-        
-     // After writing the report, try to open it
+
+        // After writing the report, try to open it
         if (Desktop.isDesktopSupported()) {
             try {
                 Desktop.getDesktop().open(reportFile);
@@ -97,8 +122,6 @@ public class CampReportGenerator implements Serializable{
         } else {
             System.out.println("Desktop is not supported on this platform.");
         }
-        
-        
-        
+
     }
 }

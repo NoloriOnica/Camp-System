@@ -15,7 +15,7 @@ import Feedback.SuggestionController;
 import Report.CampReportGenerator;
 import Report.PerformanceReportGenerator;
 
-public class Staff extends User implements Serializable{
+public class Staff extends User implements Serializable {
 
     private ArrayList<Camp> createdCamps;
     private EnquiriesController enquiriesController;
@@ -24,12 +24,10 @@ public class Staff extends User implements Serializable{
     private CampReportGenerator campReportGenerator;
     private PerformanceReportGenerator performanceReportGenerator;
     private static final int MAX_TRIES = 3;
-    
- 
 
     public Staff(String userID, String name, String email, String faculty, String userType) {
         super(userID, name, email, faculty, userType);
-     
+
         this.createdCamps = new ArrayList<>();
         this.staffViewsCamps = new StaffViewsCamps();
         this.enquiriesController = new EnquiriesController();
@@ -37,8 +35,6 @@ public class Staff extends User implements Serializable{
         this.campReportGenerator = new CampReportGenerator();
         this.performanceReportGenerator = new PerformanceReportGenerator();
     }
-    
-  
 
     public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is
                                                        // not created
@@ -59,29 +55,35 @@ public class Staff extends User implements Serializable{
         int tries = 0;
         Scanner sc = new Scanner(System.in);
 
-        // Create Camp Name
         while (tries < MAX_TRIES) {
             System.out.println("Enter Camp Name:");
             campName = sc.nextLine();
+            if (campName.trim().isEmpty()) {
+                System.out.println("Camp Name cannot be blank. Please enter a valid Camp Name:");
+                tries++;
+            } else {
+                // Check if the camp name already exists
+                boolean campExists = false;
+                for (Camp existingCamp : allCamps) {
+                    if (existingCamp.getCampInfo().getCampName().equalsIgnoreCase(campName)) {
+                        campExists = true;
+                        tries++;
+                        break;
+                    }
+                }
 
-            // Check if the camp name already exists
-            boolean campExists = false;
-            for (Camp existingCamp : allCamps) {
-                if (existingCamp.getCampInfo().getCampName().equalsIgnoreCase(campName)) {
-                    campExists = true;
+                if (campExists) {
+                    System.out
+                            .println("Camp with the name '" + campName + "' already exists. Choose a different name.");
+                } else {
+                    // Exit the loop if the camp name is unique
                     break;
                 }
             }
-            if (campExists) {
-                System.out.println("Camp with the name '" + campName + "' already exists. Choose a different name.");
-                tries++;
-            } else {
-                break; // Exit the loop if the camp name is unique
+            if (tries == MAX_TRIES) {
+                System.out.println("You've reached the maximum number of tries. Please try again later.");
+                return null;
             }
-        }
-        if (tries == MAX_TRIES) {
-            System.out.println("You've reached the maximum number of tries. Please try again later.");
-            return null;
         }
 
         // Create Start Date
@@ -242,7 +244,7 @@ public class Staff extends User implements Serializable{
                 System.out.println("Location cannot be blank. Please enter a valid location:");
                 location = sc.nextLine();
                 tries++;
-            }else{
+            } else {
                 break;
             }
         }
@@ -250,7 +252,6 @@ public class Staff extends User implements Serializable{
             System.out.println("Please try again later.");
             return null; // Return false if the user exceeds the maximum number of tries
         }
-            
 
         // Enter Camp's Total Slots
         tries = 0;
@@ -318,7 +319,7 @@ public class Staff extends User implements Serializable{
     public boolean editCamp(ArrayList<Camp> allCamps) {
         // Implementation for editing a camp
         // Check if the camp object is in the createdCamps (Created by this staff)
-        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+        if (this.createdCamps == null || this.createdCamps.isEmpty()) {
             System.out.println("You have not created any camps!");
             return false;
         }
@@ -329,11 +330,11 @@ public class Staff extends User implements Serializable{
         int tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select which camp you want to edit:");
-        
+
             try {
                 index = sc.nextInt();
                 index--; // Decrement the index to match the zero-based index of the list
-        
+
                 if (index >= 0 && index < filterSortedCreatedCamp.size()) {
                     // Valid input, break the loop
                     break;
@@ -347,13 +348,13 @@ public class Staff extends User implements Serializable{
                 tries++;
             }
         }
-        
+
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             // Handle the case where the user exceeds the maximum number of tries
             return false;
         }
-        
+
         Camp selectedCamp = filterSortedCreatedCamp.get(index); // Get the camp that the staff wanna edit
 
         tries = 0;
@@ -587,7 +588,7 @@ public class Staff extends User implements Serializable{
                         break;
                     }
                 }
-            
+
                 if (tries >= MAX_TRIES) {
                     System.out.println("Please try again later.");
                     return false; // Return false if the user exceeds the maximum number of tries
@@ -606,7 +607,8 @@ public class Staff extends User implements Serializable{
 
                         if (newTotalSlots >= 0) {
                             selectedCamp.getCampInfo().setTotalSlots(newTotalSlots);
-                            selectedCamp.setRemainingAttendeeSlot(selectedCamp.getCampInfo().getTotalSlots()-selectedCamp.getCampInfo().getCampCommitteeSlot());
+                            selectedCamp.setRemainingAttendeeSlot(selectedCamp.getCampInfo().getTotalSlots()
+                                    - selectedCamp.getCampInfo().getCampCommitteeSlot());
                             System.out.println("The Total Slots has changed to " + newTotalSlots);
                             return true; // Return true if the user input is valid
                         } else {
@@ -665,8 +667,8 @@ public class Staff extends User implements Serializable{
 
     public boolean deleteCamp(ArrayList<Camp> allCamps) {
         // Implementation for deleting a camp
-        
-        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+
+        if (this.createdCamps == null || this.createdCamps.isEmpty()) {
             System.out.println("You have not created any camps!");
             return false;
         }
@@ -717,7 +719,7 @@ public class Staff extends User implements Serializable{
     public void toggleCampVisibility() {
         // Implementation for toggling the CampVisibility
 
-        if(this.createdCamps == null || this.createdCamps.isEmpty()){
+        if (this.createdCamps == null || this.createdCamps.isEmpty()) {
             System.out.println("You have not created any camps!");
             return;
         }
@@ -757,10 +759,12 @@ public class Staff extends User implements Serializable{
 
         if (selectedCamp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
             selectedCamp.getCampInfo().setCampVisibility(CampVisibility.ON);
-            System.out.println("The camp " + selectedCamp.getCampInfo().getCampName() + " now can be viewed by students.");
+            System.out.println(
+                    "The camp " + selectedCamp.getCampInfo().getCampName() + " now can be viewed by students.");
         } else {
             selectedCamp.getCampInfo().setCampVisibility(CampVisibility.OFF);
-            System.out.println("The camp " + selectedCamp.getCampInfo().getCampName() + " now cannot be viewed by students.");
+            System.out.println(
+                    "The camp " + selectedCamp.getCampInfo().getCampName() + " now cannot be viewed by students.");
         }
     }
 
@@ -775,10 +779,9 @@ public class Staff extends User implements Serializable{
     public void viewEnquiries() {
         enquiriesController.viewEnquiries(this.createdCamps);// Pass in Staff's attribute as parameter
     }
-    
 
     public void replyEnquiries() {
-    	enquiriesController.replyEnquiries(this.createdCamps,  super.getName());// Pass in Staff's attribute as parameter
+        enquiriesController.replyEnquiries(this.createdCamps, super.getName());// Pass in Staff's attribute as parameter
     }
 
     public void viewSuggestion() {
@@ -797,8 +800,8 @@ public class Staff extends User implements Serializable{
         performanceReportGenerator.generatePerformanceReport(this.createdCamps);
     }
 
-    //Below are getters and setters
-    public  ArrayList<Camp> getCreatedCamp(){
+    // Below are getters and setters
+    public ArrayList<Camp> getCreatedCamp() {
         return this.createdCamps;
     }
 }

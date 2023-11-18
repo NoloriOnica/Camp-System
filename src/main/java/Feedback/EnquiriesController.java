@@ -10,7 +10,7 @@ public class EnquiriesController implements Serializable {
     public void viewEnquiries(ArrayList<Camp> camps) {
         if (camps.isEmpty()) {
             System.out.println();
-            System.out.println("No Enquiries made to any camp");
+            System.out.println("No Enquiries made to any camp as you have not created any camp");
             System.out.println("Returning to main menu ...");
             return;
         }
@@ -33,7 +33,7 @@ public class EnquiriesController implements Serializable {
         for (int tries = 0; tries < maxTries; tries++) {
             if(camps.isEmpty()) {
                 System.out.println();
-                System.out.println("No enquiries made to any camp, please check again later");
+                System.out.println("No enquiries made to any camp as you have not created any camp, please check again later");
                 System.out.println("Exiting to main menu.....");
                 return false;
             }
