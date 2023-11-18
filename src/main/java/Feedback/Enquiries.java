@@ -37,10 +37,10 @@ public class Enquiries implements Serializable{
 
         String line;
         if (this.isProcessed && reply != null) {
-            line = "Enquiry {" + enquiry + ", name = " + senderName+" }\n" +
-            "Replied by " + replierName + "Reply: " + reply + ", Reply State = " + isProcessed + "\n";
+            line = "Enquiry {" + enquiry + ", sender's name = " + senderName+" }\n" +
+            "Replied by " + replierName + "Reply: " + reply + ", Reply State = " + isProcessed;
         }else{
-            line =  "Enquiry {" + enquiry + ", name = " + senderName+" } Reply State = " + isProcessed + "\n";
+            line =  "Enquiry {" + enquiry + ", sender's name = " + senderName+" } Reply State = " + isProcessed;
         }
         return line;
     }

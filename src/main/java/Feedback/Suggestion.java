@@ -28,7 +28,7 @@ public class Suggestion implements Serializable{
 
     public String toString() {
 
-        String line =  "Suggestion {" + suggetionString + ", name = " + sendertName+" } Approval State = " + isApproved + "\n";
+        String line =  "Suggestion {" + suggetionString + ", name = " + sendertName+" } Approval State = " + isApproved;
         return line;
     }
 }
