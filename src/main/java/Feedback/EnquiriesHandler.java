@@ -10,8 +10,12 @@ import Student.Student;
 
 public class EnquiriesHandler implements Serializable{
     
-    public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
+	public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
+
         ArrayList<Camp> availableCamps = student.viewCamps(allCamps);
+        if(availableCamps == null || availableCamps.isEmpty()) {
+        	return;
+        }
         Scanner sc = new Scanner(System.in);
         int maxTries = 3;
         int campIndex = -1;
