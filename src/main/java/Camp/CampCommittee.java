@@ -28,7 +28,6 @@ public class CampCommittee implements Serializable{
 		suggestionsHandler = new SuggestionsHandler();
 	}
 	
-	
 	public void viewEnquiries() {
 		//view enquiries
 		//based on student

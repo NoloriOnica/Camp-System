@@ -21,9 +21,10 @@ public class SuggestionController implements Serializable {
             System.out.println("\n" + camp.getCampInfo().getCampName());
             if (suggestions.isEmpty()) {
                 System.out.println("No Suggestions made for " + camp.getCampInfo().getCampName());
-            }
-            for (Suggestion suggestion : suggestions) {
-                System.out.println(suggestion.toString());
+            } else {
+                for (Suggestion suggestion : suggestions) {
+                    System.out.println(suggestion.toString());
+                }
             }
         }
     }
@@ -85,11 +86,11 @@ public class SuggestionController implements Serializable {
                         }
 
                         selectedSuggestion.setApprovalState(true);
-                        // Give one extra point to the Camp Committee
+                        
                         String campCommitteeName = selectedSuggestion.getSenderName();
                         CampCommittee campCommittee = selectedCamp.findCampCommittee(campCommitteeName);
-
                         if (campCommittee != null) {
+                            // Give one extra point to the Camp Committee
                             campCommittee.setPoint(campCommittee.getPoints() + 1);
                             System.out.println("That suggestion by " + selectedSuggestion.getSenderName() + " is approved.");
                         } else {
