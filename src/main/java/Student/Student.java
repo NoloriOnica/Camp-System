@@ -166,9 +166,7 @@ public class Student extends User implements Serializable {
             if (choice == 1) {// Register as Attendee
                 if (selectedCamp.getRemainingAttendeeSlot() > 0) { // Check got slot anot
                     selectedCamp.addRegisteredStudents(this); // Update camp's Registered Student list
-                    selectedCamp.setRemainingAttendeeSlot(selectedCamp.getRemainingAttendeeSlot() - 1);// Update Camp's
-                                                                                                       // remaining
-                                                                                                       // Attendee slot
+                    selectedCamp.setRemainingAttendeeSlot(selectedCamp.getRemainingAttendeeSlot() - 1);// Update Camp's remaining Attendee slot
                     this.registeredCamps.add(selectedCamp); // Update Student's resgistered Camp list
                     result = true;
                 } else {
@@ -186,12 +184,7 @@ public class Student extends User implements Serializable {
                     selectedCamp.addRegisteredCampCommittee(campCommittee); // Update camp's Registered camp committee
                                                                             // list
                     selectedCamp.getCampInfo()
-                            .setCampCommitteeSlot(selectedCamp.getCampInfo().getCampCommitteeSlot() - 1);// Update
-                                                                                                         // Camp's
-                                                                                                         // remaining
-                                                                                                         // camp
-                                                                                                         // committee
-                                                                                                         // slot
+                            .setCampCommitteeSlot(selectedCamp.getCampInfo().getCampCommitteeSlot() - 1);// Update Camp's remaining camp committee slot
                     this.registeredCamps.add(selectedCamp);// Update Student's resgistered Camp list
                     this.isCampCommittee = true;
                     this.committeeForCamp = selectedCamp;

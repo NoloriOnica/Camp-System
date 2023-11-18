@@ -14,7 +14,7 @@ import Camp.CampCommittee;
 public class PerformanceReportGenerator implements Serializable {
     public void generatePerformanceReport(ArrayList<Camp> camplist) {
         if (camplist.isEmpty() || camplist == null) {
-            System.out.println("You have not created any camp/Your created camp has not camp committee");
+            System.out.println("You have not created any camp");
             return;
         }
         // Create a .txt file to write the report
