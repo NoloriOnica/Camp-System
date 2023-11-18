@@ -757,7 +757,11 @@ public class Staff extends User implements Serializable {
         Scanner sc = new Scanner(System.in);
         int index = 0;
         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
-
+        
+        if(filterSortedCreatedCamp == null || filterSortedCreatedCamp.isEmpty()) {
+            return;
+          }
+        
         // Validate user input
         int tries = 0;
         while (tries < MAX_TRIES) {
