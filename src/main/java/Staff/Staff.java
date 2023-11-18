@@ -778,8 +778,7 @@ public class Staff extends User implements Serializable{
     
 
     public void replyEnquiries() {
-    	
-        enquiriesController.replyEnquiries(this.createdCamps,  super.getName());// Pass in Staff's attribute as parameter
+    	enquiriesController.replyEnquiries(this.createdCamps,  super.getName());// Pass in Staff's attribute as parameter
     }
 
     public void viewSuggestion() {
