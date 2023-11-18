@@ -34,6 +34,7 @@ public class PerformanceReportGenerator implements Serializable {
                                 " Points : " + campCommittee.getPoints() + "\n");
                     }
                 }
+                writer.write("\n");
             }
             System.out.println("Report generated successfully.");
         } catch (IOException e) {
