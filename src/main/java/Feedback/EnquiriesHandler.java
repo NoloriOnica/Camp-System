@@ -19,7 +19,7 @@ public class EnquiriesHandler implements Serializable{
         while (tries < maxTries) {
             System.out.println("Choose a camp to make enquiries:");
             try {
-                campIndex = sc.nextInt() - 1;
+                campIndex = sc.nextInt();
                 // Validate the camp index
                 if (campIndex >= 1 && campIndex <= availableCamps.size()) {
                     break;
@@ -43,11 +43,11 @@ public class EnquiriesHandler implements Serializable{
         sc.nextLine(); // Consume the newline character
 
         //Select the target Camp
-        Camp selectedCamp = availableCamps.get(campIndex);
+        Camp selectedCamp = availableCamps.get(campIndex-1);
         System.out.println("Type the enquiry:");
         String enquiryLine = sc.nextLine();
-        Enquiries enquiry = new Enquiries(student.getName());
-        enquiry.setEnquiry(enquiryLine);
+        Enquiries enquiry = new Enquiries(student.getName(), selectedCamp);
+        enquiry.setEnquiryString(enquiryLine);
         student.getEnquiriesList().add(enquiry); // Store the enquiry inside the correspinding student
         selectedCamp.addEnquiriesList(enquiry); // Store the enquiry inside the corresponding camp
         System.out.println("You have sucessfully made an enquiry to camp " + selectedCamp.getCampInfo().getCampName());
@@ -58,7 +58,10 @@ public class EnquiriesHandler implements Serializable{
         ArrayList<Enquiries> enquiriesHolder = new ArrayList<>();
         int i = 0;
         ArrayList<Enquiries> enquiriesList = student.getEnquiriesList();
-        if(enquiriesList == null || enquiriesList.isEmpty()) return null;
+        if(enquiriesList == null || enquiriesList.isEmpty()){
+            System.out.println("NOT FOUND!");
+            return null;
+        }
         for (Enquiries enquiry : enquiriesList) {
             enquiriesHolder.add(enquiry);
             System.out.println((++i) + ") " + enquiry.toString());
@@ -110,7 +113,7 @@ public class EnquiriesHandler implements Serializable{
         
         System.out.println("What would you like to change it to?");
         String enquiryString = sc.nextLine();
-        enquiry.setEnquiry(enquiryString.toString());
+        enquiry.setEnquiryString(enquiryString.toString());
         System.out.println("Enquiry updated!");
     }
 
@@ -119,42 +122,56 @@ public class EnquiriesHandler implements Serializable{
         Scanner sc = new Scanner(System.in);
         ArrayList<Enquiries> availableEnquiries;
         availableEnquiries = student.viewEnquiries();
-        if(availableEnquiries == null){
+        if(availableEnquiries == null || availableEnquiries.isEmpty()){
             System.out.println("You have not submitted any enquiry!");
             return;
         }
-        System.out.println("Choose which enquiry to delete:");
+
+        int tries = 0, maxTries = 3;
         int index = -1; // Initialize index with an invalid value
-        boolean validIndexEntered = false;
-
-        while (!validIndexEntered) {
-            System.out.println("Which enquiry do you want to delete?");
-            if (sc.hasNextInt()) {
+        while(tries < maxTries){
+            try{
+                System.out.println("Choose which enquiry to delete");
                 index = sc.nextInt(); // Get the index from the user
-                sc.nextLine(); // Consume the newline character
-                if (index - 1 >= 0 && index - 1 < availableEnquiries.size()) {
-                    validIndexEntered = true; // Valid index, break the loop
-                } else {
-                    System.out.println("Invalid index. Please try again with a valid index.");
-                }
-            } else {
-                System.out.println("That's not a number. Please enter a number corresponding to the enquiry index.");
-                sc.nextLine(); // Consume the non-integer input
+                 if (index - 1 >= 0 && index - 1 < availableEnquiries.size()){
+                    break;
+                 }else{
+                    System.out.println("Invalid index. Please enter a valid index.");
+                    tries++;
+                 }
+
+            }catch(InputMismatchException e){
+                System.out.println("Invalid input. Please enter a valid integer.");
+                sc.next(); // Consume the invalid input to prevent an infinite loop
+                tries++;
             }
+        }
+        if (tries == maxTries) {
+            System.out.println("You've reached the maximum number of tries. Please try again later.");
+            // Handle the case where the user exceeds the maximum number of tries
+            return;
         }
 
-        Enquiries deletedEnquiry = availableEnquiries.remove(index - 1);
-        student.getEnquiriesList().remove(index - 1); // Remove the enquiry on Student's end
+        sc.nextLine(); // Consume the newline character
+        //Select the target enquiry
+        Enquiries selectedEnquiry = availableEnquiries.get(index-1);
+        if(selectedEnquiry.getProcessState()){
+            System.out.println("Cannot delete the enquiry as it is replied");
+            return;
+        }
+
+        // Remove the enquiry on Student's end
+        student.getEnquiriesList().remove(index - 1); 
         // Remove the enquiry on Camp's end
-        ArrayList<Camp> registeredCamps = student.getRegisteredCamps();
-        for (Camp camp : registeredCamps) {
-            if (camp.getEnquiriesList().contains(deletedEnquiry)) {
-                camp.getEnquiriesList().remove(deletedEnquiry);
-                System.out.println("Enquiry: " + deletedEnquiry.toString() + " is deleted from camp: "
-                        + camp.getCampInfo().getCampName());
-                break; // Exit the loop after deleting the enquiry from the camp
+        Camp camp = selectedEnquiry.getCamp();
+        ArrayList<Enquiries> enquiriesList = camp.getEnquiriesList();
+        for (Enquiries enquiry : enquiriesList) {
+            if (enquiry.getEnquireString().equals(selectedEnquiry.getEnquireString()) &&
+                    enquiry.getSenderName().equals(student.getName())) {
+                camp.getEnquiriesList().remove(enquiry);
+                break;
             }
         }
-        System.out.println("Enquiry: " + deletedEnquiry.toString() + " is deleted");
+        System.out.println("Enquiry: " + selectedEnquiry.toString() + " is deleted");
     }
 }
