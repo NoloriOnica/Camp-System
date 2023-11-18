@@ -232,6 +232,19 @@ public class Staff extends User implements Serializable{
         // Create Camp Location
         System.out.println("Enter Camp's Location");
         location = sc.nextLine();
+        while (tries < MAX_TRIES) {
+            if (location.trim().isEmpty()) {
+                System.out.println("Location cannot be blank. Please enter a valid location:");
+                location = sc.nextLine();
+                tries++;
+            }
+        }
+
+        if (tries >= MAX_TRIES) {
+            System.out.println("Please try again later.");
+            return null; // Return false if the user exceeds the maximum number of tries
+        }
+            
 
         // Enter Camp's Total Slots
         tries = 0;
