@@ -132,6 +132,7 @@ public class StudentMain implements Serializable{
                 		CampCommitteeMenu.createStudent(student);
                 		CampCommitteeMenu.main(new String[] {});
                 	}
+                	else System.out.println("You are not a committee member for any camp!");
                 	break;
                     
                 default:

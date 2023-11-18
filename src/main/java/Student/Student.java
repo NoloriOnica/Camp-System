@@ -15,6 +15,7 @@ import Feedback.EnquiriesHandler;
 public class Student extends User implements Serializable {
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
+    private CampCommittee campCommitteeRegistered; //field to store the camp committee class
     private ArrayList<Camp> registeredCamps;
     private ArrayList<Camp> bannedCamps; // Student are not allow to register for the camp that he withdrawed before
     private ArrayList<Enquiries> enquiriesList; // Different from camp committee's suggestion, a student can send enquiries to multiple camps
@@ -29,6 +30,7 @@ public class Student extends User implements Serializable {
         this.bannedCamps = new ArrayList<>();
         this.isCampCommittee = false;
         this.committeeForCamp = null;
+        this.campCommitteeRegistered = null;
 
         studentViewsCamps = new StudentViewsCamps();
         enquiriesHandler = new EnquiriesHandler();
@@ -188,6 +190,7 @@ public class Student extends User implements Serializable {
                     this.registeredCamps.add(selectedCamp);// Update Student's resgistered Camp list
                     this.isCampCommittee = true;
                     this.committeeForCamp = selectedCamp;
+                    this.campCommitteeRegistered = campCommittee;
                     result = true;
                 } else {
                     System.out.println("No more camp committee slots!");
@@ -357,5 +360,13 @@ public class Student extends User implements Serializable {
 
     public ArrayList<Enquiries> getEnquiriesList() {
         return this.enquiriesList;
+    }
+    
+    public CampCommittee getCampCommittee() {
+    	return this.campCommitteeRegistered;
+    }
+
+    public void setCampCommittee(CampCommittee campCommittee) {
+        this.campCommitteeRegistered = campCommittee;
     }
 }

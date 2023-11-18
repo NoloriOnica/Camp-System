@@ -19,7 +19,8 @@ public class CampCommitteeMenu implements Serializable{
 	public static void createStudent(Student studentC) {
 		student = studentC;
 		camp = student.getCommitteeForCamp();
-		campCommittee = new CampCommittee(student.getName(), camp, student.getFaculty());
+		campCommittee = student.getCampCommittee();
+		System.out.println(student.getCampCommittee().getName());
 	}
 
 
