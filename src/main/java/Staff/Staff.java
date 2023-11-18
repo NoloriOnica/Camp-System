@@ -237,9 +237,10 @@ public class Staff extends User implements Serializable{
                 System.out.println("Location cannot be blank. Please enter a valid location:");
                 location = sc.nextLine();
                 tries++;
+            }else{
+                break;
             }
         }
-
         if (tries >= MAX_TRIES) {
             System.out.println("Please try again later.");
             return null; // Return false if the user exceeds the maximum number of tries
@@ -572,12 +573,14 @@ public class Staff extends User implements Serializable{
                 System.out.println("Enter the new Location:");
                 String newLocation = sc.nextLine();
 
-                while(tries < MAX_TRIES) {
-	                if (newLocation.trim().isEmpty()) {
-	                    System.out.println("Location cannot be blank. Please enter a valid location:");
-	                    newLocation = sc.nextLine();
-	                    tries++;
-	                }
+                while (tries < MAX_TRIES) {
+                    if (newLocation.trim().isEmpty()) {
+                        System.out.println("Location cannot be blank. Please enter a valid location:");
+                        newLocation = sc.nextLine();
+                        tries++;
+                    } else {
+                        break;
+                    }
                 }
             
                 if (tries >= MAX_TRIES) {

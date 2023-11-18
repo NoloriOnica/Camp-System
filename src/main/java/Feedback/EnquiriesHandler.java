@@ -58,6 +58,9 @@ public class EnquiriesHandler implements Serializable{
                 enquiryLine = sc.nextLine();
                 tries++;
             }
+            else{
+                break;
+            }
         }
         if (tries >= maxTries) {
             System.out.println("Please try again later.");
@@ -136,6 +139,9 @@ public class EnquiriesHandler implements Serializable{
                 System.out.println("Enquiry cannot be blank. Please enter a valid enquiry:");
                 enquiryString = sc.nextLine();
                 tries++;
+            }
+            else{
+                break;
             }
         }
 
