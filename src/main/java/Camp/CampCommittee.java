@@ -77,7 +77,6 @@ public void setPoint(int point){
 public String getName(){
 	return this.name;
 }
-
 public String getFaculty(){
 	return this.faculty;
 }

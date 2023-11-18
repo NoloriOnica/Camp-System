@@ -181,8 +181,11 @@ public class Staff extends User implements Serializable {
                     case 4:
                         campUserGroup = "SPMS";
                         break;
+                    case 5:
+                        campUserGroup = "SSS";
+                        break;
                     default:
-                        System.out.println("Invalid input, please enter a number between 1 and 4.");
+                        System.out.println("Invalid input, please enter a number between 1 and 5.");
                         tries++;
                         continue; // Skip the rest of the loop and start over
                 }
@@ -261,7 +264,11 @@ public class Staff extends User implements Serializable {
                 totalSlots = sc.nextInt();
 
                 // Perform additional error checking if needed
-
+                if(totalSlots < 0){
+                    System.out.println("Error: Camp's Total Slot cannot be negative.");
+                    tries++;
+                    continue;
+                }
                 // If the input is valid, break out of the loop
                 break;
             } catch (InputMismatchException e) {
@@ -284,7 +291,17 @@ public class Staff extends User implements Serializable {
                 campCommitteeSlot = sc.nextInt();
 
                 // Perform additional error checking if needed
+                if(totalSlots < campCommitteeSlot){
+                    System.out.println("Error: Camp Committee Slotw cannot be lesser than the camp's total slot.");
+                    tries++;
+                    continue;
+                }
 
+                if(campCommitteeSlot<0){
+                    System.out.println("Error: Camp Committee Slots cannot be negative.");
+                    tries++;
+                    continue;
+                }
                 // If the input is valid, break out of the loop
                 if (campCommitteeSlot <= 10) {
                     break;
