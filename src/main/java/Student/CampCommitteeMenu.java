@@ -45,12 +45,12 @@ public class CampCommitteeMenu implements Serializable{
 	public static void main(String[] args) {
 
 		ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
-		student.setCampCommittee(campCommittee);
+
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 
 		do {
-			student.setCampCommittee(campCommittee);
+
         	allCamps = AllCampToText.readCampsFromFile();
 			
         	System.out.println("\n#################################################");
@@ -83,10 +83,10 @@ public class CampCommitteeMenu implements Serializable{
 					System.out.println("Going back to Student Main Menu");
 					break;
 				case 1:
-					campCommittee.viewSuggestions();
+					campCommittee.viewSuggestions(camp);
 					break;
 				case 2:
-					campCommittee.makeSuggestions();
+					campCommittee.makeSuggestions(camp);
 					break;
 				case 3:
 					campCommittee.editSuggestions();
@@ -106,16 +106,13 @@ public class CampCommitteeMenu implements Serializable{
                     break;
 				
 			}
-			student.setCampCommittee(campCommittee);
+	
 			
             AllCampToText.writeCampsToFile(allCamps);
 
 		} while (choice != 0);
 	}
-	public static Student getStudent()
-	{
-		return student;
-	}
+	
 
 	
 }

@@ -134,7 +134,7 @@ public class StudentMain implements Serializable{
                 	if (student.isCampCommittee()) {
                 		CampCommitteeMenu.createStudent(student, student.getCommitteeForCamp());
                 		CampCommitteeMenu.main(new String[] {});
-                		student = CampCommitteeMenu.getStudent();
+                	
                 
                 	}
                 	else System.out.println("You are not a committee member for any camp!");

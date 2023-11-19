@@ -2,6 +2,7 @@ package Camp;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Feedback.Enquiries;
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
 import Feedback.SuggestionsHandler;
@@ -17,6 +18,7 @@ public class CampCommittee implements Serializable{
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
+	private ArrayList<Suggestion> suggestionsList;
 
 	public CampCommittee(String name, Camp camp, String faculty)
 	{
@@ -26,6 +28,7 @@ public class CampCommittee implements Serializable{
 		enquiriesController = new EnquiriesController();
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
+		this.suggestionsList = new ArrayList<Suggestion>();
 	}
 	
 	public void viewEnquiries() {
@@ -44,12 +47,16 @@ public class CampCommittee implements Serializable{
             this.point++;
 	}
 	
-	public void makeSuggestions() {
-		suggestionsHandler.makeSuggestions(this.camp, this);
+	public void makeSuggestions(Camp camp) {
+		suggestionsHandler.makeSuggestions(camp, this);
+	}
+	public ArrayList<Suggestion> getSuggestionsList()
+	{
+		return this.suggestionsList;
 	}
 
-	public ArrayList <Suggestion> viewSuggestions() { //return a list of suggestion that a camp committee can view
-        return suggestionsHandler.viewSuggestions(this.camp,this);
+	public ArrayList <Suggestion> viewSuggestions(Camp camp) { //return a list of suggestion that a camp committee can view
+        return suggestionsHandler.viewSuggestions(camp,this);
 	}
 
 	public void editSuggestions() {

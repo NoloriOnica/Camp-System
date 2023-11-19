@@ -19,16 +19,19 @@ public class SuggestionsHandler implements Serializable{
 	        if ("END".equals(line)) {
 	            break;
 	        }
-	        suggestionString.append(line).append("\n");
+	       suggestionString = suggestionString.append(line).append("\n");
 	    }	  
 	    Suggestion suggestion = new Suggestion(campCommittee.getName());
-        camp.addSuggestionsList(suggestion);
+	    System.out.println(campCommittee.getName()); //works
+        suggestion.setSuggestion(suggestionString.toString());
+        campCommittee.getSuggestionsList().add(suggestion);
+        System.out.println(campCommittee.getSuggestionsList()); //so this is correct
 		campCommittee.setPoint(campCommittee.getPoints()+1);
 	}
 	
 	public ArrayList <Suggestion> viewSuggestions(Camp camp, CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
-        ArrayList <Suggestion> suggestionsList = camp.getSuggestionsList();
-        if(suggestionsList == null || suggestionsList.isEmpty()){
+        ArrayList <Suggestion> suggestionsList = campCommittee.getSuggestionsList();
+        if(suggestionsList.isEmpty()){
             System.out.println("You have not made any suggestions yet!");
         	return null;
         }
