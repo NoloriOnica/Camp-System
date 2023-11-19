@@ -10,28 +10,33 @@ public class SuggestionsHandler implements Serializable{
 
     public void makeSuggestions(Camp camp, CampCommittee campCommittee) {
 		Scanner sc = new Scanner(System.in);
-	    StringBuilder suggestionString = new StringBuilder();
-	    System.out.println("Craft your suggestion (type 'END' on a new line to finish):");
-	    
-	    
-	    while (sc.hasNextLine()) {
-	        String line = sc.nextLine();
-	        if ("END".equals(line)) {
-	            break;
-	        }
-	       suggestionString = suggestionString.append(line).append("\n");
-	    }	  
+		System.out.println("You are making suggestion for Camp "+ camp.getCampInfo().getCampName());
+	    System.out.println("Type your suggestion :");
+	    String suggestionString = sc.nextLine();
+        int tries = 0, maxTries = 3;
+        while (tries < maxTries) {
+            if (suggestionString.trim().isEmpty()) {
+                System.out.println("Suggestion cannot be blank. Please enter a valid enquiry:");
+                suggestionString = sc.nextLine();
+                tries++;
+            }
+            else{
+                break;
+            }
+        }
+        if (tries >= maxTries) {
+            System.out.println("Please try again later.");
+            return; // Return if the user exceeds the maximum number of tries
+        }
 	    Suggestion suggestion = new Suggestion(campCommittee.getName());
-	    System.out.println(campCommittee.getName()); //works
-        suggestion.setSuggestion(suggestionString.toString());
+        suggestion.setSuggestion(suggestionString);
         campCommittee.getSuggestionsList().add(suggestion);
-        System.out.println(campCommittee.getSuggestionsList()); //so this is correct
-		campCommittee.setPoint(campCommittee.getPoints()+1);
+		camp.getSuggestionsList().add(suggestion);
 	}
 	
-	public ArrayList <Suggestion> viewSuggestions(Camp camp, CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
+	public ArrayList <Suggestion> viewSuggestions(CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
         ArrayList <Suggestion> suggestionsList = campCommittee.getSuggestionsList();
-        if(suggestionsList.isEmpty()){
+        if(suggestionsList == null ||suggestionsList.isEmpty()){
             System.out.println("You have not made any suggestions yet!");
         	return null;
         }
@@ -90,7 +95,7 @@ public class SuggestionsHandler implements Serializable{
 	    int index = -1; // Initialize index with an invalid value
 	    boolean validIndexEntered = false;
 		ArrayList<Suggestion> availableSuggestions = campCommittee.viewSuggestions();
-        if(availableSuggestions == null){
+        if(availableSuggestions == null || availableSuggestions.isEmpty()){
             System.out.println("You have not submitted any suggestion!");
             return;
         }

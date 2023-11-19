@@ -2,6 +2,8 @@ package Camp;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.apache.commons.math3.stat.descriptive.summary.SumOfSquares;
+
 import Feedback.Enquiries;
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
@@ -29,8 +31,18 @@ public class CampCommittee implements Serializable{
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
 		this.suggestionsList = new ArrayList<Suggestion>();
+		this.updateSuggestionList();
 	}
-	
+
+	private void updateSuggestionList(){
+		ArrayList<Suggestion> suggestionList = camp.getSuggestionsList();
+		for(Suggestion suggestion : suggestionList){
+			if(suggestion.getSenderName().equals(this.name)){
+				this.suggestionsList.add(suggestion);
+			}
+		}
+	}	
+
 	public void viewEnquiries() {
 		//view enquiries
 		//based on student
@@ -47,16 +59,13 @@ public class CampCommittee implements Serializable{
             this.point++;
 	}
 	
-	public void makeSuggestions(Camp camp) {
-		suggestionsHandler.makeSuggestions(camp, this);
+	public void makeSuggestions() {
+		suggestionsHandler.makeSuggestions(this.camp, this);
 	}
-	public ArrayList<Suggestion> getSuggestionsList()
-	{
-		return this.suggestionsList;
-	}
+	
 
-	public ArrayList <Suggestion> viewSuggestions(Camp camp) { //return a list of suggestion that a camp committee can view
-        return suggestionsHandler.viewSuggestions(camp,this);
+	public ArrayList <Suggestion> viewSuggestions() { //return a list of suggestion that a camp committee can view
+        return suggestionsHandler.viewSuggestions(this);
 	}
 
 	public void editSuggestions() {
@@ -84,7 +93,16 @@ public void setPoint(int point){
 public String getName(){
 	return this.name;
 }
-public String getFaculty(){
+
+public String getFaculty() {
 	return this.faculty;
+}
+
+public Camp getCamp(){
+	return this.camp;
+}
+
+public ArrayList<Suggestion> getSuggestionsList() {
+	return this.suggestionsList;
 }
 }

@@ -12,50 +12,22 @@ import Login.AllCampToText;
 
 public class CampCommitteeMenu implements Serializable{
 
-	public static Student student;
-	public static Camp camp;
 	public static CampCommittee campCommittee;
 
-	public static void createStudent(Student studentC, Camp campC) {
-		student = studentC;
-		camp = campC; //correct bravo!
-		//campCommittee = campCommitteeC;
-		System.out.println(student.getRegisteredCamps());
-		System.out.println("The camp name is: " + camp.getCampInfo().getCampName());
-		ArrayList<CampCommittee> committee_array = campC.getRegisteredCampCommittee();
-
-		for (int i = 0; i < committee_array.size(); i++)
-		{
-			CampCommittee committee = committee_array.get(i);
-			System.out.println(committee.getName());
-			System.out.println("This is the student name: " + student.getName());
-			if (committee.getName().equals(student.getName())) //it is not entering even if they are the same
-			{
-				campCommittee = committee;
-			}
-		}
-		if (campCommittee == null) //but campCommittee is null
-		{
-			System.out.println("campcommmittee is null");
-		}
-		System.out.println(campCommittee.getName()); //error here
+	public static void createCampCommittee(String studentName, Camp camp, String faculty){
+		campCommittee = new CampCommittee(studentName,camp,faculty);
 	}
 
 
-	public static void main(String[] args) {
-
-		ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
+	public static void main(String[] args,ArrayList<Camp> allCamps) {
 
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 
 		do {
-
-        	allCamps = AllCampToText.readCampsFromFile();
-			
         	System.out.println("\n#################################################");
 			System.out.println("You are registed as a Committee Member in the following camp:");
-			student.viewCampCommitteeCamp();
+			System.out.println(campCommittee.getCamp().getCampInfo().getCampName());
 			
 			System.out.println("\n:::Camp Committee Menu:::");
 			System.out.println("1. View Suggestions");
@@ -63,7 +35,7 @@ public class CampCommitteeMenu implements Serializable{
 			System.out.println("3. Edit Suggestions");
 			System.out.println("4. Delete Suggestions");
 			System.out.println("5. Generate Camp Report");
-			System.out.println("6. View Enquiries of Camps");
+			System.out.println("6. View Enquiries of Camp");
 			System.out.println("0. Exit");
 			System.out.println("#################################################");
 			System.out.print("\nENTER YOU CHOICE: ");
@@ -83,10 +55,10 @@ public class CampCommitteeMenu implements Serializable{
 					System.out.println("Going back to Student Main Menu");
 					break;
 				case 1:
-					campCommittee.viewSuggestions(camp);
+					campCommittee.viewSuggestions();
 					break;
 				case 2:
-					campCommittee.makeSuggestions(camp);
+					campCommittee.makeSuggestions();
 					break;
 				case 3:
 					campCommittee.editSuggestions();
@@ -106,10 +78,14 @@ public class CampCommitteeMenu implements Serializable{
                     break;
 				
 			}
-	
 			
-            AllCampToText.writeCampsToFile(allCamps);
-
+			//Update the changes on camp in "allCamps"
+			for(Camp camp :allCamps){
+				if(camp.getCampInfo().getCampName().equals(campCommittee.getCamp().getCampInfo().getCampName())){
+					allCamps.remove(camp);
+					allCamps.add(campCommittee.getCamp());
+				}
+			}
 		} while (choice != 0);
 	}
 	
