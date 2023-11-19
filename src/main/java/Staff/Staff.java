@@ -416,10 +416,22 @@ public class Staff extends User implements Serializable {
 
         switch (choice) {
             case 1:
-                tries = 0;
+            	tries = 0;
+                System.out.println("Enter the new Camp Name:");
+                String newCampName = sc.nextLine();
                 while (tries < MAX_TRIES) {
-                    System.out.println("Enter the new Camp Name:");
-                    String newCampName = sc.nextLine();
+                  
+                    //System.out.println("Enter the new Camp Name:");
+                    //String newCampName = sc.nextLine();
+                    
+                  //check for blank input
+                    if(newCampName.trim().isEmpty() ) {
+                      System.out.println("Please enter the new Camp Name: ");
+                      newCampName = sc.nextLine();
+                      tries++;
+                      continue;
+                    }
+                    
                     // Check if the new camp name already exists
                     boolean campExists = false;
                     for (Camp existingCamp : allCamps) {
@@ -431,7 +443,8 @@ public class Staff extends User implements Serializable {
                     }
                     if (campExists) {
                         System.out.println(
-                                "Camp with the name '" + newCampName + "' already exists. Choose a different name.");
+                                "Camp with the name '" + newCampName + "' already exists. Choose a different name: ");
+                      newCampName = sc.nextLine();
                         tries++;
                     } else {
                         System.out.println(
