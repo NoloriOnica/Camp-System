@@ -80,7 +80,7 @@ public class StudentMain implements Serializable{
             }
             System.out.println("0. Exit");
             System.out.println("#################################################");
-            System.out.print("\nENTER YOU CHOICE: ");
+            System.out.print("\nENTER YOUR CHOICE: ");
             
             try {
                 choice = scanner.nextInt();

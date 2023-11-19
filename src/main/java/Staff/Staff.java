@@ -799,19 +799,20 @@ public class Staff extends User implements Serializable {
 
             try {
                 index = sc.nextInt();
-
                 if (index >= 1 && index <= filterSortedCreatedCamp.size()) {
                     // Valid input, break the loop
                     break;
                 } else {
                     System.out.println("Invalid index. Please enter a valid index within the range.");
+                    tries++;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
                 sc.next(); // Consume the invalid input to prevent an infinite loop
+                tries++;
             }
 
-            tries++;
+            //tries++;
 
             if (tries == MAX_TRIES) {
                 System.out.println("You've reached the maximum number of tries. Exiting...");
@@ -819,7 +820,7 @@ public class Staff extends User implements Serializable {
             }
         }
 
-        Camp selectedCamp = this.createdCamps.get(index-1); // Get the camp that the staff wanna edit
+        Camp selectedCamp = filterSortedCreatedCamp.get(index-1); // Get the camp that the staff wanna edit
 
         if (selectedCamp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
             selectedCamp.getCampInfo().setCampVisibility(CampVisibility.ON);
