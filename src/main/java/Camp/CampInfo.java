@@ -93,7 +93,7 @@ public class CampInfo implements Serializable{
     }
 
     public CampVisibility getCampVisibility() {
-        return campVisibility;
+        return this.campVisibility;
     }
 
     public void setCampVisibility(CampVisibility campVisibility) {

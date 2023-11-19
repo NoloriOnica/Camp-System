@@ -147,6 +147,9 @@ public class StudentViewsCamps implements Serializable{
                 campHolder.add(camp);
             }
         }
+        if(campHolder.isEmpty()){
+            System.out.println("No available camps that are visible for you.");
+        }
         return campHolder;
     }
 

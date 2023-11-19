@@ -19,7 +19,6 @@ public class Camp implements Serializable{
     private ArrayList<Student> registeredStudents; // This will keep track of students registered for the camp
     private ArrayList<Student> bannedStudents;
     private ArrayList<CampCommittee> registeredCampCommittees;
-    private String campName;
 
     public Camp(String campName, LocalDate startDate, LocalDate endDate, LocalDate regClosingDate,
             String campUserGroup, CampVisibility campVisibility, String location, int totalSlots,
@@ -32,11 +31,8 @@ public class Camp implements Serializable{
         registeredStudents = new ArrayList<>();
         bannedStudents = new ArrayList<>();
         registeredCampCommittees = new ArrayList<>();
-        this.campName = campName;
     }
-    public String getCampName() {
-    	return this.campName;
-    }
+    
 
     public CampCommittee findCampCommittee(String studentName) {
         for (CampCommittee campCommittee : this.registeredCampCommittees) {

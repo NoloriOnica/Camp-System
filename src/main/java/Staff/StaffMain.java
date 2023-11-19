@@ -67,7 +67,17 @@ public class StaffMain {
                     }
                     break;
                 case 2:
-                    staff.editCamp(allCamps);
+                    Camp editedCamp = staff.editCamp(allCamps);
+                    //Replaced the unchanged camp with edited camp
+                    if(editedCamp != null){
+                        for(Camp camp : allCamps){
+                            if(camp.getCampInfo().getCampName().equals(editedCamp.getCampInfo().getCampName())){
+                                allCamps.remove(camp);
+                                allCamps.add(editedCamp);
+                                break;
+                            }
+                        }
+                    }
                     break;
                 case 3:
                     staff.deleteCamp(allCamps);

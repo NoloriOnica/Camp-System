@@ -21,14 +21,14 @@ public class CampCommitteeMenu implements Serializable{
 		camp = campC; //correct bravo!
 		//campCommittee = campCommitteeC;
 		System.out.println(student.getRegisteredCamps());
-		System.out.println("the camp name is: " + camp.getCampInfo().getCampName());
+		System.out.println("The camp name is: " + camp.getCampInfo().getCampName());
 		ArrayList<CampCommittee> committee_array = campC.getRegisteredCampCommittee();
 
 		for (int i = 0; i < committee_array.size(); i++)
 		{
 			CampCommittee committee = committee_array.get(i);
 			System.out.println(committee.getName());
-			System.out.println("this is the student name: " + student.getName());
+			System.out.println("This is the student name: " + student.getName());
 			if (committee.getName().equals(student.getName())) //it is not entering even if they are the same
 			{
 				campCommittee = committee;
