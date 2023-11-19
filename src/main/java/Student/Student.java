@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import Login.User;
 import Camp.Camp;
-import Camp.CampCommittee;
+import CampCommittee.CampCommittee;
 import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
 

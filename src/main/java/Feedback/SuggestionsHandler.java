@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import Camp.Camp;
-import Camp.CampCommittee;
+import CampCommittee.CampCommittee;
 
 public class SuggestionsHandler implements Serializable{
 

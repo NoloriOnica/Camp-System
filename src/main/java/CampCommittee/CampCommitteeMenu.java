@@ -1,4 +1,4 @@
-package Student;
+package CampCommittee;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Camp.Camp;
-import Camp.CampCommittee;
 import Login.AllCampToText;
 
 

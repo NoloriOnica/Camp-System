@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import CampCommittee.CampCommittee;
 import Feedback.Suggestion;
 import Feedback.Enquiries;
 

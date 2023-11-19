@@ -3,7 +3,7 @@ package Report;
 import java.io.Serializable;
 import java.util.ArrayList;
 import Camp.Camp;
-import Camp.CampCommittee;
+import CampCommittee.CampCommittee;
 import Student.Student;
 
 public class ReportFilterImplementation implements ReportFilter,Serializable {

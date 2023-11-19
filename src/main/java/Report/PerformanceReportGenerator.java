@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import Camp.Camp;
-import Camp.CampCommittee;
+import CampCommittee.CampCommittee;
 
 public class PerformanceReportGenerator implements Serializable {
     public void generatePerformanceReport(ArrayList<Camp> camplist) {

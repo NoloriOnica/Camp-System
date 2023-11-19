@@ -10,7 +10,7 @@ import java.awt.Desktop;
 import java.io.File;
 
 import Camp.Camp;
-import Camp.CampCommittee;
+import CampCommittee.CampCommittee;
 import Report.ReportFilter;
 import Student.Student;
 

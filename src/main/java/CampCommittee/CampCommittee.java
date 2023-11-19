@@ -1,9 +1,10 @@
-package Camp;
+package CampCommittee;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.apache.commons.math3.stat.descriptive.summary.SumOfSquares;
 
+import Camp.Camp;
 import Feedback.Enquiries;
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
