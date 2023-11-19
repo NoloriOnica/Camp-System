@@ -67,7 +67,7 @@ public class SuggestionsHandler implements Serializable{
         int index = -1; // Initialize index with an invalid value
         while(tries < maxTries){
             try{
-                System.out.println("Choose which enquiry to edit");
+                System.out.println("Choose which suggestion to edit");
                 index = sc.nextInt(); // Get the index from the user
                  if (index - 1 >= 0 && index - 1 < availableSuggestions.size()){
                     break;
@@ -93,7 +93,7 @@ public class SuggestionsHandler implements Serializable{
 		tries = 0;
         while (tries < maxTries) {
             if (suggestionString.trim().isEmpty()) {
-                System.out.println("Suggestion cannot be blank. Please enter a valid enquiry:");
+                System.out.println("Suggestion cannot be blank. Please enter a valid suggestion:");
                 suggestionString = sc.nextLine();
                 tries++;
             }
@@ -121,7 +121,7 @@ public class SuggestionsHandler implements Serializable{
         int index = -1; // Initialize index with an invalid value
         while(tries < maxTries){
             try{
-                System.out.println("Choose which enquiry to edit");
+                System.out.println("Choose which suggestion to delete");
                 index = sc.nextInt(); // Get the index from the user
                  if (index - 1 >= 0 && index - 1 < availableSuggestions.size()){
                     break;
