@@ -62,7 +62,6 @@ public class CampCommittee implements Serializable{
 	public void makeSuggestions() {
 		suggestionsHandler.makeSuggestions(this.camp, this);
 	}
-	
 
 	public ArrayList <Suggestion> viewSuggestions() { //return a list of suggestion that a camp committee can view
         return suggestionsHandler.viewSuggestions(this);

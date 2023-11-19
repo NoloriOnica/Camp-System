@@ -67,17 +67,7 @@ public class StaffMain {
                     }
                     break;
                 case 2:
-                    Camp editedCamp = staff.editCamp(allCamps);
-                    //Replaced the unchanged camp with edited camp
-                    if(editedCamp != null){
-                        for(Camp camp : allCamps){
-                            if(camp.getCampInfo().getCampName().equals(editedCamp.getCampInfo().getCampName())){
-                                allCamps.remove(camp);
-                                allCamps.add(editedCamp);
-                                break;
-                            }
-                        }
-                    }
+                    staff.editCamp(allCamps);
                     break;
                 case 3:
                     staff.deleteCamp(allCamps);
@@ -117,7 +107,16 @@ public class StaffMain {
                     break;
             
             }
-            
+            for(Camp camp : allCamps){
+                ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
+                for(Camp staffCamp : staffCreatedCamps){
+                    if(camp.getCampInfo().getCampName().equals(staffCamp.getCampInfo().getCampName())){
+                        allCamps.remove(camp);
+                        allCamps.add(staffCamp);
+                        break;
+                    }
+                }
+            }
             AllCampToText.writeCampsToFile(allCamps);
             //System.out.println(allCamps);
 

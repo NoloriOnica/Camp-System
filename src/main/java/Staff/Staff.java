@@ -371,7 +371,17 @@ public class Staff extends User implements Serializable {
             return null;
         }
 
+        
         Camp selectedCamp = filterSortedCreatedCamp.get(index); // Get the camp that the staff wanna edit
+
+        //Remove the unchanged camp in "allCamps"
+        for(Camp camp : allCamps){
+            if(camp.getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())){
+                allCamps.remove(camp);
+                allCamps.add(selectedCamp);
+                break;
+            }
+        }
 
         tries = 0;
         int choice = 0;
@@ -397,6 +407,7 @@ public class Staff extends User implements Serializable {
                 tries++;
             }
         }
+
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             // Handle the case where the user exceeds the maximum number of tries
