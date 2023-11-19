@@ -24,7 +24,7 @@ public class CampsFilterImplementation implements CampsFilter, Serializable{
         ArrayList<Camp> filteredCamp = new ArrayList<>();
         // Sort the copy using a custom comparator
         for(Camp camp : campList){
-            if(camp.getCampInfo().getStartDate().isBefore(desiredDate))
+            if(camp.getCampInfo().getRegClosingDate().isBefore(desiredDate))
                 filteredCamp.add(camp);
         }
         // Return the sorted copy
