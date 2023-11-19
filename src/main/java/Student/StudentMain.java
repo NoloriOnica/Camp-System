@@ -35,15 +35,6 @@ public class StudentMain implements Serializable{
                 }
             }
 
-            //Banned student
-            ArrayList<Student> bannedStudentList = camp.getBannedStudents();
-            for (Student bannedStudent : bannedStudentList) {
-                if (bannedStudent.getName().equals(student.getName())) {
-                    student.getbannedCamps().add(camp);
-                    break;
-                }
-            }
-
             //Registered camp committee
             ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
             for (CampCommittee campCommittee : campCommitteeList) {
@@ -113,7 +104,7 @@ public class StudentMain implements Serializable{
                     student.registerForCamp(allCamps);
                     break;
                 case 5:
-                    student.withdrawFromCamp();
+                    student.withdrawFromCamp(allCamps);
                     break;
                 case 6:
                     student.makeEnquiries(allCamps);
@@ -122,10 +113,10 @@ public class StudentMain implements Serializable{
                     student.viewEnquiries();
                     break;
                 case 8:
-                    student.editEnquiry();
+                    student.editEnquiry(allCamps);
                     break;
                 case 9:
-                    student.deleteEnquiry();
+                    student.deleteEnquiry(allCamps);
                     break;
                 case 0:
                     System.out.println("Going back to Login Menu!!");
@@ -142,7 +133,39 @@ public class StudentMain implements Serializable{
                     System.out.println("Invalid choice. Please enter a number between 0 and 9.");
                     break;
             }
-            
+
+            // Update allCamps
+
+            // for (Camp camp : allCamps) {
+            //     //Registered Camp
+            //     ArrayList<Camp> registeredCampList = student.getRegisteredCamps();
+            //     for (Camp registeredCamp : registeredCampList) {
+            //         if (registeredCamp.getCampInfo().getCampName().equals(camp.getCampInfo().getCampName())) {
+            //             allCamps.remove(camp);
+            //             allCamps.add(registeredCamp);
+            //             break;
+            //         }
+            //     }
+
+            //     //Banned Camp
+            //     ArrayList<Camp> bannedCampList = student.getbannedCamps();
+            //     for (Camp bannedCamp : bannedCampList) {
+            //         if (bannedCamp.getCampInfo().getCampName().equals(camp.getCampInfo().getCampName())) {
+            //             ArrayList<Student> bannedStudentList = camp.getBannedStudents();
+            //             for(Student bannedStudent : bannedStudentList){
+            //                 if(bannedStudent.getName().equals(student.getName())){
+            //                     camp.getBannedStudents().remove(bannedStudent);
+            //                     break;
+            //                 }
+            //             }
+            //             allCamps.remove(camp);
+            //             allCamps.add(bannedCamp);
+            //             bannedCamp.addBannedStudents(student);
+            //             break;
+            //         }
+            //     }
+            //}
+
             AllCampToText.writeCampsToFile(allCamps);
 
         } while (choice != 0);

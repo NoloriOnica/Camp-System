@@ -16,7 +16,6 @@ public class Student extends User implements Serializable {
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
     private ArrayList<Camp> registeredCamps;
-    private ArrayList<Camp> bannedCamps; // Student are not allow to register for the camp that he withdrawed before
     private ArrayList<Enquiries> enquiriesList; // Different from camp committee's suggestion, a student can send enquiries to multiple camps
     private StudentViewsCamps studentViewsCamps;
     private EnquiriesHandler enquiriesHandler;
@@ -26,7 +25,6 @@ public class Student extends User implements Serializable {
         super(userID, name, email, faculty, userType);
         this.registeredCamps = new ArrayList<>();
         this.enquiriesList = new ArrayList<>();
-        this.bannedCamps = new ArrayList<>();
         this.isCampCommittee = false;
 //        this.committeeForCamp = null;
 //        this.campCommitteeRegistered = null;
@@ -127,9 +125,14 @@ public class Student extends User implements Serializable {
         }
 
         // check if the student got withdraw from this camp anot
-        if (bannedCamps.contains(selectedCamp)) {
-            System.out.println("Cannot register for this camp as you have withdrawed from this camp before.");
-            return;
+        ArrayList<Student> bannedStudentList = selectedCamp.getBannedStudents();
+        for(Student student : bannedStudentList){
+            if(student.getName().equals(super.getName())){
+                System.out.println("Cannot register for this camp as you withdrawn from this camp before.");
+                selectedCamp.getBannedStudents().remove(student);
+                selectedCamp.getBannedStudents().add(this);
+                return;
+            }
         }
 
         if (selectedCamp.getCampInfo().getCampCommitteeSlot() > 0 || selectedCamp.getRemainingAttendeeSlot() > 0) {
@@ -213,7 +216,7 @@ public class Student extends User implements Serializable {
         }
     }
 
-    public void withdrawFromCamp() {
+    public void withdrawFromCamp(ArrayList<Camp> allCamps) {
     	Scanner sc = new Scanner(System.in);
     	int tries;             
     	int campIndex = 0;
@@ -285,11 +288,10 @@ public class Student extends User implements Serializable {
                         "You are currently an attendee for this camp, we will now proceed to withdraw you from this camp");
                 // Update on student's end
                 this.registeredCamps.remove(selectedCamp);
-                this.bannedCamps.add(selectedCamp);
                 // update on Camp's end
                 ArrayList<Student> studentList = selectedCamp.getRegisteredStudents();
                 for(Student student : studentList){
-                    if(student.getName().equals(this.getName())){
+                    if(student.getName().equals(super.getName())){
                         selectedCamp.getRegisteredStudents().remove(student);
                         break;
                     }
@@ -298,6 +300,14 @@ public class Student extends User implements Serializable {
                 selectedCamp.addBannedStudents(this);
                 selectedCamp.getCampInfo().setTotalSlots(
                 selectedCamp.getCampInfo().getCampCommitteeSlot() + selectedCamp.getRemainingAttendeeSlot()); // Update total slot
+                // Update on "allCamp's" end
+                for (Camp camp : allCamps) {
+                    if (camp.getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())) {
+                        allCamps.remove(camp);
+                        allCamps.add(selectedCamp);
+                        break;
+                    }
+                }
                 System.out.println("Successfully withdrawn from camp: " + selectedCamp.getCampInfo().getCampName());
             }
         } else {
@@ -323,13 +333,13 @@ public class Student extends User implements Serializable {
         return enquiriesHandler.viewEnquiries(this);
     }
 
-    public void editEnquiry() {
+    public void editEnquiry(ArrayList<Camp> allCamps) {
         // edit an enquiry
-        enquiriesHandler.editEnquiries(this);
+        enquiriesHandler.editEnquiries(this,allCamps);
     }
 
-    public void deleteEnquiry() {
-        enquiriesHandler.deleteEnquiry(this);
+    public void deleteEnquiry(ArrayList<Camp> allCamps) {
+        enquiriesHandler.deleteEnquiry(this,allCamps);
     }
 
     // Below are Getters and setters
@@ -344,10 +354,6 @@ public class Student extends User implements Serializable {
 
     public ArrayList<Camp> getRegisteredCamps() {
         return this.registeredCamps;
-    }
-
-    public ArrayList<Camp> getbannedCamps() {
-        return this.bannedCamps;
     }
 
     public Camp getCommitteeForCamp() {

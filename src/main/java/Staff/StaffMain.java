@@ -107,16 +107,19 @@ public class StaffMain {
                     break;
             
             }
-            for(Camp camp : allCamps){
-                ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
-                for(Camp staffCamp : staffCreatedCamps){
-                    if(camp.getCampInfo().getCampName().equals(staffCamp.getCampInfo().getCampName())){
-                        allCamps.remove(camp);
-                        allCamps.add(staffCamp);
+            //Update the changes
+            ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
+            ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);
+            for (Camp camp : allCamps) {
+                for (Camp staffCamp : staffCreatedCamps) {
+                    if (camp.getCampInfo().getCampName().equals(staffCamp.getCampInfo().getCampName())) {
+                        newAllCamps.remove(camp);
+                        newAllCamps.add(staffCamp);
                         break;
                     }
                 }
             }
+            allCamps = newAllCamps; // Replace allCamps with the updated list
             AllCampToText.writeCampsToFile(allCamps);
             //System.out.println(allCamps);
 

@@ -89,7 +89,7 @@ public class EnquiriesHandler implements Serializable{
         return enquiriesHolder;
     }
 
-    public void editEnquiries(Student student) {
+    public void editEnquiries(Student student, ArrayList<Camp> allCamps) {
         // edit an enquiry
         Scanner sc = new Scanner(System.in);
         ArrayList<Enquiries> availableEnquiries;
@@ -125,10 +125,26 @@ public class EnquiriesHandler implements Serializable{
 
         sc.nextLine(); // Consume the newline character
         //Select the target enquiry
-        Enquiries enquiry = availableEnquiries.get(index-1);
-        if(enquiry.getProcessState()){
+        Enquiries seletedEnquiry = availableEnquiries.get(index-1);
+
+         if(seletedEnquiry.getProcessState()){
             System.out.println("Cannot edit the enquiry as it is replied");
             return;
+        }
+        //Remove the unchanged enquiry in all camps
+        Camp targetCampInAllCamps = null;
+        for(Camp camp  : allCamps){
+            if(camp.getCampInfo().getCampName().equals(seletedEnquiry.getCamp().getCampInfo().getCampName())){
+                targetCampInAllCamps = camp;
+                break;
+            }
+        }
+        ArrayList<Enquiries> enquiriiesList = targetCampInAllCamps.getEnquiriesList();
+        for(Enquiries enquiry : enquiriiesList){
+            if(enquiry.getSenderName().equals(student.getName()) && enquiry.getEnquireString().equals(seletedEnquiry.getEnquireString())){
+                targetCampInAllCamps.getEnquiriesList().remove(enquiry);
+                break;
+            }
         }
         
         System.out.println("What would you like to change it to?");
@@ -150,11 +166,13 @@ public class EnquiriesHandler implements Serializable{
             return; // Return if the user exceeds the maximum number of tries
         }
 
-        enquiry.setEnquiryString(enquiryString.toString());
+        seletedEnquiry.setEnquiryString(enquiryString.toString());
+        //Update on "allCamps"
+        targetCampInAllCamps.getEnquiriesList().add(seletedEnquiry);
         System.out.println("Enquiry updated!");
     }
 
-    public void deleteEnquiry(Student student) {
+    public void deleteEnquiry(Student student,ArrayList<Camp> allCamps) {
         // Delete an enquiry
         Scanner sc = new Scanner(System.in);
         ArrayList<Enquiries> availableEnquiries;
@@ -199,13 +217,20 @@ public class EnquiriesHandler implements Serializable{
 
         // Remove the enquiry on Student's end
         student.getEnquiriesList().remove(index - 1); 
+        
         // Remove the enquiry on Camp's end
-        Camp camp = selectedEnquiry.getCamp();
-        ArrayList<Enquiries> enquiriesList = camp.getEnquiriesList();
+        Camp targetCampInAllCamps = null;
+        for(Camp camp  : allCamps){
+            if(camp.getCampInfo().getCampName().equals(selectedEnquiry.getCamp().getCampInfo().getCampName())){
+                targetCampInAllCamps = camp;
+                break;
+            }
+        }
+        ArrayList<Enquiries> enquiriesList = targetCampInAllCamps.getEnquiriesList();
         for (Enquiries enquiry : enquiriesList) {
             if (enquiry.getEnquireString().equals(selectedEnquiry.getEnquireString()) &&
                     enquiry.getSenderName().equals(student.getName())) {
-                camp.getEnquiriesList().remove(enquiry);
+                targetCampInAllCamps.getEnquiriesList().remove(enquiry);
                 break;
             }
         }
