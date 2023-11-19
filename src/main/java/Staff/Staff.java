@@ -785,7 +785,7 @@ public class Staff extends User implements Serializable {
         }
 
         Scanner sc = new Scanner(System.in);
-        int index = 0;
+        int index = -1;
         ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
         
         if(filterSortedCreatedCamp == null || filterSortedCreatedCamp.isEmpty()) {
@@ -819,7 +819,7 @@ public class Staff extends User implements Serializable {
             }
         }
 
-        Camp selectedCamp = this.createdCamps.get(index - 1); // Get the camp that the staff wanna edit
+        Camp selectedCamp = this.createdCamps.get(index-1); // Get the camp that the staff wanna edit
 
         if (selectedCamp.getCampInfo().getCampVisibility() == CampVisibility.OFF) {
             selectedCamp.getCampInfo().setCampVisibility(CampVisibility.ON);

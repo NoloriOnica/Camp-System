@@ -52,7 +52,7 @@ public class Login {
 			System.out.println("1. Change Password");
 			System.out.println("2. Go to Main Menu");
 			System.out.println("#################################################");
-			System.out.print("\nENTER YOU CHOICE: ");
+			System.out.print("\nENTER YOUR CHOICE: ");
 			loginChoice = scanner.nextInt();
 			scanner.nextLine(); // Consume the newline character
 
