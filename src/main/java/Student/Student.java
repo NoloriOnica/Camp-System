@@ -29,8 +29,8 @@ public class Student extends User implements Serializable {
         this.enquiriesList = new ArrayList<>();
         this.bannedCamps = new ArrayList<>();
         this.isCampCommittee = false;
-        this.committeeForCamp = null;
-        this.campCommitteeRegistered = null;
+//        this.committeeForCamp = null;
+//        this.campCommitteeRegistered = null;
 
         studentViewsCamps = new StudentViewsCamps();
         enquiriesHandler = new EnquiriesHandler();
@@ -181,7 +181,7 @@ public class Student extends User implements Serializable {
                                 "Cannot register as camp committee as you are a camp committee for other camp");
                         return;
                     }
-                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.getFaculty());
+                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.getFaculty()); //first time correct
                     selectedCamp.addRegisteredStudents(this); // Update camp's Registered Student list
                     selectedCamp.addRegisteredCampCommittee(campCommittee); // Update camp's Registered camp committee
                                                                             // list
@@ -190,7 +190,9 @@ public class Student extends User implements Serializable {
                     this.registeredCamps.add(selectedCamp);// Update Student's resgistered Camp list
                     this.isCampCommittee = true;
                     this.committeeForCamp = selectedCamp;
-                    this.campCommitteeRegistered = campCommittee;
+                    this.campCommitteeRegistered = campCommittee; //this is null here //it is null, because unlike
+                    //the camp which is added into this.registered, and then  saved later, the camp committee is not
+                    //saved
                     result = true;
                 } else {
                     System.out.println("No more camp committee slots!");
@@ -351,7 +353,7 @@ public class Student extends User implements Serializable {
     }
 
     public Camp getCommitteeForCamp() {
-        return this.committeeForCamp;
+        return this.committeeForCamp; //not null upon restarting
     }
 
     public void setCommitteeForCamp(Camp committeeForCamp) {
@@ -363,6 +365,10 @@ public class Student extends User implements Serializable {
     }
     
     public CampCommittee getCampCommittee() {
+    	if(this.campCommitteeRegistered == null) //
+    	{
+    		System.out.println("campCommittee in student line 368 is null too");
+    	}
     	return this.campCommitteeRegistered;
     }
 

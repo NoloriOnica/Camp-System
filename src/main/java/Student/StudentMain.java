@@ -82,7 +82,10 @@ public class StudentMain implements Serializable{
             System.out.println("7. View Enquiries");
             System.out.println("8. Edit Enquiry");
             System.out.println("9. Delete Enquiry");
-            System.out.println("10. Camp Committee Menu");
+            if (student.isCampCommittee())
+            {
+            	 System.out.println("10. Camp Committee Menu");
+            }
             System.out.println("0. Exit");
             System.out.println("#################################################");
             System.out.print("\nENTER YOU CHOICE: ");
@@ -129,8 +132,10 @@ public class StudentMain implements Serializable{
                     break;
                 case 10:
                 	if (student.isCampCommittee()) {
-                		CampCommitteeMenu.createStudent(student);
+                		CampCommitteeMenu.createStudent(student, student.getCommitteeForCamp());
                 		CampCommitteeMenu.main(new String[] {});
+                		student = CampCommitteeMenu.getStudent();
+                
                 	}
                 	else System.out.println("You are not a committee member for any camp!");
                 	break;

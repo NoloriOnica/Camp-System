@@ -16,22 +16,41 @@ public class CampCommitteeMenu implements Serializable{
 	public static Camp camp;
 	public static CampCommittee campCommittee;
 
-	public static void createStudent(Student studentC) {
+	public static void createStudent(Student studentC, Camp campC) {
 		student = studentC;
-		camp = student.getCommitteeForCamp();
-		campCommittee = student.getCampCommittee();
-		System.out.println(student.getCampCommittee().getName());
+		camp = campC; //correct bravo!
+		//campCommittee = campCommitteeC;
+		System.out.println(student.getRegisteredCamps());
+		System.out.println("the camp name is: " + camp.getCampInfo().getCampName());
+		ArrayList<CampCommittee> committee_array = campC.getRegisteredCampCommittee();
+
+		for (int i = 0; i < committee_array.size(); i++)
+		{
+			CampCommittee committee = committee_array.get(i);
+			System.out.println(committee.getName());
+			System.out.println("this is the student name: " + student.getName());
+			if (committee.getName().equals(student.getName())) //it is not entering even if they are the same
+			{
+				campCommittee = committee;
+			}
+		}
+		if (campCommittee == null) //but campCommittee is null
+		{
+			System.out.println("campcommmittee is null");
+		}
+		System.out.println(campCommittee.getName()); //error here
 	}
 
 
 	public static void main(String[] args) {
 
 		ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
-		
+		student.setCampCommittee(campCommittee);
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 
 		do {
+			student.setCampCommittee(campCommittee);
         	allCamps = AllCampToText.readCampsFromFile();
 			
         	System.out.println("\n#################################################");
@@ -87,10 +106,16 @@ public class CampCommitteeMenu implements Serializable{
                     break;
 				
 			}
+			student.setCampCommittee(campCommittee);
 			
             AllCampToText.writeCampsToFile(allCamps);
 
 		} while (choice != 0);
 	}
+	public static Student getStudent()
+	{
+		return student;
+	}
 
+	
 }

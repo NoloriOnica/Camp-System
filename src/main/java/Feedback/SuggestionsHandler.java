@@ -28,7 +28,7 @@ public class SuggestionsHandler implements Serializable{
 	
 	public ArrayList <Suggestion> viewSuggestions(Camp camp, CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
         ArrayList <Suggestion> suggestionsList = camp.getSuggestionsList();
-        if(suggestionsList == null){
+        if(suggestionsList == null || suggestionsList.isEmpty()){
             System.out.println("You have not made any suggestions yet!");
         	return null;
         }
