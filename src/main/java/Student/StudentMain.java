@@ -134,38 +134,6 @@ public class StudentMain implements Serializable{
                     break;
             }
 
-            // Update allCamps
-
-            // for (Camp camp : allCamps) {
-            //     //Registered Camp
-            //     ArrayList<Camp> registeredCampList = student.getRegisteredCamps();
-            //     for (Camp registeredCamp : registeredCampList) {
-            //         if (registeredCamp.getCampInfo().getCampName().equals(camp.getCampInfo().getCampName())) {
-            //             allCamps.remove(camp);
-            //             allCamps.add(registeredCamp);
-            //             break;
-            //         }
-            //     }
-
-            //     //Banned Camp
-            //     ArrayList<Camp> bannedCampList = student.getbannedCamps();
-            //     for (Camp bannedCamp : bannedCampList) {
-            //         if (bannedCamp.getCampInfo().getCampName().equals(camp.getCampInfo().getCampName())) {
-            //             ArrayList<Student> bannedStudentList = camp.getBannedStudents();
-            //             for(Student bannedStudent : bannedStudentList){
-            //                 if(bannedStudent.getName().equals(student.getName())){
-            //                     camp.getBannedStudents().remove(bannedStudent);
-            //                     break;
-            //                 }
-            //             }
-            //             allCamps.remove(camp);
-            //             allCamps.add(bannedCamp);
-            //             bannedCamp.addBannedStudents(student);
-            //             break;
-            //         }
-            //     }
-            //}
-
             AllCampToText.writeCampsToFile(allCamps);
 
         } while (choice != 0);

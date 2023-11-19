@@ -19,12 +19,12 @@ public class CampsFilterImplementation implements CampsFilter, Serializable{
         return campListCopy;
     }
 
-    public ArrayList<Camp> byDate(ArrayList<Camp> campList, LocalDate desiredDate){ //select the camp that held before the desired date
+    public ArrayList<Camp> byDate(ArrayList<Camp> campList, LocalDate desiredDate){ //select the camp that registration close before the desired date
         
         ArrayList<Camp> filteredCamp = new ArrayList<>();
         // Sort the copy using a custom comparator
         for(Camp camp : campList){
-            if(camp.getCampInfo().getStartDate().isBefore(desiredDate))
+            if(camp.getCampInfo().getRegClosingDate().isBefore(desiredDate))
                 filteredCamp.add(camp);
         }
         // Return the sorted copy

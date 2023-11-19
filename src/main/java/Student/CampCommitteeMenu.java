@@ -81,16 +81,13 @@ public class CampCommitteeMenu implements Serializable{
                     break;
 				
 			}
-
-			ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);
 			for (Camp camp : allCamps) {
 				if (camp.getCampInfo().getCampName().equals(campCommittee.getCamp().getCampInfo().getCampName())) {
-					newAllCamps.remove(camp);
-					newAllCamps.add(campCommittee.getCamp());
+					allCamps.remove(camp);
+					allCamps.add(campCommittee.getCamp());
+					break;
 				}
 			}
-			allCamps = newAllCamps; // Replace allCamps with the updated list
-
 		} while (choice != 0);
 	}
 

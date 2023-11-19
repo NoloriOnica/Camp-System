@@ -301,13 +301,15 @@ public class Student extends User implements Serializable {
                 selectedCamp.getCampInfo().setTotalSlots(
                 selectedCamp.getCampInfo().getCampCommitteeSlot() + selectedCamp.getRemainingAttendeeSlot()); // Update total slot
                 // Update on "allCamp's" end
+                ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);
                 for (Camp camp : allCamps) {
                     if (camp.getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())) {
-                        allCamps.remove(camp);
-                        allCamps.add(selectedCamp);
+                        newAllCamps.remove(camp);
+                        newAllCamps.add(selectedCamp);
                         break;
                     }
                 }
+                allCamps = newAllCamps;
                 System.out.println("Successfully withdrawn from camp: " + selectedCamp.getCampInfo().getCampName());
             }
         } else {

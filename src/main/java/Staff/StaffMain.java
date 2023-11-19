@@ -107,7 +107,7 @@ public class StaffMain {
                     break;
             
             }
-            //Update the changes
+            //Update the changes for suggestionn and enquiries
             ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
             ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);
             for (Camp camp : allCamps) {
@@ -119,8 +119,7 @@ public class StaffMain {
                     }
                 }
             }
-            allCamps = newAllCamps; // Replace allCamps with the updated list
-            AllCampToText.writeCampsToFile(allCamps);
+            AllCampToText.writeCampsToFile(newAllCamps);
             //System.out.println(allCamps);
 
         } while (choice != 0);

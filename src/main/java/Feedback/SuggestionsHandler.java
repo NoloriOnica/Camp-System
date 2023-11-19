@@ -49,6 +49,9 @@ public class SuggestionsHandler implements Serializable{
 				System.out.println((++i) + ") "+suggestion.toString()); //Only can view the suggestion have not been approved
 			}
 		}
+		if(suggestionsHolder.isEmpty()){
+			System.out.println("No available suggestion to be viewed.");
+		}
 		return suggestionsHolder;
 	}
 

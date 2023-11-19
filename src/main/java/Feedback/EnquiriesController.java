@@ -83,9 +83,11 @@ public class EnquiriesController implements Serializable {
                         
                         while(tries < maxTries) {
                             if (reply.trim().isEmpty()) {
-                                System.out.println("Please enter a reply: ");
+                                System.out.println("Reply cannot be blank: ");
                                 reply = sc.nextLine();
                                 tries++;
+                            }else{
+                                break;
                             }
                           }
                           if (tries >= maxTries) {

@@ -759,8 +759,14 @@ public class Staff extends User implements Serializable {
         }
         Camp selectedCamp = filterSortedCreatedCamp.get(index - 1); // Get the camp that the staff wanna delete
 
+
         if (selectedCamp.getRegisteredStudents().isEmpty()) { // Only can delete the empty camp
-            allCamps.remove(selectedCamp); // Remove the Camp on global
+            for (Camp camp : allCamps) {
+                if (selectedCamp.getCampInfo().getCampName().equals(camp.getCampInfo().getCampName())) {
+                    allCamps.remove(camp);
+                    break;
+                }
+            }
             this.createdCamps.remove(selectedCamp); // Remove the Camp on Staff's end
             System.out.println("Camp " + selectedCamp.getCampInfo().getCampName() + " has been deleted.");
             return true;
