@@ -15,10 +15,14 @@ public class Login {
 		String userID = null;
 		String password;
 		
-		System.out.println("Welcome to the School System!");
-		System.out.println("Initialising Database!");
+		System.out.println(" ____   ____ _   _  ___   ___  _        ____    _    __  __ ____    ______   ______ _____ _____ __  __ \r\n"
+				+ "/ ___| / ___| | | |/ _ \\ / _ \\| |      / ___|  / \\  |  \\/  |  _ \\  / ___\\ \\ / / ___|_   _| ____|  \\/  |\r\n"
+				+ "\\___ \\| |   | |_| | | | | | | | |     | |     / _ \\ | |\\/| | |_) | \\___ \\\\ V /\\___ \\ | | |  _| | |\\/| |\r\n"
+				+ " ___) | |___|  _  | |_| | |_| | |___  | |___ / ___ \\| |  | |  __/   ___) || |  ___) || | | |___| |  | |\r\n"
+				+ "|____/ \\____|_| |_|\\___/ \\___/|_____|  \\____/_/   \\_\\_|  |_|_|     |____/ |_| |____/ |_| |_____|_|  |_|");
+		//System.out.println("Initialising Database!");
 		Database.initializeDatabase();
-		System.out.println("Initialising Complete!");
+		//System.out.println("Initialising Complete!");
 
 		
 		boolean loginValid = false;

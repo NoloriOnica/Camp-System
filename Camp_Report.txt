@@ -1,0 +1,13 @@
+Camp Name: zoo
+Start Date: 2023-12-10
+End Date: 2023-12-15
+Registration Closing Date: 2023-12-01
+User Group: Whole NTU
+Camp Visibility: ON
+Location: dafl
+Total Slots: 9
+Camp Committee Slot: 2
+Description: fa
+Staff In Charge ID: Santosh
+1) VASANTH Faculty: SCSE Role: Camp Committee
+

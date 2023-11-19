@@ -23,13 +23,15 @@ public class CampCommitteeMenu implements Serializable{
 
 		ArrayList<Camp> allCamps1 = allCamps;
 		
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 
 		do {
         	System.out.println("\n#################################################");
-			System.out.println("You are registed as a Committee Member in the following camp:");
-			System.out.println(campCommittee.getCamp().getCampInfo().getCampName());
+			System.out.println("You are registed as a Committee Member in the following camp:\n");
+			System.out.println(campCommittee.getCamp().getCampInfo().toString());
 			
 			System.out.println("\n:::Camp Committee Menu:::");
 			System.out.println("1. View Suggestions");
