@@ -332,12 +332,12 @@ public class Staff extends User implements Serializable {
         return camp;
     }
 
-    public boolean editCamp(ArrayList<Camp> allCamps) {
+    public Camp editCamp(ArrayList<Camp> allCamps) {
         // Implementation for editing a camp
         // Check if the camp object is in the createdCamps (Created by this staff)
         if (this.createdCamps == null || this.createdCamps.isEmpty()) {
             System.out.println("You have not created any camps!");
-            return false;
+            return null;
         }
 
         Scanner sc = new Scanner(System.in);
@@ -368,7 +368,7 @@ public class Staff extends User implements Serializable {
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             // Handle the case where the user exceeds the maximum number of tries
-            return false;
+            return null;
         }
 
         Camp selectedCamp = filterSortedCreatedCamp.get(index); // Get the camp that the staff wanna edit
@@ -400,7 +400,7 @@ public class Staff extends User implements Serializable {
         if (tries == MAX_TRIES) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             // Handle the case where the user exceeds the maximum number of tries
-            return false;
+            return null;
         }
 
         switch (choice) {
@@ -427,14 +427,14 @@ public class Staff extends User implements Serializable {
                                 "The camp name has changed from " + selectedCamp.getCampInfo().getCampName() + " to "
                                         + newCampName);
                         selectedCamp.getCampInfo().setCampName(newCampName);
-                        return true; // Exit the loop and return true if the camp name is successfully changed
+                        return selectedCamp; // Exit the loop and return true if the camp name is successfully changed
                     }
                 }
                 if (tries == MAX_TRIES) {
                     System.out.println("You've reached the maximum number of tries. Please try again later.");
                     // Handle the case where the user exceeds the maximum number of tries
                 }
-                return false; // Return false if the user couldn't change the camp name within the allowed
+                return null; // Return false if the user couldn't change the camp name within the allowed
                               // tries
             case 2:
                 tries = 0;
@@ -445,7 +445,7 @@ public class Staff extends User implements Serializable {
                         // If the input is valid, set the new start date and exit the loop
                         selectedCamp.getCampInfo().setStartDate(newStartDate);
                         System.out.println("The start date has changed to " + newStartDate);
-                        return true;
+                        return selectedCamp;
                     } catch (DateTimeParseException e) {
                         System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
                         tries++;
@@ -455,7 +455,7 @@ public class Staff extends User implements Serializable {
                     System.out.println("You've reached the maximum number of tries. Please try again later.");
                     // Handle the case where the user exceeds the maximum number of tries
                 }
-                return false;
+                return null;
 
             case 3:
                 tries = 0;
@@ -469,7 +469,7 @@ public class Staff extends User implements Serializable {
                             // If valid, set the new end date and exit the loop
                             selectedCamp.getCampInfo().setEndDate(newEndDate);
                             System.out.println("The end date has changed to " + newEndDate);
-                            return true;
+                            return selectedCamp;
                         } else {
                             System.out.println("Error: The new end date must be after the current start date.");
                             tries++;
@@ -483,7 +483,7 @@ public class Staff extends User implements Serializable {
                     System.out.println("You've reached the maximum number of tries. Please try again later.");
                     // Handle the case where the user exceeds the maximum number of tries
                 }
-                return false;
+                return null;
 
             case 4:
                 tries = 0;
@@ -497,7 +497,7 @@ public class Staff extends User implements Serializable {
                             // If valid, set the new registration closing date and exit the loop
                             selectedCamp.getCampInfo().setRegClosingDate(newRegClosingDate);
                             System.out.println("The Registration Closing date has changed to " + newRegClosingDate);
-                            return true;
+                            return selectedCamp;
                         } else {
                             System.out.println(
                                     "Error: The new Registration Closing date must be before the current start date.");
@@ -512,7 +512,7 @@ public class Staff extends User implements Serializable {
                     System.out.println("You've reached the maximum number of tries. Please try again later.");
                     // Handle the case where the user exceeds the maximum number of tries
                 }
-                return false;
+                return null;
 
             case 5:
                 tries = 0;
@@ -549,12 +549,12 @@ public class Staff extends User implements Serializable {
                 }
                 if (tries >= MAX_TRIES) {
                     System.out.println("Please try again later.");
-                    return false; // Return false if the user exceeds the maximum number of tries
+                    return null; // Return false if the user exceeds the maximum number of tries
                 } else {
                     System.out.println(
                             "The Camp User Group has changed to "
-                                    + selectedCamp.getCampInfo().getCampUserGroup().toString());
-                    return true;
+                                    + selectedCamp.getCampInfo().getCampUserGroup()+".");
+                    return selectedCamp;
                 }
 
             case 6:
@@ -585,12 +585,12 @@ public class Staff extends User implements Serializable {
 
                 if (tries >= MAX_TRIES) {
                     System.out.println("Please try again later.");
-                    return false; // Return false if the user exceeds the maximum number of tries
+                    return null; // Return false if the user exceeds the maximum number of tries
                 } else {
                     System.out.println(
                             "The Camp Visibility has changed to "
                                     + selectedCamp.getCampInfo().getCampVisibility().toString());
-                    return true;
+                    return selectedCamp;
                 }
 
             case 7:
@@ -610,11 +610,11 @@ public class Staff extends User implements Serializable {
 
                 if (tries >= MAX_TRIES) {
                     System.out.println("Please try again later.");
-                    return false; // Return false if the user exceeds the maximum number of tries
+                    return null; // Return false if the user exceeds the maximum number of tries
                 }
                 selectedCamp.getCampInfo().setLocation(newLocation);
                 System.out.println("The Location has changed to " + newLocation);
-                return true;
+                return selectedCamp;
 
             case 8:
                 tries = 0;
@@ -638,7 +638,7 @@ public class Staff extends User implements Serializable {
                             selectedCamp.setRemainingAttendeeSlot(selectedCamp.getCampInfo().getTotalSlots()
                                     - selectedCamp.getCampInfo().getCampCommitteeSlot());
                             System.out.println("The Total Slots has changed to " + newTotalSlots);
-                            return true; // Return true if the user input is valid
+                            return selectedCamp; // Return true if the user input is valid
                         } else {
                             System.out.println("Invalid input. Please enter a non-negative integer.");
                             tries++;
@@ -651,7 +651,7 @@ public class Staff extends User implements Serializable {
                 }
                 // If the user exceeds the maximum number of tries, print a message and return false
                 System.out.println("Please try again later.");
-                return false;
+                return null;
 
             case 9:
                 tries = 0;
@@ -668,7 +668,7 @@ public class Staff extends User implements Serializable {
                         if (newCampCommitteeSlot >= 0 && newCampCommitteeSlot <= 10) {
                             selectedCamp.getCampInfo().setCampCommitteeSlot(newCampCommitteeSlot);
                             System.out.println("The Camp Committee slot has changed to " + newCampCommitteeSlot);
-                            return true; // Return true if the user input is valid
+                            return selectedCamp; // Return true if the user input is valid
                         } else {
                             System.out.println("Invalid input. Please enter a value between 0 and 10.");
                             tries++;
@@ -680,18 +680,18 @@ public class Staff extends User implements Serializable {
                     }
                 }
                 System.out.println("Please try again later.");
-                return false;
+                return null;
 
             case 10:
                 System.out.println("Enter the new Description:");
                 String newDescription = sc.nextLine();
                 selectedCamp.getCampInfo().setDescription(newDescription);
                 System.out.println("The Description has changed to " + newDescription);
-                return true;
+                return selectedCamp;
 
             default:
                 System.out.println("Invalid choice");
-                return false;
+                return null;
         }
     }
 
