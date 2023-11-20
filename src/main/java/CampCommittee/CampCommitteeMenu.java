@@ -19,10 +19,6 @@ public class CampCommitteeMenu implements Serializable{
 
 
 	public static void main(String[] args,ArrayList<Camp> allCamps) {
-
-		ArrayList<Camp> allCamps1 = allCamps;
-		
-		
 		
 		Scanner scanner = new Scanner(System.in);
 		int choice;
@@ -85,15 +81,15 @@ public class CampCommitteeMenu implements Serializable{
 				
 			}
 			
-			for (Camp camp : allCamps1) {
+			for (Camp camp : allCamps) {
 				if (camp.getCampInfo().getCampName().equals(campCommittee.getCamp().getCampInfo().getCampName())) {
-					allCamps1.remove(camp);
-					allCamps1.add(campCommittee.getCamp());
+					allCamps.remove(camp);
+					allCamps.add(campCommittee.getCamp());
 					break;
 				}
 			}
 			
-			AllCampToText.writeCampsToFile(allCamps1);
+			AllCampToText.writeCampsToFile(allCamps);
 		} while (choice != 0);
 	}
 

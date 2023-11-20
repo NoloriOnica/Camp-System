@@ -48,6 +48,11 @@ public class EnquiriesHandler implements Serializable{
 
         //Select the target Camp
         Camp selectedCamp = availableCamps.get(campIndex-1);
+        if(student.getCommitteeForCamp()!= null && student.getCommitteeForCamp().getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())){
+            System.out.println("You are the Camp Committee of the selected camp thus can't make enquiries.");
+            return;
+        }
+
         System.out.println("Type the enquiry:");
         String enquiryLine = sc.nextLine();
         Enquiries enquiry = new Enquiries(student.getName(), selectedCamp);

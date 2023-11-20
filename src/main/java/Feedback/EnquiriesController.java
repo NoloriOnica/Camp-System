@@ -32,7 +32,7 @@ public class EnquiriesController implements Serializable {
         
         for (int tries = 0; tries < maxTries; tries++) {
             if(camps.isEmpty()) {
-                System.out.println();
+                System.out.println();//Message for staff
                 System.out.println("No enquiries made to any camp as you have not created any camp, please check again later");
                 System.out.println("Exiting to main menu.....");
                 return false;
@@ -56,7 +56,7 @@ public class EnquiriesController implements Serializable {
                 if (campChoice >= 0 && campChoice < camps.size()) {
                     Camp selectedCamp = camps.get(campChoice);
                     ArrayList<Enquiries> enquiries = selectedCamp.getEnquiriesList();
-
+                    
                     if (enquiries.isEmpty()) {
                         System.out.println("No enquiries found for " + selectedCamp.getCampInfo().getCampName() + ". Please select another camp.");
                         continue;
@@ -94,10 +94,12 @@ public class EnquiriesController implements Serializable {
                               System.out.println("Please try again later.");
                               return false; // Return false if the user exceeds the maximum number of tries
                           }
-                          
-                        enquiries.get(index).setReply(reply);
-                        enquiries.get(index).setProcessState(true);
-                        enquiries.get(index).setReplierName(replierName);
+                        Enquiries enquiry = enquiries.get(index);
+                        selectedCamp.getEnquiriesList().remove(index);
+                        enquiry.setReply(reply);
+                        enquiry.setProcessState(true);
+                        enquiry.setReplierName(replierName);
+                        selectedCamp.getEnquiriesList().add(enquiry);
                         System.out.println("Enquiry replied to successfully.");
                         return true;
                     } else {

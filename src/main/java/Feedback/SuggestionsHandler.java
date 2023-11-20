@@ -31,12 +31,12 @@ public class SuggestionsHandler implements Serializable{
         }
 	    Suggestion suggestion = new Suggestion(campCommittee.getName());
         suggestion.setSuggestion(suggestionString);
-        campCommittee.getSuggestionsList().add(suggestion);
+        //campCommittee.getSuggestionsList().add(suggestion);
 		camp.getSuggestionsList().add(suggestion);
 	}
 	
 	public ArrayList <Suggestion> viewSuggestions(CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
-        ArrayList <Suggestion> suggestionsList = campCommittee.getSuggestionsList();
+        ArrayList <Suggestion> suggestionsList = campCommittee.getCamp().getSuggestionsList();
         if(suggestionsList == null ||suggestionsList.isEmpty()){
             System.out.println("You have not made any suggestions yet!");
         	return null;

@@ -21,7 +21,7 @@ public class CampCommittee implements Serializable{
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
-	private ArrayList<Suggestion> suggestionsList;
+	//private ArrayList<Suggestion> suggestionsList;
 
 	public CampCommittee(String name, Camp camp, String faculty)
 	{
@@ -31,18 +31,8 @@ public class CampCommittee implements Serializable{
 		enquiriesController = new EnquiriesController();
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
-		this.suggestionsList = new ArrayList<Suggestion>();
-		this.updateSuggestionList();
 	}
 
-	private void updateSuggestionList(){
-		ArrayList<Suggestion> suggestionList = camp.getSuggestionsList();
-		for(Suggestion suggestion : suggestionList){
-			if(suggestion.getSenderName().equals(this.name)){
-				this.suggestionsList.add(suggestion);
-			}
-		}
-	}	
 
 	public void viewEnquiries() {
 		//view enquiries
@@ -67,7 +57,7 @@ public class CampCommittee implements Serializable{
 	public ArrayList <Suggestion> viewSuggestions() { //return a list of suggestion that a camp committee can view
         return suggestionsHandler.viewSuggestions(this);
 	}
-
+	
 	public void editSuggestions() {
 	    suggestionsHandler.editSuggestions(this.camp,this);
 	}
@@ -100,9 +90,5 @@ public String getFaculty() {
 
 public Camp getCamp(){
 	return this.camp;
-}
-
-public ArrayList<Suggestion> getSuggestionsList() {
-	return this.suggestionsList;
 }
 }
