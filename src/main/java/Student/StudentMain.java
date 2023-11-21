@@ -89,6 +89,7 @@ public class StudentMain implements Serializable{
                 System.out.println("Invalid input. Please enter a valid integer.");
                 scanner.nextLine(); 
                 choice = -1;
+                continue;
             }
 
             switch (choice) {
@@ -127,7 +128,7 @@ public class StudentMain implements Serializable{
                         CampCommitteeMenu.createCampCommittee(student.getUserID(),student.getName(),student.getEmail(), student.getFaculty(),student.getUserType(), student.getCommitteeForCamp());
                 		CampCommitteeMenu.main(new String[] {}, allCamps);
                 	}
-                	else System.out.println("You are not a committee member for any camp!");
+                	else System.out.println("Invalid choice. Please enter a number between 0 and 9.");
                 	break;
                     
                 default:

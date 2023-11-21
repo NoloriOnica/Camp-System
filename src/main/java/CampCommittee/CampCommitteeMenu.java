@@ -47,6 +47,7 @@ public class CampCommitteeMenu implements Serializable{
 				System.out.println("Invalid input. Please enter a valid integer.");
 				scanner.nextLine(); 
 				choice = -1;
+				continue;
 			}
 
 

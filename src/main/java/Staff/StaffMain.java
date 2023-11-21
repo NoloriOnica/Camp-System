@@ -57,6 +57,7 @@ public class StaffMain {
                 System.out.println("Invalid input. Please enter a valid integer.");
                 scanner.nextLine(); // Consume the invalid input to prevent an infinite loop
                 choice = -1;
+                continue;
             }
 
             switch (choice) {
