@@ -541,43 +541,48 @@ public class Staff extends User implements Serializable {
             case 5:
                 tries = 0;
                 while (tries < MAX_TRIES) {
-                    System.out.println("Select the new Camp User Group:");
+                    System.out.println("Select New Camp User Group");
                     System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS");
+                    try {
+                        index = sc.nextInt();
+                        sc.nextLine(); // Consume the newline character after reading the integer
 
-                    int index1 = sc.nextInt();
-
-                    switch (index1) {
-                        case 1:
-                            selectedCamp.getCampInfo().setCampUserGroup("Whole NTU");
-                            break;
-                        case 2:
-                            selectedCamp.getCampInfo().setCampUserGroup("SCSE");
-                            break;
-                        case 3:
-                            selectedCamp.getCampInfo().setCampUserGroup("NBS");
-                            break;
-                        case 4:
-                            selectedCamp.getCampInfo().setCampUserGroup("SPMS");
-                            break;
-                        case 5:
-                            selectedCamp.getCampInfo().setCampUserGroup("SSS");
-                            break;
-                        default:
-                            System.out.println("Invalid input. Please enter again.");
-                            tries++;
-                            continue; // Continue to the next iteration of the loop
+                        switch (index) {
+                            case 1:
+                                selectedCamp.getCampInfo().setCampUserGroup("Whole NTU");
+                                break;
+                            case 2:
+                                selectedCamp.getCampInfo().setCampUserGroup("SCSE");
+                                break;
+                            case 3:
+                                selectedCamp.getCampInfo().setCampUserGroup("NBS");
+                                break;
+                            case 4:
+                                selectedCamp.getCampInfo().setCampUserGroup("SPMS");
+                                break;
+                            case 5:
+                                selectedCamp.getCampInfo().setCampUserGroup("SSS");
+                                break;
+                            default:
+                                System.out.println("Invalid input, please enter a number between 1 and 5.");
+                                tries++;
+                                continue; // Skip the rest of the loop and start over
+                        }
+                        // If the switch was successful, break out of the loop
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number within the range.");
+                        sc.nextLine(); // Consume the invalid input
+                        tries++;
                     }
-
-                    // If the user input is valid, break out of the loop
-                    break;
                 }
-                if (tries >= MAX_TRIES) {
-                    System.out.println("Please try again later.");
-                    return null; // Return false if the user exceeds the maximum number of tries
+                if (tries == MAX_TRIES) {
+                    System.out.println("You've reached the maximum number of tries. Please try again later.");
+                    return null;
                 } else {
                     System.out.println(
                             "The Camp User Group has changed to "
-                                    + selectedCamp.getCampInfo().getCampUserGroup()+".");
+                                    + selectedCamp.getCampInfo().getCampUserGroup() + ".");
                     return selectedCamp;
                 }
 
