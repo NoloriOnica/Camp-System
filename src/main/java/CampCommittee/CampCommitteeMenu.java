@@ -67,13 +67,13 @@ public class CampCommitteeMenu implements Serializable{
 					campCommittee.deleteSuggestions();
 					break;
 				case 5:
-					campCommittee.generateReport();
+					campCommittee.generateCampReport();
 					break;
 				case 6:
-					campCommittee.viewEnquiries();
+					campCommittee.viewCampEnquiries();
 					break;
 				case 7:
-					campCommittee.replyEnquiries();
+					campCommittee.replyCampEnquiries();
 					break;
 				default:
                     System.out.println("Invalid choice. Please enter a number between 0 and 6.");

@@ -19,7 +19,6 @@ public class CampCommittee extends Student implements Serializable{
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
-	//private ArrayList<Suggestion> suggestionsList;
 
 	public CampCommittee(String userID, String name, String email, String faculty, String userType, Camp camp)
 	{
@@ -30,15 +29,15 @@ public class CampCommittee extends Student implements Serializable{
 		suggestionsHandler = new SuggestionsHandler();
 	}
 
-	public void viewEnquiries(ArrayList<Camp> singleCampHolder) {
+	public void viewCampEnquiries() {
 		//view enquiries
 		//based on student
+		ArrayList<Camp> singleCampHolder = new ArrayList<>();
         singleCampHolder.add(this.camp);
         enquiriesController.viewEnquiries(singleCampHolder);
 	}
 	
-	
-	public void replyEnquiries() {
+	public void replyCampEnquiries() {
 		//reply enquiries
 		ArrayList<Camp> singleCampHolder = new ArrayList<>(); 
         singleCampHolder.add(this.camp);
@@ -62,7 +61,7 @@ public class CampCommittee extends Student implements Serializable{
 	    suggestionsHandler.deleteSuggestions(this.camp, this);
 	}
 
-	public void generateReport() {
+	public void generateCampReport() {
 		ArrayList<Camp> campList = new ArrayList<>();
 		campList.add(this.camp);
 		this.campReportGenerator.generateCampReport(campList);

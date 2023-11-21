@@ -26,9 +26,6 @@ public class Student extends User implements Serializable {
         this.registeredCamps = new ArrayList<>();
         this.enquiriesList = new ArrayList<>();
         this.isCampCommittee = false;
-//        this.committeeForCamp = null;
-//        this.campCommitteeRegistered = null;
-
         studentViewsCamps = new StudentViewsCamps();
         enquiriesHandler = new EnquiriesHandler();
     }
