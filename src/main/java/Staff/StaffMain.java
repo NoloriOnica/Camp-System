@@ -21,7 +21,7 @@ public class StaffMain {
 
         //Initialisation
         for(Camp camp : allCamps){
-            if(camp.getCampInfo().getStaffInChargeID().equals(staff.getName())){
+            if(camp.getCampInfo().getStaffInChargeID().equals(staff.getUserID())){
                 staff.getCreatedCamp().add(camp);
             }
         }

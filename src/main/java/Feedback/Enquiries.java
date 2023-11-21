@@ -7,13 +7,15 @@ public class Enquiries implements Serializable{
 	
     private String enquiryString;
     private boolean isProcessed;
+    private String senderId;
     private String senderName;
     private String replierName;
     private String reply;
     private Camp belongedCamp;
 
 
-    public Enquiries(String studentName, Camp belongedCamp) {
+    public Enquiries(String studentId, String studentName, Camp belongedCamp) {
+        this.senderId = studentId;
         this.senderName = studentName;
         this.isProcessed = false;
         this.belongedCamp = belongedCamp;
@@ -35,6 +37,10 @@ public class Enquiries implements Serializable{
     }
     public String getSenderName(){
         return this.senderName;
+    }
+
+    public String getSenderId(){
+        return this.senderId;
     }
 
     public void setEnquiryString(String string){

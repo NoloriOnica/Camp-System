@@ -11,42 +11,38 @@ import Feedback.Suggestion;
 import Feedback.SuggestionsHandler;
 
 import Report.CampReportGenerator;
+import Student.Student;
 
-
-public class CampCommittee implements Serializable{
+public class CampCommittee extends Student implements Serializable{
     private Camp camp;
-	private String name;
-	private String faculty;
 	private int point = 0;
 	private EnquiriesController enquiriesController ;
 	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
 	//private ArrayList<Suggestion> suggestionsList;
 
-	public CampCommittee(String name, Camp camp, String faculty)
+	public CampCommittee(String userID, String name, String email, String faculty, String userType, Camp camp)
 	{
-		this.name = name;
+		super(userID,name,email,faculty,userType);
         this.camp = camp;
-		this.faculty = faculty;
 		enquiriesController = new EnquiriesController();
 		campReportGenerator = new CampReportGenerator();
 		suggestionsHandler = new SuggestionsHandler();
 	}
 
-
-	public void viewEnquiries() {
+	public void viewEnquiries(ArrayList<Camp> singleCampHolder) {
 		//view enquiries
 		//based on student
-        ArrayList<Camp> singleCampHolder = new ArrayList<>(); 
         singleCampHolder.add(this.camp);
         enquiriesController.viewEnquiries(singleCampHolder);
 	}
+	
 	
 	public void replyEnquiries() {
 		//reply enquiries
 		ArrayList<Camp> singleCampHolder = new ArrayList<>(); 
         singleCampHolder.add(this.camp);
-        if(enquiriesController.replyEnquiries(singleCampHolder, this.name))//return boolean
+        if(enquiriesController.replyEnquiries(singleCampHolder, super.getName()))//return boolean
             this.point++;
 	}
 	
@@ -74,18 +70,12 @@ public class CampCommittee implements Serializable{
 	}
 
 //Below are all the getters and setters
+
 public int getPoints() {
 		return point;
 	}
 public void setPoint(int point){
 	this.point = point;
-}
-public String getName(){
-	return this.name;
-}
-
-public String getFaculty() {
-	return this.faculty;
 }
 
 public Camp getCamp(){

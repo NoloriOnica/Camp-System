@@ -86,8 +86,8 @@ public class SuggestionController implements Serializable {
                         }
 
                         selectedSuggestion.setApprovalState(true);
-                        String campCommitteeName = selectedSuggestion.getSenderName();
-                        CampCommittee campCommittee = selectedCamp.findCampCommittee(campCommitteeName);
+                        String campCommitteeID = selectedSuggestion.getSenderId();
+                        CampCommittee campCommittee = selectedCamp.findCampCommittee(campCommitteeID);
                         if (campCommittee != null) {
                             // Give one extra point to the Camp Committee
                             campCommittee.setPoint(campCommittee.getPoints() + 1);

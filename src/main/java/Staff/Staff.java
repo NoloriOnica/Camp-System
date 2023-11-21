@@ -49,7 +49,7 @@ public class Staff extends User implements Serializable {
         int totalSlots = 0;
         int campCommitteeSlot = 0;
         String description;
-        String staffInChargeID = super.getName();
+        String staffInChargeID = super.getUserID();
 
         int tries = 0;
         Scanner sc = new Scanner(System.in);

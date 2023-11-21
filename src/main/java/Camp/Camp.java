@@ -35,9 +35,9 @@ public class Camp implements Serializable{
     }
     
 
-    public CampCommittee findCampCommittee(String studentName) {
+    public CampCommittee findCampCommittee(String studentID) {
         for (CampCommittee campCommittee : this.registeredCampCommittees) {
-            if (campCommittee.getName().equals(studentName)) {
+            if (campCommittee.getUserID().equals(studentID)) {
                 return campCommittee;
             }
         }

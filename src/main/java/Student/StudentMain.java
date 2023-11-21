@@ -30,7 +30,7 @@ public class StudentMain implements Serializable{
             //Registered student
             ArrayList<Student> registeredStudentList = camp.getRegisteredStudents();
             for (Student registeredStudent : registeredStudentList) {
-                if (registeredStudent.getName().equals(student.getName())) {
+                if (registeredStudent.getUserID().equals(student.getUserID())) {
                     student.getRegisteredCamps().add(camp);
                     break;
                 }
@@ -39,7 +39,7 @@ public class StudentMain implements Serializable{
             //Registered camp committee
             ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
             for (CampCommittee campCommittee : campCommitteeList) {
-                if (campCommittee.getName().equals(student.getName())) {
+                if (campCommittee.getUserID().equals(student.getUserID())) {
                     student.setCommitteeForCamp(camp);
                     student.setCampCommittee(true);
                     break;
@@ -49,7 +49,7 @@ public class StudentMain implements Serializable{
             // Load the enquiries
             ArrayList<Enquiries> campEnquiries = camp.getEnquiriesList();
             for (Enquiries enquiry : campEnquiries) {
-                if (enquiry.getSenderName().equals(student.getName())) {
+                if (enquiry.getSenderId().equals(student.getUserID())) {
                     student.getEnquiriesList().add(enquiry);
                 }
             }
@@ -124,7 +124,7 @@ public class StudentMain implements Serializable{
                     break;
                 case 10:
                 	if (student.isCampCommittee()) {
-                        CampCommitteeMenu.createCampCommittee(student.getName(), student.getCommitteeForCamp(), student.getFaculty());
+                        CampCommitteeMenu.createCampCommittee(student.getUserID(),student.getName(),student.getEmail(), student.getFaculty(),student.getUserType(), student.getCommitteeForCamp());
                 		CampCommitteeMenu.main(new String[] {}, allCamps);
                 	}
                 	else System.out.println("You are not a committee member for any camp!");

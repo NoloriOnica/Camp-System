@@ -55,7 +55,7 @@ public class EnquiriesHandler implements Serializable{
 
         System.out.println("Type the enquiry:");
         String enquiryLine = sc.nextLine();
-        Enquiries enquiry = new Enquiries(student.getName(), selectedCamp);
+        Enquiries enquiry = new Enquiries(student.getUserID(),student.getName(), selectedCamp);
         tries = 0;
         while (tries < maxTries) {
             if (enquiryLine.trim().isEmpty()) {
@@ -146,7 +146,7 @@ public class EnquiriesHandler implements Serializable{
         }
         ArrayList<Enquiries> enquiriiesList = targetCampInAllCamps.getEnquiriesList();
         for(Enquiries enquiry : enquiriiesList){
-            if(enquiry.getSenderName().equals(student.getName()) && enquiry.getEnquireString().equals(seletedEnquiry.getEnquireString())){
+            if(enquiry.getEnquireString().equals(seletedEnquiry.getEnquireString()) && enquiry.getSenderId().equals(student.getUserID())){
                 targetCampInAllCamps.getEnquiriesList().remove(enquiry);
                 break;
             }
@@ -234,7 +234,7 @@ public class EnquiriesHandler implements Serializable{
         ArrayList<Enquiries> enquiriesList = targetCampInAllCamps.getEnquiriesList();
         for (Enquiries enquiry : enquiriesList) {
             if (enquiry.getEnquireString().equals(selectedEnquiry.getEnquireString()) &&
-                    enquiry.getSenderName().equals(student.getName())) {
+                    enquiry.getSenderId().equals(student.getUserID())) {
                 targetCampInAllCamps.getEnquiriesList().remove(enquiry);
                 break;
             }

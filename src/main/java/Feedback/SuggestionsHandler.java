@@ -29,7 +29,7 @@ public class SuggestionsHandler implements Serializable{
             System.out.println("Please try again later.");
             return; // Return if the user exceeds the maximum number of tries
         }
-	    Suggestion suggestion = new Suggestion(campCommittee.getName());
+	    Suggestion suggestion = new Suggestion(campCommittee.getUserID(),campCommittee.getName());
         suggestion.setSuggestion(suggestionString);
         //campCommittee.getSuggestionsList().add(suggestion);
 		camp.getSuggestionsList().add(suggestion);
@@ -44,7 +44,7 @@ public class SuggestionsHandler implements Serializable{
 		ArrayList <Suggestion> suggestionsHolder = new ArrayList<>();
 		int i = 0;
 		for(Suggestion suggestion : suggestionsList){
-            if(!suggestion.getApprovalState() && suggestion.getSenderName().equals(campCommittee.getName())){
+            if(suggestion.getSenderId().equals(campCommittee.getUserID()) && !suggestion.getApprovalState()){
 				suggestionsHolder.add(suggestion);
 				System.out.println((++i) + ") "+suggestion.toString()); //Only can view the suggestion have not been approved
 			}
@@ -88,7 +88,9 @@ public class SuggestionsHandler implements Serializable{
             return;
         }
 
-	    System.out.println("What would you like to change it to? (type 'END' to finish)");
+        sc.nextLine(); //consume next line
+
+	    System.out.println("What would you like to change it to?");
 	    String suggestionString = sc.nextLine();
 		tries = 0;
         while (tries < maxTries) {

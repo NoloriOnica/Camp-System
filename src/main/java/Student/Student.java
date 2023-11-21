@@ -127,7 +127,7 @@ public class Student extends User implements Serializable {
         // check if the student got withdraw from this camp anot
         ArrayList<Student> bannedStudentList = selectedCamp.getBannedStudents();
         for(Student student : bannedStudentList){
-            if(student.getName().equals(super.getName())){
+            if(student.getUserID().equals(super.getUserID())){
                 System.out.println("Cannot register for this camp as you withdrawn from this camp before.");
                 selectedCamp.getBannedStudents().remove(student);
                 selectedCamp.getBannedStudents().add(this);
@@ -183,7 +183,7 @@ public class Student extends User implements Serializable {
                                 "Cannot register as camp committee as you are a camp committee for other camp");
                         return;
                     }
-                    CampCommittee campCommittee = new CampCommittee(super.getName(), selectedCamp, this.getFaculty()); //first time correct
+                    CampCommittee campCommittee = new CampCommittee(super.getUserID(),super.getName(),super.getEmail(),super.getFaculty(),super.getUserType(), selectedCamp); //first time correct
                     selectedCamp.addRegisteredStudents(this); // Update camp's Registered Student list
                     selectedCamp.addRegisteredCampCommittee(campCommittee); // Update camp's Registered camp committee
                                                                             // list
@@ -291,7 +291,7 @@ public class Student extends User implements Serializable {
                 // update on Camp's end
                 ArrayList<Student> studentList = selectedCamp.getRegisteredStudents();
                 for(Student student : studentList){
-                    if(student.getName().equals(super.getName())){
+                    if(student.getUserID().equals(super.getUserID())){
                         selectedCamp.getRegisteredStudents().remove(student);
                         break;
                     }

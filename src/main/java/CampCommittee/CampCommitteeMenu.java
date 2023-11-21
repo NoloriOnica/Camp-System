@@ -13,8 +13,8 @@ public class CampCommitteeMenu implements Serializable{
 
 	public static CampCommittee campCommittee;
 
-	public static void createCampCommittee(String studentName, Camp camp, String faculty){
-		campCommittee = new CampCommittee(studentName,camp,faculty);
+	public static void createCampCommittee(String studentUserID, String studentName, String studentEmail, String studentFaculty, String studentUserType, Camp camp){
+		campCommittee = new CampCommittee(studentUserID,studentName,studentEmail,studentFaculty,studentUserType,camp);
 	}
 
 

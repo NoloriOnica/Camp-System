@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.awt.Desktop;
 import java.io.File;
 
+import Login.User;
 import Camp.Camp;
 import CampCommittee.CampCommittee;
 import Report.ReportFilter;
