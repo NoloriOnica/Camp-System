@@ -103,9 +103,11 @@ public class Student extends User implements Serializable {
         Camp selectedCamp = availableCamps.get(campIndex);
 
         // check if the student is already registered for the selected camp
-        if (this.registeredCamps.contains(selectedCamp)) {
-            System.out.println("You already registered for this camp!");
-            return;
+        for (Camp registerCamp : this.registeredCamps) {
+            if (registerCamp.getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())) {
+                System.out.println("You already registered for this camp!");
+                return;
+            }
         }
 
         // Check for date deadline

@@ -26,35 +26,34 @@ public class StudentMain implements Serializable{
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();
         
         // Initialisation
-        for (Camp camp : allCamps) {
-            //Registered student
-            ArrayList<Student> registeredStudentList = camp.getRegisteredStudents();
-            for (Student registeredStudent : registeredStudentList) {
-                if (registeredStudent.getUserID().equals(student.getUserID())) {
-                    student.getRegisteredCamps().add(camp);
-                    break;
+            for (Camp camp : allCamps) {
+                // Registered student
+                ArrayList<Student> registeredStudentList = camp.getRegisteredStudents();
+                for (Student registeredStudent : registeredStudentList) {
+                    if (registeredStudent.getUserID().equals(student.getUserID())) {
+                        student.getRegisteredCamps().add(camp);
+                        break;
+                    }
                 }
-            }
 
-            //Registered camp committee
-            ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
-            for (CampCommittee campCommittee : campCommitteeList) {
-                if (campCommittee.getUserID().equals(student.getUserID())) {
-                    student.setCommitteeForCamp(camp);
-                    student.setCampCommittee(true);
-                    break;
+                // Registered camp committee
+                ArrayList<CampCommittee> campCommitteeList = camp.getRegisteredCampCommittee();
+                for (CampCommittee campCommittee : campCommitteeList) {
+                    if (campCommittee.getUserID().equals(student.getUserID())) {
+                        student.setCommitteeForCamp(camp);
+                        student.setCampCommittee(true);
+                        break;
+                    }
                 }
-            }
 
-            // Load the enquiries
-            ArrayList<Enquiries> campEnquiries = camp.getEnquiriesList();
-            for (Enquiries enquiry : campEnquiries) {
-                if (enquiry.getSenderId().equals(student.getUserID())) {
-                    student.getEnquiriesList().add(enquiry);
+                // Load the enquiries
+                ArrayList<Enquiries> campEnquiries = camp.getEnquiriesList();
+                for (Enquiries enquiry : campEnquiries) {
+                    if (enquiry.getSenderId().equals(student.getUserID())) {
+                        student.getEnquiriesList().add(enquiry);
+                    }
                 }
             }
-        }
-        
         
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -62,7 +61,7 @@ public class StudentMain implements Serializable{
         do {
             
         	allCamps = AllCampToText.readCampsFromFile();
-        	
+
         	System.out.println("\n#################################################");
         	System.out.println(":::Student Menu:::");
             System.out.println("1. View Registered Camps");
