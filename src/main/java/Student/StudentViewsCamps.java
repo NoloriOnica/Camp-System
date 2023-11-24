@@ -11,17 +11,34 @@ import CampFilter.CampFilter;
 import Camp.Camp;
 
 
-
+/**
+ * Handles operations related to viewing camps for a student.
+ */
 public class StudentViewsCamps implements Serializable{
 
     private CampFilter campFilter;
-
+    
+    /**
+     * Checks if a camp is visible to a student based on its visibility and user group.
+     *
+     * @param camp    The camp to check visibility for.
+     * @param student The student for whom visibility is checked.
+     * @return True if the camp is visible to the student, otherwise false.
+     */
+    
     private boolean isCampVisibleToStudent(Camp camp, Student student) {
         boolean isVisible = camp.getCampInfo().getCampVisibility() == CampVisibility.ON;
         boolean isUserGroupAllowed = camp.getCampInfo().getCampUserGroup().equals(student.getFaculty())
                                      || camp.getCampInfo().getCampUserGroup().equals("Whole NTU");
         return isVisible && isUserGroupAllowed;
     }
+    
+    /**
+     * Filters the selection of camps based on user input.
+     *
+     * @param campList The list of camps to filter.
+     * @return The filtered list of camps based on user selection.
+     */
     
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
@@ -99,6 +116,13 @@ public class StudentViewsCamps implements Serializable{
         return filteredCamps;
     }
 
+    /**
+     * Displays registered camps for a student.
+     *
+     * @param student The student for whom registered camps are viewed.
+     * @return The list of registered camps for the student.
+     */
+    
     public ArrayList<Camp> viewRegisteredCamps(Student student){ 
         ArrayList<Camp> registeredCamps = student.getRegisteredCamps();
         ArrayList<Camp> filteredSortedCamps = filterSelection(registeredCamps);
@@ -118,6 +142,14 @@ public class StudentViewsCamps implements Serializable{
         }
         return filteredSortedCamps;
     }
+    
+    /**
+     * Displays available camps for a student.
+     *
+     * @param allCamps The list of all available camps.
+     * @param student  The student for whom available camps are viewed.
+     * @return The list of available camps visible to the student.
+     */
     
     public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps, Student student){
         int i = 0;
@@ -140,6 +172,13 @@ public class StudentViewsCamps implements Serializable{
         return campHolder;
     }
 
+    
+    /**
+     * Displays camp slots available for a student.
+     *
+     * @param allCamps The list of all camps to check slots for.
+     * @param student  The student for whom camp slots are viewed.
+     */
     public void viewCampSlots(ArrayList<Camp> allCamps, Student student){
         ArrayList<Camp> filteredSortedCamps = filterSelection(allCamps);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()){

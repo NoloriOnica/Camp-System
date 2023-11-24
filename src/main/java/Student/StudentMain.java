@@ -12,15 +12,29 @@ import Login.AllCampToText;
 import Login.User;
 import Staff.Staff;
 
-
+/**
+ * The main class handling operations for a student's menu.
+ */
 public class StudentMain implements Serializable{
 	public static Student student;
+	
+	/**
+     * Creates a new Student instance.
+     * 
+     * @param userId    The user ID of the student.
+     * @param name      The name of the student.
+     * @param email     The email of the student.
+     * @param faculty   The faculty of the student.
+     * @param userType  The type of user (student in this case).
+     */
 	
 	public static void createStudent(String userId, String name, String email, String faculty, String userType) {
 		student = new Student(userId, name, email, faculty, userType);
 	}
 	
-		
+	/**
+     * The main method for the Student menu.
+     */	
     public static void main(String[] args) {
 
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile();

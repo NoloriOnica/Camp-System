@@ -4,14 +4,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Camp.Camp;
 
+/**
+ * Class to filter camps by a specified location.
+ */
+public class ByLocation extends CampFilter {
 
-public class ByLocation extends CampFilter{
-
+    /**
+     * Apply a filter to the camp list based on a specified location.
+     *
+     * @param campList The list of camps to be filtered.
+     * @return An ArrayList of camps filtered by the specified location and sorted alphabetically.
+     */
     public ArrayList<Camp> applyCampFilter(ArrayList<Camp> campList) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter desired location");
         String desiredLocation = sc.nextLine();
         int tries = 0, maxTries = 3;
+
         while (tries < maxTries) {
             if (desiredLocation.trim().isEmpty()) {
                 System.out.println("Desired location cannot be blank. Please enter a valid desired location:");
@@ -21,9 +30,10 @@ public class ByLocation extends CampFilter{
                 break;
             }
         }
+
         if (tries == maxTries) {
             System.out.println("Please try again later.");
-            return null; // Return false if the user exceeds the maximum number of tries
+            return null; 
         }
 
         ArrayList<Camp> filteredCamp = new ArrayList<>();
@@ -35,9 +45,8 @@ public class ByLocation extends CampFilter{
                 filteredCamp.add(camp);
             }
         }
-        // Return the sorted copy
+
         ArrayList<Camp> filteredSortedCamps = super.sortByAlphabet(filteredCamp);
         return filteredSortedCamps;
-
     }
 }

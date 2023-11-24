@@ -11,8 +11,19 @@ import java.io.File;
 import Camp.Camp;
 import Student.Student;
 
+/**
+ * Implementation of the ReportGenerator interface for generating camp reports.
+ */
+
+
 public class CampReport implements ReportGenerator, Serializable{
-    public void generateReport(ArrayList<Camp> campList){
+	/**
+     * Generates a report based on the provided list of camps and their attendees/committees.
+     *
+     * @param campList The list of camps to generate the report for.
+     */
+	
+	public void generateReport(ArrayList<Camp> campList){
         if (campList == null || campList.isEmpty()) {
             System.out.println("NOT FOUND!");
             return;

@@ -7,27 +7,28 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.util.Scanner;
 
+
+/**
+ * Class for handling user data and authentication using Excel files.
+ */
+
 class Database {
 	private static final String DATABASE_FILE = "././././data/database.xlsx";
 	private static final String STUDENTLIST = "././././data/student_list.xlsx";
 	private static final String STAFFLIST = "././././data/staff_list.xlsx";
 	
+	/**
+     * Initializes the database by updating it with user data from student and staff lists.
+     */
+	
 	public static void initializeDatabase() {
 		try {
-			// Load existing database data
-			//2d array where each element is [userId, password, name, email, faculty, userType]
 			List<List<String>> existingUsers = readExistingUsers();
 
-			// Load student list data
-			//2d array where each element is [userId, password, name, email, faculty, userType]
 			List<List<String>> studentList = readUserDataFromExcel(STUDENTLIST, "S");
 
-			// Load staff list data
-			//2d array where each element is [userId, password, name, email, faculty, userType]
 			List<List<String>> staffList = readUserDataFromExcel(STAFFLIST, "T");
 
-			// Update the database
-			//2d array where each element is [userId, password, name, email, faculty, userType]
 			List<List<String>> toAddDatabase = new ArrayList<>();
 			//
 			for (List<String> student : studentList) {
@@ -49,6 +50,14 @@ class Database {
 		}
 	}
 
+
+    /**
+     * Reads existing user data from the database.xlsx Excel file.
+     *
+     * @return List of Lists containing user data.
+     * @throws IOException If an I/O error occurs.
+     */
+	
 	private static List<List<String>> readExistingUsers() throws IOException {
 		List<List<String>> existingUsers = new ArrayList<>();
 
@@ -84,6 +93,16 @@ class Database {
 		return existingUsers;
 	}
 
+	/**
+     * Reads user data from an Excel file based on student_list.xlsx or staff_list.xlsx type.
+     *
+     * @param file     Path to the Excel file containing user data.
+     * @param userType Type of user (student or staff).
+     * @return List of Lists containing user data.
+     * @throws IOException If an I/O error occurs.
+     */
+	
+	
 	private static List<List<String>> readUserDataFromExcel(String file, String userType) throws IOException {
 		List<List<String>> userData = new ArrayList<>();
 		FileInputStream fis = new FileInputStream(file);
@@ -114,6 +133,14 @@ class Database {
 		return userData;
 	}
 
+	/**
+     * Checks if a user is present in the database.
+     *
+     * @param database List of Lists containing user data in the database.
+     * @param email    Email of the user to check.
+     * @return True if the user is in the database, otherwise false.
+     */
+	
 	private static boolean isUserInDatabase(List<List<String>> database, String email) {
 		for (List<String> user : database) {
 
@@ -124,6 +151,14 @@ class Database {
 		return false;
 	}
 
+	/**
+     * Writes user data to an Excel file (database.xlsx)
+     *
+     * @param file     Path to the Excel file to write user data.
+     * @param userData List of Lists containing user data to write.
+     * @throws IOException If an I/O error occurs.
+     */
+	
 	private static void writeUserDataToExcel(String file, List<List<String>> userData) throws IOException {
 		FileInputStream fis = new FileInputStream(file);
 		Workbook workbook = new XSSFWorkbook(fis);
@@ -154,7 +189,12 @@ class Database {
 			fis.close();
 		}
 	}
-
+	
+	/**
+     * Changes the password for a given user ID.
+     *
+     * @param userID User ID for which the password is to be changed.
+     */
 
 	public static void changePassword(String userID) {
 		Scanner scanner = new Scanner(System.in);
@@ -190,6 +230,14 @@ class Database {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+     * Checks if a user ID exists in the database.
+     *
+     * @param userID User ID to check.
+     * @return True if the user ID exists, otherwise false.
+     * @throws IOException If an I/O error occurs.
+     */
 
 	public static boolean checkUserID(String userID) throws IOException {
 
@@ -202,6 +250,15 @@ class Database {
 		}
 		return false;
 	}
+	
+	/**
+     * Checks if the provided password matches the user's password.
+     *
+     * @param userID   User ID for which the password is checked.
+     * @param password Password to be checked.
+     * @return True if the password matches, otherwise false.
+     * @throws IOException If an I/O error occurs.
+     */
 
 	public static boolean checkPassword(String userID, String password) throws IOException {
 
@@ -219,6 +276,14 @@ class Database {
 		return false;
 	}
 
+	/**
+     * Retrieves user information based on the user ID.
+     *
+     * @param userID User ID for which information is to be retrieved.
+     * @return List containing user information.
+     * @throws IOException If an I/O error occurs.
+     */
+	
 	public static List<String> getUser(String userID) throws IOException{
 
 		List<List<String>> existingUsers = readExistingUsers();

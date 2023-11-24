@@ -9,7 +9,15 @@ import java.util.Scanner;
 import Staff.StaffMain;
 import Student.StudentMain;
 
+/**
+ * Class representing the login functionality and user interaction.
+ */
+
 public class Login {
+	/**
+     * Main method handling the login process and user interactions.
+     */
+	
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		String userID = null;
@@ -87,6 +95,15 @@ public class Login {
 		scanner.close();
 	}
 
+	/**
+     * Checks the validity of the login credentials.
+     *
+     * @param userID   The user ID to be checked.
+     * @param password The password associated with the user ID.
+     * @return True if login credentials are valid, otherwise false.
+     * @throws IOException If an I/O error occurs.
+     */
+	
 	public static boolean loginCheck(String userID, String password) throws IOException {
 		if (!Database.checkUserID(userID)) {
 			System.out.println("Invalid UserID!");

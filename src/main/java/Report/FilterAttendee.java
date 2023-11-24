@@ -7,8 +7,20 @@ import java.io.Serializable;
 import Camp.Camp;
 import Student.Student;
 
-public class FilterAttendee implements ReportFilter,Serializable{
 
+/**
+ * Implementation of the ReportFilter interface for filtering camps by attendee's name.
+ */
+public class FilterAttendee implements ReportFilter,Serializable{
+	
+	
+	/**
+     * Filters the provided list of camps by attendee's name.
+     *
+     * @param campList The list of camps to be filtered.
+     * @return An ArrayList of camps filtered by the desired attendee's name.
+     */
+	
     public ArrayList<Camp> applyFilter(ArrayList<Camp> campList){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter attendee's name:");

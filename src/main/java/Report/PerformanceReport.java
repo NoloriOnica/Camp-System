@@ -13,8 +13,18 @@ import Camp.Camp;
 import Feedback.Enquiries;
 import CampCommittee.CampCommittee;
 
+/**
+ * Generates a performance report based on camp committee data.
+ */
+
 public class PerformanceReport implements ReportGenerator,Serializable{
     
+	/**
+     * Generates a performance report for provided camp data.
+     *
+     * @param campList The list of camps to generate the report for.
+     */
+	
      public void generateReport(ArrayList<Camp> campList){
         if (campList.isEmpty() || campList == null) {
             System.out.println("NOT FOUND!");

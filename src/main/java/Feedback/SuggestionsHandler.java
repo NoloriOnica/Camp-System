@@ -7,8 +7,19 @@ import java.util.Scanner;
 import Camp.Camp;
 import CampCommittee.CampCommittee;
 
+/**
+ * Manages operations related to suggestions made by camp committees for camps.
+ */
+
 public class SuggestionsHandler implements Serializable{
 
+	/**
+     * Creates a suggestion for a specific camp by a camp committee.
+     *
+     * @param camp           The camp to make a suggestion for.
+     * @param campCommittee  The camp committee making the suggestion.
+     */
+	
     public void makeSuggestions(Camp camp, CampCommittee campCommittee) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("You are making suggestion for Camp "+ camp.getCampInfo().getCampName());
@@ -36,6 +47,13 @@ public class SuggestionsHandler implements Serializable{
         System.out.println("Suggestion are made successfully!");
 	}
 	
+    /**
+     * Displays suggestions made by a specific camp committee that are awaiting approval.
+     *
+     * @param campCommittee  The camp committee whose suggestions are being viewed.
+     * @return               List of suggestions made by the committee awaiting approval.
+     */
+    
 	public ArrayList <Suggestion> viewSuggestions(CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
         ArrayList <Suggestion> suggestionsList = campCommittee.getCamp().getSuggestionsList();
         if(suggestionsList == null ||suggestionsList.isEmpty()){
@@ -56,6 +74,13 @@ public class SuggestionsHandler implements Serializable{
 		return suggestionsHolder;
 	}
 
+	/**
+     * Edits a previously made suggestion by a camp committee.
+     *
+     * @param camp           The camp associated with the suggestions.
+     * @param campCommittee  The camp committee who made the suggestions.
+     */
+	
 	public void editSuggestions(Camp camp ,CampCommittee campCommittee) {
 
 		ArrayList<Suggestion> availableSuggestions = this.viewSuggestions(campCommittee);
@@ -111,6 +136,13 @@ public class SuggestionsHandler implements Serializable{
 		camp.getSuggestionsList().get(index-1).setSuggestion(suggestionString);
 	    System.out.println("Suggestion updated!");
 	}
+	
+	/**
+     * Deletes a previously made suggestion by a camp committee.
+     *
+     * @param camp           The camp associated with the suggestions.
+     * @param campCommittee  The camp committee who made the suggestions.
+     */
 	
 	public void deleteSuggestions(Camp camp, CampCommittee campCommittee) {
 

@@ -10,9 +10,19 @@ import CampFilter.ByDate;
 import CampFilter.ByLocation;
 import CampFilter.CampFilter;
 
+
+/**
+ * Represents staff viewing functionality for camps.
+ */
 public class StaffViewsCamps implements Serializable{
     private CampFilter campFilter;
 
+    /**
+     * Filters the camp list based on user input.
+     *
+     * @param campList The list of camps to filter.
+     * @return The filtered list of camps or null if not found.
+     */
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
         int choice = 0, index = 0, maxTries = 3;
@@ -89,6 +99,12 @@ public class StaffViewsCamps implements Serializable{
         return filteredCamps;
     }
 
+    /**
+     * Displays details of filtered/sorted camps based on staff choice.
+     *
+     * @param campList The list of camps to display.
+     */
+    
     public void viewCamps(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {
@@ -104,6 +120,12 @@ public class StaffViewsCamps implements Serializable{
         }
     }
 
+    /**
+     * Displays and returns a list of filtered/sorted camps owned by the staff.
+     *
+     * @param campList The list of camps to display.
+     * @return The list of filtered/sorted camps or null if not found.
+     */
     public ArrayList<Camp> viewOwnCamps(ArrayList<Camp> campList) { //return a list of sortedfiltercamp
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {

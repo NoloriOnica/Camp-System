@@ -7,9 +7,21 @@ import Login.User;
 
 import Camp.Camp;
 
+/**
+ * Class to generate report based on the provided ReportGenerator and apply filters using ReportFilter.
+ */
+
 public class GenerateReport implements Serializable{
     // Function to generate any report based on the provided ReportGenerator
 
+	/**
+     * Method to select and generate reports based on user input.
+     *
+     * @param campList The list of camps to generate reports from.
+     * @param user     The user generating the report.
+     * @return True if the report generation was successful; False otherwise.
+     */
+	
     public boolean reportSelection(ArrayList<Camp> campList, User user){
         ArrayList<Camp> filteredCamps = null;
         System.out.println("Enter what report you want to generate: ");
@@ -74,6 +86,13 @@ public class GenerateReport implements Serializable{
         return true;
     }
 
+    /**
+     * Prompts the user to select a filter for generating the report.
+     *
+     * @param campList The list of camps to be filtered.
+     * @return An ArrayList of camps filtered based on the selected criteria.
+     */
+    
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
         System.out.println("Enter what filter you want to apply for generating Camp Report: ");
@@ -121,10 +140,25 @@ public class GenerateReport implements Serializable{
         return filteredCamps;
     }
     
+    /**
+     * Generates the report based on the provided ReportGenerator and available camps.
+     *
+     * @param reportGenerator The ReportGenerator implementation for generating the report.
+     * @param availableCamps  The list of camps available for generating the report.
+     */
+    
     private void generate(ReportGenerator reportGenerator, ArrayList<Camp> availableCamps) {
         reportGenerator.generateReport(availableCamps);
     }
 
+    /**
+     * Applies a filter to the available camps based on the provided ReportFilter.
+     *
+     * @param reportFilter   The ReportFilter implementation for applying the filter.
+     * @param availableCamps The list of camps available for applying the filter.
+     * @return An ArrayList of camps filtered based on the specified criteria.
+     */
+    
     private ArrayList<Camp> filter(ReportFilter reportFilter, ArrayList<Camp> availableCamps){
         return reportFilter.applyFilter(availableCamps);
     }

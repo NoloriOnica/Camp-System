@@ -8,13 +8,21 @@ import java.util.Scanner;
 import Camp.Camp;
 import Student.Student;
 
-public class EnquiriesHandler implements Serializable{
-    
-	public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
+/**
+ * Handles the creation, viewing, editing, and deletion of enquiries related to camps by students.
+ */
+public class EnquiriesHandler implements Serializable {
 
+    /**
+     * Allows a student to make an enquiry for a selected camp from the available camps list.
+     *
+     * @param allCamps The list of all available camps.
+     * @param student  The student making the enquiry.
+     */
+    public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
         ArrayList<Camp> availableCamps = student.viewCamps(allCamps);
-        if(availableCamps == null || availableCamps.isEmpty()) {
-        	return;
+        if (availableCamps == null || availableCamps.isEmpty()) {
+            return;
         }
         Scanner sc = new Scanner(System.in);
         int maxTries = 3;
@@ -47,23 +55,22 @@ public class EnquiriesHandler implements Serializable{
         sc.nextLine(); // Consume the newline character
 
         //Select the target Camp
-        Camp selectedCamp = availableCamps.get(campIndex-1);
-        if(student.getCommitteeForCamp()!= null && student.getCommitteeForCamp().getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())){
+        Camp selectedCamp = availableCamps.get(campIndex - 1);
+        if (student.getCommitteeForCamp() != null && student.getCommitteeForCamp().getCampInfo().getCampName().equals(selectedCamp.getCampInfo().getCampName())) {
             System.out.println("You are the Camp Committee of the selected camp thus can't make enquiries.");
             return;
         }
 
         System.out.println("Type the enquiry:");
         String enquiryLine = sc.nextLine();
-        Enquiries enquiry = new Enquiries(student.getUserID(),student.getName(), selectedCamp);
+        Enquiries enquiry = new Enquiries(student.getUserID(), student.getName(), selectedCamp);
         tries = 0;
         while (tries < maxTries) {
             if (enquiryLine.trim().isEmpty()) {
                 System.out.println("Enquiry cannot be blank. Please enter a valid enquiry:");
                 enquiryLine = sc.nextLine();
                 tries++;
-            }
-            else{
+            } else {
                 break;
             }
         }
@@ -73,17 +80,23 @@ public class EnquiriesHandler implements Serializable{
         }
 
         enquiry.setEnquiryString(enquiryLine);
-        student.getEnquiriesList().add(enquiry); // Store the enquiry inside the correspinding student
+        student.getEnquiriesList().add(enquiry); // Store the enquiry inside the corresponding student
         selectedCamp.addEnquiriesList(enquiry); // Store the enquiry inside the corresponding camp
-        System.out.println("You have sucessfully made an enquiry to camp " + selectedCamp.getCampInfo().getCampName());
+        System.out.println("You have successfully made an enquiry to camp " + selectedCamp.getCampInfo().getCampName());
         return;
     }
 
-    public ArrayList<Enquiries> viewEnquiries(Student student) { //Return the enquiries List that can be seen by student
+    /**
+     * Displays the enquiries made by a student.
+     *
+     * @param student The student whose enquiries need to be viewed.
+     * @return The list of enquiries made by the student.
+     */
+    public ArrayList<Enquiries> viewEnquiries(Student student) {
         ArrayList<Enquiries> enquiriesHolder = new ArrayList<>();
         int i = 0;
         ArrayList<Enquiries> enquiriesList = student.getEnquiriesList();
-        if(enquiriesList == null || enquiriesList.isEmpty()){
+        if (enquiriesList == null || enquiriesList.isEmpty()) {
             System.out.println("NOT FOUND!");
             return null;
         }
@@ -94,6 +107,12 @@ public class EnquiriesHandler implements Serializable{
         return enquiriesHolder;
     }
 
+    /**
+     * Allows a student to edit their previously made enquiries.
+     *
+     * @param student  The student editing their enquiries.
+     * @param allCamps The list of all available camps.
+     */
     public void editEnquiries(Student student, ArrayList<Camp> allCamps) {
         // edit an enquiry
         Scanner sc = new Scanner(System.in);
@@ -177,6 +196,13 @@ public class EnquiriesHandler implements Serializable{
         System.out.println("Enquiry updated!");
     }
 
+    /**
+     * Allows a student to delete their previously made enquiries.
+     *
+     * @param student  The student deleting their enquiries.
+     * @param allCamps The list of all available camps.
+     */
+    
     public void deleteEnquiry(Student student,ArrayList<Camp> allCamps) {
         // Delete an enquiry
         Scanner sc = new Scanner(System.in);

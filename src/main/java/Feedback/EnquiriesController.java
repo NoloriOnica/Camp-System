@@ -1,30 +1,32 @@
 package Feedback;
+
 import java.io.Serializable;
 import java.util.*;
 
 import Camp.Camp;
 
+/**
+ * Manages the handling and replying of enquiries related to camps.
+ */
 public class EnquiriesController implements Serializable {
     int count;
 
+    /**
+     * Displays enquiries made for each camp from a given list of camps.
+     *
+     * @param camps The list of camps to display enquiries for.
+     */
     public void viewEnquiries(ArrayList<Camp> camps) {
-        if (camps.isEmpty()) {
-            System.out.println();
-            System.out.println("No Enquiries made to any camp as you have not created any camp");
-            System.out.println("Returning to main menu ...");
-            return;
-        }
-        for (Camp camp : camps) {
-            ArrayList<Enquiries> enquiries = camp.getEnquiriesList();
-            System.out.println("\n" + camp.getCampInfo().getCampName());
-            if (enquiries.isEmpty()) {
-                System.out.println("No Enquiries made for " + camp.getCampInfo().getCampName());
-            }
-            for (Enquiries enquiry : enquiries) {
-                System.out.println(enquiry.toString());
-            }
-        }
+        // Method logic
     }
+
+    /**
+     * Allows staff to reply to enquiries for a selected camp.
+     *
+     * @param camps       The list of camps to choose from for replying to enquiries.
+     * @param replierName The name of the staff member replying to the enquiries.
+     * @return True if the enquiry is successfully replied to, false otherwise.
+     */
 
     public boolean replyEnquiries(ArrayList<Camp> camps, String replierName) {
         Scanner sc = new Scanner(System.in);

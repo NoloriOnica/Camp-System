@@ -8,8 +8,18 @@ import java.util.Scanner;
 import Camp.Camp;
 import CampCommittee.CampCommittee;
 
+
+/**
+ * Manages operations related to suggestions made for camps.
+ */
 public class SuggestionController implements Serializable {
 
+	/**
+     * Displays all suggestions made for each camp.
+     *
+     * @param camps List of camps to display suggestions for.
+     */
+	
     public void viewSuggestion(ArrayList<Camp> camps) {
         if (camps.isEmpty()) {
             System.out.println("\nNo suggestions made to any camp");
@@ -29,6 +39,12 @@ public class SuggestionController implements Serializable {
         }
     }
 
+    /**
+     * Approves a suggestion for a specific camp.
+     *
+     * @param camps List of camps to approve suggestions for.
+     */
+    
     public void approveSuggestion(ArrayList<Camp> camps) {
         if (camps.isEmpty()) {
             System.out.println("\nNo suggestions made to any camp, please check again later");

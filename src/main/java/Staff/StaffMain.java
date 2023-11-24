@@ -7,14 +7,30 @@ import Camp.Camp;
 import Login.User;
 import Login.AllCampToText;
 
+
+/**
+ * Main class handling staff-related operations for camps.
+ */
 public class StaffMain {
 	public static Staff staff;
 	
+	
+	/**
+     * Creates a new staff member instance.
+     *
+     * @param userId    The ID of the staff member.
+     * @param name      The name of the staff member.
+     * @param email     The email of the staff member.
+     * @param faculty   The faculty of the staff member.
+     * @param userType  The type of user (staff).
+     */
 	public static void createStaff(String userId, String name, String email, String faculty, String userType) {
 		staff = new Staff(userId, name, email, faculty, userType);
 	}
 	
-	
+	/**
+     * Main method executing staff-related functionalities for camps.
+     */
 	public static void main(String[] args) {
         ArrayList<Camp> allCamps = AllCampToText.readCampsFromFile(); //get all camp Informations
         //System.out.println(allCamps);

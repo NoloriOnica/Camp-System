@@ -14,6 +14,10 @@ import Feedback.EnquiriesController;
 import Feedback.SuggestionController;
 import Report.GenerateReport;
 
+/**
+ * Represents staff members in the system, extending the User class.
+ */
+
 public class Staff extends User implements Serializable {
 
     private ArrayList<Camp> createdCamps;
@@ -23,6 +27,16 @@ public class Staff extends User implements Serializable {
     private GenerateReport generateReport;
     private static final int MAX_TRIES = 3;
 
+    /**
+     * Creates a Staff instance with specified details.
+     *
+     * @param userID    The ID of the staff member.
+     * @param name      The name of the staff member.
+     * @param email     The email of the staff member.
+     * @param faculty   The faculty of the staff member.
+     * @param userType  The type of user (staff).
+     */
+    
     public Staff(String userID, String name, String email, String faculty, String userType) {
         super(userID, name, email, faculty, userType);
 
@@ -33,6 +47,13 @@ public class Staff extends User implements Serializable {
         this.generateReport = new GenerateReport();
     }
 
+    /**
+     * Creates a camp based on user input and adds it to the list of created camps.
+     *
+     * @param allCamps  The list of all existing camps.
+     * @return          The newly created camp or null if not created.
+     */
+    
     public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is not created
         // Implementation for creating a camp
         // Declaration for the attribute needed for a Camp
@@ -329,6 +350,13 @@ public class Staff extends User implements Serializable {
         return camp;
     }
 
+    /**
+     * Edits a camp from the list of existing camps.
+     *
+     * @param allCamps The list of all existing camps.
+     * @return The edited camp or null if not edited.
+     */
+    
     public Camp editCamp(ArrayList<Camp> allCamps) {
         // Implementation for editing a camp
         // Check if the camp object is in the createdCamps (Created by this staff)
@@ -720,7 +748,14 @@ public class Staff extends User implements Serializable {
                 return null;
         }
     }
-
+    
+    
+    /**
+     * Deletes a camp from the list of existing camps.
+     *
+     * @param allCamps The list of all existing camps.
+     * @return True if the camp is deleted successfully, false otherwise.
+     */
     public boolean deleteCamp(ArrayList<Camp> allCamps) {
         // Implementation for deleting a camp
 
@@ -778,6 +813,10 @@ public class Staff extends User implements Serializable {
         }
     }
 
+    /**
+     * Toggles the visibility of a camp.
+     */
+    
     public void toggleCampVisibility() {
         // Implementation for toggling the CampVisibility
 
@@ -835,37 +874,68 @@ public class Staff extends User implements Serializable {
         }
     }
 
+    /**
+     * View all existing camps.
+     *
+     * @param allCamps The list of all existing camps.
+     */
+    
     public void viewCamps(ArrayList<Camp> allCamps) { // Pass in a global variable that store all camps
         staffViewsCamps.viewCamps(allCamps);
     }
 
+    /**
+     * Retrieves camps created by the staff member.
+     *
+     * @return ArrayList of camps created by the staff.
+     */
     public ArrayList<Camp> viewOwnCamps() {
         return staffViewsCamps.viewOwnCamps(this.createdCamps); // Pass in Staff's attribute as parameter
     }
 
+    /**
+     * Views enquiries related to the camps created by the staff.
+     */
     public void viewEnquiries() {
         enquiriesController.viewEnquiries(this.createdCamps);// Pass in Staff's attribute as parameter
     }
 
+    /**
+     * Replies to enquiries related to the camps created by the staff.
+     */
     public void replyEnquiries() {
         enquiriesController.replyEnquiries(this.createdCamps, super.getName());// Pass in Staff's attribute as parameter
     }
 
+    /**
+     * Views suggestions related to the camps created by the staff.
+     */
     public void viewSuggestion() {
         suggestionController.viewSuggestion(this.createdCamps);// Pass in Staff's attribute as parameter
     }
 
+    /**
+     * Approves suggestions related to the camps created by the staff.
+     */
     public void approveSuggestion() {
         suggestionController.approveSuggestion(this.createdCamps);// Pass in Staff's attribute as parameter
     }
 
+    /**
+     * Generates a report based on camps associated with the staff member.
+     */
     public void generateReport(){
         boolean result = generateReport.reportSelection(this.createdCamps, this);
         if(!result){
             System.out.println("NOT FOUND!");
         }
     }
-    // Below are getters and setters
+    
+    /**
+     * Retrieves the list of camps created by the staff member.
+     *
+     * @return ArrayList of camps created by the staff.
+     */
     public ArrayList<Camp> getCreatedCamp() {
         return this.createdCamps;
     }

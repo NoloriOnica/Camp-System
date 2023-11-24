@@ -4,10 +4,20 @@ import java.io.*;
 import java.util.ArrayList;
 import Camp.Camp;
 
+/**
+ * Handles reading and writing Camp objects to a text file using serialization.
+ */
+
 public class AllCampToText {
 
     private static String filePath = "././././data/camp.txt";
 
+    /**
+     * Writes the ArrayList of Camp objects to a file using serialization.
+     *
+     * @param allCamps The ArrayList of Camp objects to be written to the file.
+     */
+    
     public static void writeCampsToFile(ArrayList<Camp> allCamps) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(allCamps);
@@ -17,6 +27,12 @@ public class AllCampToText {
         }
     }
 
+    /**
+     * Reads ArrayList of Camp objects from a file using deserialization.
+     *
+     * @return The ArrayList of Camp objects read from the file.
+     */
+    
     @SuppressWarnings("unchecked")
 	public static ArrayList<Camp> readCampsFromFile() {
         ArrayList<Camp> allCamps = new ArrayList<>();

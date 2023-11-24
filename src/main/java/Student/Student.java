@@ -12,6 +12,10 @@ import CampCommittee.CampCommittee;
 import Feedback.Enquiries;
 import Feedback.EnquiriesHandler;
 
+
+/**
+ * Represents a student with registration and camp-related functionalities.
+ */
 public class Student extends User implements Serializable {
     private boolean isCampCommittee;
     private Camp committeeForCamp; // field to store the camp for which the student is a committee
@@ -30,6 +34,13 @@ public class Student extends User implements Serializable {
         enquiriesHandler = new EnquiriesHandler();
     }
 
+    /**
+     * Checks for date clashes between the new camp and already registered camps.
+     *
+     * @param newCamp The camp to check for date clashes.
+     * @return True if there are no date clashes, otherwise False.
+     */
+    
     private boolean checkForDateClashes(Camp newCamp) {
         LocalDate newStartDate = newCamp.getCampInfo().getStartDate();
         LocalDate newEndDate = newCamp.getCampInfo().getEndDate();
@@ -48,20 +59,44 @@ public class Student extends User implements Serializable {
         // No date clashes found
         return true;
     }
-
+    
+    /**
+     * Displays the camps registered by the student.
+     *
+     * @return A list of registered camps by the student.
+     */
+    
     public ArrayList<Camp> viewRegisteredCamps() {
         return studentViewsCamps.viewRegisteredCamps(this);
     }
 
+    /**
+     * Views the camps available for the student to register.
+     *
+     * @param allCamps The list of all available camps.
+     * @return The list of camps available for the student to view.
+     */
+    
     public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps) { // Return a list a camp's object that can be viewed by
                                                                  // this student
         return studentViewsCamps.viewCamps(allCamps, this);
     }
 
+    /**
+     * Views the available camp slots for the student.
+     *
+     * @param allCamps The list of all available camps.
+     */
+    
     public void viewCampSlots(ArrayList<Camp> allCamps) {
         studentViewsCamps.viewCampSlots(allCamps, this);
     }
 
+    /**
+     * Registers the student for a camp.
+     *
+     * @param allCamps The list of all available camps.
+     */
     public void registerForCamp(ArrayList<Camp> allCamps) {
         // View available camps
         ArrayList<Camp> availableCamps = viewCamps(allCamps);
@@ -215,6 +250,12 @@ public class Student extends User implements Serializable {
         }
     }
 
+    /**
+     * Withdraws the student from a registered camp.
+     *
+     * @param allCamps The list of all available camps.
+     */
+    
     public void withdrawFromCamp(ArrayList<Camp> allCamps) {
     	Scanner sc = new Scanner(System.in);
     	int tries;             
@@ -315,6 +356,10 @@ public class Student extends User implements Serializable {
         
     }
     
+    /**
+     * Views the camp committee camp the student is a part of.
+     */
+    
     public void viewCampCommitteeCamp() {
     	if (!this.isCampCommittee) {
     		System.out.println("You are not a camp committee member in any camps!!");
@@ -324,44 +369,104 @@ public class Student extends User implements Serializable {
     	}
     }
 
+    /**
+     * Allows the student to make enquiries about camps.
+     *
+     * @param allCamps The list of all available camps.
+     */
+    
     public void makeEnquiries(ArrayList<Camp> allCamps) {
         enquiriesHandler.makeEnquiries(allCamps, this);
     }
 
+    /**
+     * Views the enquiries made by the student.
+     *
+     * @return The list of enquiries made by the student.
+     */
+    
     public ArrayList<Enquiries> viewEnquiries() { // Return the available Enquiries that can be view by student
         return enquiriesHandler.viewEnquiries(this);
     }
 
+    /**
+     * Edits an existing enquiry made by the student.
+     *
+     * @param allCamps The list of all available camps.
+     */
+    
     public void editEnquiry(ArrayList<Camp> allCamps) {
         // edit an enquiry
         enquiriesHandler.editEnquiries(this,allCamps);
     }
 
+    /**
+     * Deletes an enquiry made by the student.
+     *
+     * @param allCamps The list of all available camps.
+     */
+    
     public void deleteEnquiry(ArrayList<Camp> allCamps) {
         enquiriesHandler.deleteEnquiry(this,allCamps);
     }
 
     // Below are Getters and setters
 
+    
+    /**
+     * Checks whether the student is part of a camp committee.
+     *
+     * @return True if the student is part of a camp committee, otherwise False.
+     */
     public boolean isCampCommittee() {
         return isCampCommittee;
     }
 
+    
+    /**
+     * Sets whether the student is part of a camp committee.
+     *
+     * @param campCommittee True if the student is part of a camp committee, otherwise False.
+     */
     public void setCampCommittee(boolean campCommittee) {
         isCampCommittee = campCommittee;
     }
 
+    
+    /**
+     * Retrieves a list of camps in which the student is registered.
+     *
+     * @return The list of camps in which the student is registered.
+     */
     public ArrayList<Camp> getRegisteredCamps() {
         return this.registeredCamps;
     }
 
+    
+    /**
+     * Retrieves the camp for which the student is a committee member.
+     *
+     * @return The camp for which the student is a committee member.
+     */
     public Camp getCommitteeForCamp() {
         return this.committeeForCamp; //not null upon restarting
     }
 
+    
+    /**
+     * Sets the camp for which the student is a committee member.
+     *
+     * @param committeeForCamp The camp for which the student is a committee member.
+     */
     public void setCommitteeForCamp(Camp committeeForCamp) {
         this.committeeForCamp = committeeForCamp;
     }
+    
+    /**
+     * Retrieves a list of enquiries made by the student.
+     *
+     * @return The list of enquiries made by the student.
+     */
 
     public ArrayList<Enquiries> getEnquiriesList() {
         return this.enquiriesList;
