@@ -1,6 +1,5 @@
 package Staff;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -8,7 +7,7 @@ import Camp.Camp;
 import Login.User;
 import Login.AllCampToText;
 
-public class StaffMain implements Serializable{
+public class StaffMain {
 	public static Staff staff;
 	
 	public static void createStaff(String userId, String name, String email, String faculty, String userType) {
