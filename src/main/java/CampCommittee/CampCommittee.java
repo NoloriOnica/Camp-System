@@ -2,31 +2,29 @@ package CampCommittee;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.apache.commons.math3.stat.descriptive.summary.SumOfSquares;
 
 import Camp.Camp;
-import Feedback.Enquiries;
 import Feedback.EnquiriesController;
 import Feedback.Suggestion;
 import Feedback.SuggestionsHandler;
 
-import Report.CampReportGenerator;
+import Report.GenerateReport;
 import Student.Student;
 
 public class CampCommittee extends Student implements Serializable{
     private Camp camp;
 	private int point = 0;
 	private EnquiriesController enquiriesController ;
-	private CampReportGenerator campReportGenerator;
 	private SuggestionsHandler suggestionsHandler;
+	private GenerateReport generateReport;
 
 	public CampCommittee(String userID, String name, String email, String faculty, String userType, Camp camp)
 	{
 		super(userID,name,email,faculty,userType);
         this.camp = camp;
-		enquiriesController = new EnquiriesController();
-		campReportGenerator = new CampReportGenerator();
-		suggestionsHandler = new SuggestionsHandler();
+		this.enquiriesController = new EnquiriesController();
+		this.suggestionsHandler = new SuggestionsHandler();
+		this.generateReport = new GenerateReport();
 	}
 
 	public void viewCampEnquiries() {
@@ -61,13 +59,14 @@ public class CampCommittee extends Student implements Serializable{
 	    suggestionsHandler.deleteSuggestions(this.camp, this);
 	}
 
-	public void generateCampReport() {
+	public void generateReport(){
 		ArrayList<Camp> campList = new ArrayList<>();
 		campList.add(this.camp);
-		this.campReportGenerator.generateCampReport(campList);
-		//based on staff
+		boolean result = this.generateReport.reportSelection(campList, this);
+		if(!result){
+            System.out.println("NOT FOUND!");
+        }
 	}
-
 //Below are all the getters and setters
 
 public int getPoints() {

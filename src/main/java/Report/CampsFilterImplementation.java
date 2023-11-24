@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.io.Serializable;
 import java.time.LocalDate;
-import Report.CampsFilter;
 import Camp.Camp;
 
 public class CampsFilterImplementation implements CampsFilter, Serializable{

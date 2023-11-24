@@ -1,5 +1,6 @@
 package Staff;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import Camp.Camp;
 import Login.User;
 import Login.AllCampToText;
 
-public class StaffMain {
+public class StaffMain implements Serializable{
 	public static Staff staff;
 	
 	public static void createStaff(String userId, String name, String email, String faculty, String userType) {
@@ -44,8 +45,7 @@ public class StaffMain {
             System.out.println("8. Reply to Enquiries");
             System.out.println("9. View Suggestions");
             System.out.println("10. Approve Suggestions");
-            System.out.println("11. Generate Camp Report");
-            System.out.println("12. Generate Performance Report");
+            System.out.println("11. Generate Report");
             System.out.println("0. Exit");
             System.out.println("#################################################");
             System.out.print("\nENTER YOUR CHOICE: ");
@@ -95,19 +95,17 @@ public class StaffMain {
                     staff.approveSuggestion();
                     break;
                 case 11:
-                    staff.generateCampReport();
-                    break;
-                case 12:
-                    staff.generatePerformanceReport();
+                    staff.generateReport();
                     break;
                 case 0:
                     System.out.println("Going back to Login Menu!");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a number between 0 and 12.");
+                    System.out.println("Invalid choice. Please enter a number between 0 and 11.");
                     break;
             
             }
+
             //Update the changes for suggestionn and enquiries
             ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
             ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);

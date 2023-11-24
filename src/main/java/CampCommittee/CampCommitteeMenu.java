@@ -68,7 +68,8 @@ public class CampCommitteeMenu implements Serializable{
 					campCommittee.deleteSuggestions();
 					break;
 				case 5:
-					campCommittee.generateCampReport();
+					//campCommittee.generateCampReport();
+					campCommittee.generateReport();
 					break;
 				case 6:
 					campCommittee.viewCampEnquiries();

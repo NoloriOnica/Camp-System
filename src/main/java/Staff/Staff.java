@@ -12,8 +12,7 @@ import Camp.Camp;
 import Camp.CampVisibility;
 import Feedback.EnquiriesController;
 import Feedback.SuggestionController;
-import Report.CampReportGenerator;
-import Report.PerformanceReportGenerator;
+import Report.GenerateReport;
 
 public class Staff extends User implements Serializable {
 
@@ -21,8 +20,7 @@ public class Staff extends User implements Serializable {
     private EnquiriesController enquiriesController;
     private StaffViewsCamps staffViewsCamps;
     private SuggestionController suggestionController;
-    private CampReportGenerator campReportGenerator;
-    private PerformanceReportGenerator performanceReportGenerator;
+    private GenerateReport generateReport;
     private static final int MAX_TRIES = 3;
 
     public Staff(String userID, String name, String email, String faculty, String userType) {
@@ -32,8 +30,7 @@ public class Staff extends User implements Serializable {
         this.staffViewsCamps = new StaffViewsCamps();
         this.enquiriesController = new EnquiriesController();
         this.suggestionController = new SuggestionController();
-        this.campReportGenerator = new CampReportGenerator();
-        this.performanceReportGenerator = new PerformanceReportGenerator();
+        this.generateReport = new GenerateReport();
     }
 
     public Camp createCamp(ArrayList<Camp> allCamps) { // Pass in ALL CAMPS as parameter //Return Null if the camp is not created
@@ -862,14 +859,12 @@ public class Staff extends User implements Serializable {
         suggestionController.approveSuggestion(this.createdCamps);// Pass in Staff's attribute as parameter
     }
 
-    public void generateCampReport() {
-        this.campReportGenerator.generateCampReport(this.createdCamps);
+    public void generateReport(){
+        boolean result = generateReport.reportSelection(this.createdCamps, this);
+        if(!result){
+            System.out.println("NOT FOUND!");
+        }
     }
-
-    public void generatePerformanceReport() {
-        performanceReportGenerator.generatePerformanceReport(this.createdCamps);
-    }
-
     // Below are getters and setters
     public ArrayList<Camp> getCreatedCamp() {
         return this.createdCamps;

@@ -3,24 +3,22 @@ package Report;
 import java.io.Serializable;
 import java.util.ArrayList;
 import Camp.Camp;
-import CampCommittee.CampCommittee;
+import Camp.CampCommittee;
 import Student.Student;
 
-public class ReportFilterImplementation implements ReportFilter,Serializable {
+public class ReportFilterImplementation implements ReportFilter, Serializable {
     public ArrayList<Camp> filterAttendee(ArrayList<Camp> camplist,String attendeeName){
 
         ArrayList<Camp> filteredCamps = new ArrayList<>();
         for(Camp camp : camplist){
             ArrayList<Student> students = camp.getRegisteredStudents();
-            for (Student student : students) {
-                if (student.getName().equals(attendeeName) && 
-                    (student.getCommitteeForCamp() == null || !student.getCommitteeForCamp().equals(camp))) {
+            for(Student student : students){
+                if(student.getName().equals(attendeeName) && !student.getCommitteeForCamp().equals(camp)){
                     filteredCamps.add(camp);
                 }
             }
         }
-      
-        
+
         return filteredCamps;
     }
 
