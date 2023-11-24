@@ -33,7 +33,7 @@ public class CampCommitteeMenu implements Serializable{
 			System.out.println("2. Make Suggestions");
 			System.out.println("3. Edit Suggestions");
 			System.out.println("4. Delete Suggestions");
-			System.out.println("5. Generate Camp Report");
+			System.out.println("5. Generate Report");
 			System.out.println("6. View Enquiries of Camp");
 			System.out.println("7. Reply Enquiries of Camp");
 			System.out.println("0. Exit");

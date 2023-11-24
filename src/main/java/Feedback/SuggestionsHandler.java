@@ -33,6 +33,7 @@ public class SuggestionsHandler implements Serializable{
         suggestion.setSuggestion(suggestionString);
         //campCommittee.getSuggestionsList().add(suggestion);
 		camp.getSuggestionsList().add(suggestion);
+        System.out.println("Suggestion are made successfully!");
 	}
 	
 	public ArrayList <Suggestion> viewSuggestions(CampCommittee campCommittee) { //return a list of suggestion that a camp committee can view
