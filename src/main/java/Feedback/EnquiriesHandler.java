@@ -17,7 +17,7 @@ public class EnquiriesHandler implements Serializable {
      * Allows a student to make an enquiry for a selected camp from the available camps list.
      *
      * @param allCamps The list of all available camps.
-     * @param student  The student making the enquiry.
+     * @param student  The student who is making the enquiry.
      */
     public void makeEnquiries(ArrayList<Camp> allCamps, Student student) {
         ArrayList<Camp> availableCamps = student.viewCamps(allCamps);
@@ -108,9 +108,9 @@ public class EnquiriesHandler implements Serializable {
     }
 
     /**
-     * Allows a student to edit their previously made enquiries.
+     * Allows students to edit their previously submitted and unanswered enquiries.
      *
-     * @param student  The student editing their enquiries.
+     * @param student  The student who is editing their enquiries.
      * @param allCamps The list of all available camps.
      */
     public void editEnquiries(Student student, ArrayList<Camp> allCamps) {
@@ -163,9 +163,9 @@ public class EnquiriesHandler implements Serializable {
                 break;
             }
         }
-        ArrayList<Enquiries> enquiriiesList = targetCampInAllCamps.getEnquiriesList();
-        for(Enquiries enquiry : enquiriiesList){
-            if(enquiry.getEnquireString().equals(seletedEnquiry.getEnquireString()) && enquiry.getSenderId().equals(student.getUserID())){
+        ArrayList<Enquiries> enquiriesList = targetCampInAllCamps.getEnquiriesList();
+        for(Enquiries enquiry : enquiriesList){
+            if(enquiry.getEnquiryString().equals(seletedEnquiry.getEnquiryString()) && enquiry.getSenderId().equals(student.getUserID())){
                 targetCampInAllCamps.getEnquiriesList().remove(enquiry);
                 break;
             }
@@ -197,9 +197,9 @@ public class EnquiriesHandler implements Serializable {
     }
 
     /**
-     * Allows a student to delete their previously made enquiries.
+     * Allows a student to delete their previously submitted and unanswered enquiries.
      *
-     * @param student  The student deleting their enquiries.
+     * @param student  The student who is deleting their enquiries.
      * @param allCamps The list of all available camps.
      */
     
@@ -259,7 +259,7 @@ public class EnquiriesHandler implements Serializable {
         }
         ArrayList<Enquiries> enquiriesList = targetCampInAllCamps.getEnquiriesList();
         for (Enquiries enquiry : enquiriesList) {
-            if (enquiry.getEnquireString().equals(selectedEnquiry.getEnquireString()) &&
+            if (enquiry.getEnquiryString().equals(selectedEnquiry.getEnquiryString()) &&
                     enquiry.getSenderId().equals(student.getUserID())) {
                 targetCampInAllCamps.getEnquiriesList().remove(enquiry);
                 break;

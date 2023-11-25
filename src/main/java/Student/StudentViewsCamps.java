@@ -174,7 +174,7 @@ public class StudentViewsCamps implements Serializable{
 
     
     /**
-     * Displays camp slots available for a student.
+     * Displays available camp slots for a student.
      *
      * @param allCamps The list of all camps to check slots for.
      * @param student  The student for whom camp slots are viewed.

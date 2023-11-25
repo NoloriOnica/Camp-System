@@ -17,7 +17,7 @@ public class SuggestionsHandler implements Serializable{
      * Creates a suggestion for a specific camp by a camp committee.
      *
      * @param camp           The camp to make a suggestion for.
-     * @param campCommittee  The camp committee making the suggestion.
+     * @param campCommittee  The camp committee who is making the suggestion.
      */
 	
     public void makeSuggestions(Camp camp, CampCommittee campCommittee) {
@@ -75,7 +75,7 @@ public class SuggestionsHandler implements Serializable{
 	}
 
 	/**
-     * Edits a previously made suggestion by a camp committee.
+     * Edit a previously submitted, unapproved suggestion made by a camp committee.
      *
      * @param camp           The camp associated with the suggestions.
      * @param campCommittee  The camp committee who made the suggestions.
@@ -138,7 +138,7 @@ public class SuggestionsHandler implements Serializable{
 	}
 	
 	/**
-     * Deletes a previously made suggestion by a camp committee.
+     * Delete a previously submitted, unapproved suggestion made by a camp committee.
      *
      * @param camp           The camp associated with the suggestions.
      * @param campCommittee  The camp committee who made the suggestions.

@@ -1,6 +1,5 @@
 package Report;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,7 +9,6 @@ import java.awt.Desktop;
 import java.io.File;
 
 import Camp.Camp;
-import Feedback.Enquiries;
 import CampCommittee.CampCommittee;
 
 /**

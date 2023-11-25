@@ -17,14 +17,29 @@ public class EnquiriesController implements Serializable {
      * @param camps The list of camps to display enquiries for.
      */
     public void viewEnquiries(ArrayList<Camp> camps) {
-        // Method logic
+        if (camps.isEmpty()) {
+            System.out.println();
+            System.out.println("No Enquiries made to any camp as you have not created any camp");
+            System.out.println("Returning to main menu ...");
+            return;
+        }
+        for (Camp camp : camps) {
+            ArrayList<Enquiries> enquiries = camp.getEnquiriesList();
+            System.out.println("\n" + camp.getCampInfo().getCampName());
+            if (enquiries.isEmpty()) {
+                System.out.println("No Enquiries made for " + camp.getCampInfo().getCampName());
+            }
+            for (Enquiries enquiry : enquiries) {
+                System.out.println(enquiry.toString());
+            }
+        }
     }
 
     /**
      * Allows staff to reply to enquiries for a selected camp.
      *
      * @param camps       The list of camps to choose from for replying to enquiries.
-     * @param replierName The name of the staff member replying to the enquiries.
+     * @param replierName The name of the staff member who is replying to the enquiries.
      * @return True if the enquiry is successfully replied to, false otherwise.
      */
 

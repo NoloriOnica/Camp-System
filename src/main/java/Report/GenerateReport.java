@@ -18,7 +18,7 @@ public class GenerateReport implements Serializable{
      * Method to select and generate reports based on user input.
      *
      * @param campList The list of camps to generate reports from.
-     * @param user     The user generating the report.
+     * @param user     The user who is generating the report.
      * @return True if the report generation was successful; False otherwise.
      */
 	

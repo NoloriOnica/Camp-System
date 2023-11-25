@@ -44,7 +44,7 @@ public class Enquiries implements Serializable {
      *
      * @return The enquiry string.
      */
-    public String getEnquireString() {
+    public String getEnquiryString() {
         return this.enquiryString;
     }
 
@@ -121,7 +121,7 @@ public class Enquiries implements Serializable {
         if (this.isProcessed && reply != null) {
             line = "To Camp " + belongedCamp.getCampInfo().getCampName() + "\n" + "Enquiry {"
                     + enquiryString + ", sender's name = " + senderName + " }\n" + "Replied by "
-                    + replierName + " Reply: " + reply + ", Reply State = " + isProcessed;
+                    + replierName + ", Reply: " + reply + ", Reply State = " + isProcessed;
         } else {
             line = "To Camp " + belongedCamp.getCampInfo().getCampName() + "\n" + "Enquiry {"
                     + enquiryString + ", sender's name = " + senderName + " } Reply State = " + isProcessed;

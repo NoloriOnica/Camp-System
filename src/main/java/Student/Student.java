@@ -357,7 +357,7 @@ public class Student extends User implements Serializable {
     }
     
     /**
-     * Views the camp committee camp the student is a part of.
+     * Views the camp committee's camp the student is a part of.
      */
     
     public void viewCampCommitteeCamp() {
