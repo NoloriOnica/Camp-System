@@ -2,6 +2,7 @@ package Login;
 
 import java.io.*;	
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -198,9 +199,20 @@ class Database {
 
 	public static void changePassword(String userID) {
 		Scanner scanner = new Scanner(System.in);
-
+		String newPassword = null;
+		
+		boolean notValid = true;
+		
+		do {
 		System.out.print("Enter your new password: ");
-		String newPassword = scanner.nextLine();
+		newPassword = scanner.nextLine();
+		
+		if (newPassword.equals("password")) {
+			System.out.println("You cant use the current password. Change to something new.");
+		}
+		else
+			notValid = false;
+		} while (notValid);
 
 		try {
 			FileInputStream fis = new FileInputStream(DATABASE_FILE);

@@ -34,7 +34,6 @@ public class CampCommitteeMenu implements Serializable {
     /**
      * Main menu for Camp Committee functionalities.
      *
-     * @param args      Arguments passed to the program.
      * @param allCamps  List of all camps available.
      */
     public static void main(String[] args, ArrayList<Camp> allCamps) {
