@@ -9,7 +9,6 @@ import Camp.Camp;
  * Manages the handling and replying of enquiries related to camps.
  */
 public class EnquiriesController implements Serializable {
-    int count;
 
     /**
      * Displays enquiries made for each camp from a given list of camps.
@@ -130,7 +129,7 @@ public class EnquiriesController implements Serializable {
                 sc.nextLine(); // Clear the buffer
             }
 
-            count = maxTries - tries - 1;
+            int count = maxTries - tries - 1;
             if (count > 0) {
                 System.out.println("Try again. " + count + " tries remaining.");
             }
