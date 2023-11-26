@@ -74,6 +74,6 @@ public class Suggestion implements Serializable {
      * @return A string displaying the suggestion text, sender's name, and approval state.
      */
     public String toString() {
-        return "Suggestion {" + this.suggestionString + ", name = " + this.senderName + "} Approval State = " + this.isApproved;
+        return "Suggestion {" + this.suggestionString + ",Sender name = " + this.senderName + "} Approval State = " + this.isApproved;
     }
 }

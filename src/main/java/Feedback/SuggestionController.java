@@ -28,7 +28,7 @@ public class SuggestionController implements Serializable {
         }
         for (Camp camp : camps) {
             ArrayList<Suggestion> suggestions = camp.getSuggestionsList();
-            System.out.println("\n" + camp.getCampInfo().getCampName());
+            System.out.println("\nCamp: " + camp.getCampInfo().getCampName());
             if (suggestions.isEmpty()) {
                 System.out.println("No Suggestions made for " + camp.getCampInfo().getCampName());
             } else {
