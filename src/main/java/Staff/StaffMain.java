@@ -67,10 +67,10 @@ public class StaffMain {
 
             try {
                 choice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+                scanner.nextLine(); 
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.nextLine(); // Consume the invalid input to prevent an infinite loop
+                scanner.nextLine();
                 choice = -1;
                 continue;
             }
@@ -121,7 +121,6 @@ public class StaffMain {
             
             }
 
-            //Update the changes for suggestionn and enquiries
             ArrayList<Camp> staffCreatedCamps = staff.getCreatedCamp();
             ArrayList<Camp> newAllCamps = new ArrayList<>(allCamps);
             for (Camp camp : allCamps) {

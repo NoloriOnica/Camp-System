@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Class for handling user data and authentication using Excel files.
  */
 
-class Database {
+public class Database {
 	private static final String DATABASE_FILE = "././././data/database.xlsx";
 	private static final String STUDENTLIST = "././././data/student_list.xlsx";
 	private static final String STAFFLIST = "././././data/staff_list.xlsx";
@@ -167,7 +167,6 @@ class Database {
 
 		int existingRows = sheet.getPhysicalNumberOfRows();
 
-		// Calculate the starting row for new data
 		int rowNum = existingRows;
 
 		for (List<String> entry : userData) {
@@ -226,7 +225,7 @@ class Database {
 
 				if (userIDCell.getStringCellValue().equals(userID)) {
 					passwordCell.setCellValue(newPassword);
-					break; // Exit the loop after finding the user
+					break; 
 				}
 			}
 

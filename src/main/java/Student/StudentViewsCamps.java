@@ -67,7 +67,6 @@ public class StudentViewsCamps implements Serializable{
         if (tries == maxTries) {
             System.out.println("You've reached the maximum number of tries. Please try again later.");
             return null;
-            // Handle accordingly, for example, return null or perform some other action.
         }
 
         sc.nextLine();// consume next line
@@ -92,7 +91,6 @@ public class StudentViewsCamps implements Serializable{
             if (tries == maxTries) {
                 System.out.println("You've reached the maximum number of tries. Please try again later.");
                 return null;
-                // Handle accordingly, for example, return null or perform some other action.
             }
         }
 

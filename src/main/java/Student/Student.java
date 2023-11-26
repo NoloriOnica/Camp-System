@@ -77,8 +77,7 @@ public class Student extends User implements Serializable {
      * @return The list of camps available for the student to view.
      */
     
-    public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps) { // Return a list a camp's object that can be viewed by
-                                                                 // this student
+    public ArrayList<Camp> viewCamps(ArrayList<Camp> allCamps) { 
         return studentViewsCamps.viewCamps(allCamps, this);
     }
 
@@ -114,7 +113,7 @@ public class Student extends User implements Serializable {
             try {
                 System.out.println("Enter the index of the camp you want to register for:");
                 campIndex = sc.nextInt() - 1;
-                sc.nextLine(); // Consume the newline character
+                sc.nextLine(); 
 
                 if (campIndex >= 0 && campIndex < availableCamps.size()) {
                     break; // Valid index, break the loop
@@ -124,7 +123,7 @@ public class Student extends User implements Serializable {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
-                sc.next(); // Consume the invalid input to prevent an infinite loop
+                sc.next(); 
                 tries++;
             }
         }

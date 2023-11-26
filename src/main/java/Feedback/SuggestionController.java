@@ -122,7 +122,7 @@ public class SuggestionController implements Serializable {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid integer.");
-                sc.nextLine(); // Clear the buffer
+                sc.nextLine(); 
             }
 
             if (tries < maxTries - 1) {

@@ -180,7 +180,7 @@ public class Staff extends User implements Serializable {
         tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select Camp User Group");
-            System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS\n6) ADM");
+            System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS\n6) ADM\n7) EEE");
             try {
                 int index = sc.nextInt();
                 sc.nextLine(); // Consume the newline character after reading the integer
@@ -204,6 +204,9 @@ public class Staff extends User implements Serializable {
                     case 6:
                         campUserGroup = "ADM";
                         break;
+                    case 7:
+                    	campUserGroup = "EEE";
+                    	break;
                     default:
                         System.out.println("Invalid input, please enter a number between 1 and 5.");
                         tries++;
@@ -570,7 +573,7 @@ public class Staff extends User implements Serializable {
                 tries = 0;
                 while (tries < MAX_TRIES) {
                     System.out.println("Select New Camp User Group");
-                    System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS\n6) ADM");
+                    System.out.println("1) Whole NTU\n2) SCSE\n3) NBS\n4) SPMS\n5) SSS\n6) ADM\n7) EEE");
                     try {
                         index = sc.nextInt();
                         sc.nextLine(); // Consume the newline character after reading the integer
@@ -594,6 +597,9 @@ public class Staff extends User implements Serializable {
                             case 6:
                                 selectedCamp.getCampInfo().setCampUserGroup("ADM");
                                 break;
+                            case 7:
+                            	selectedCamp.getCampInfo().setCampUserGroup("EEE");
+                            	break;
                             default:
                                 System.out.println("Invalid input, please enter a number between 1 and 5.");
                                 tries++;
