@@ -101,7 +101,7 @@ public class Student extends User implements Serializable {
         // View available camps
         ArrayList<Camp> availableCamps = viewCamps(allCamps);
         if(availableCamps == null || availableCamps.isEmpty()){
-            System.out.println("There are no available camps.");
+            System.out.println("There is no available camp to register.");
             return;
         }
             
