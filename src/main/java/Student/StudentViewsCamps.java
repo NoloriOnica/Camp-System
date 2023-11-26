@@ -15,8 +15,6 @@ import Camp.Camp;
  * Handles operations related to viewing camps for a student.
  */
 public class StudentViewsCamps implements Serializable{
-
-    private CampFilter campFilter;
     
     /**
      * Checks if a camp is visible to a student based on its visibility and user group.
@@ -42,6 +40,7 @@ public class StudentViewsCamps implements Serializable{
     
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
+        CampFilter campFilter;
         int choice = 0, index = 0, maxTries = 3;
         Scanner sc = new Scanner(System.in);
         int tries;
@@ -76,7 +75,7 @@ public class StudentViewsCamps implements Serializable{
             for (tries = 0; tries < maxTries; tries++) {
                 try {
                     System.out.println("Choose the filter types?");
-                    System.out.println("1) Display the registration closing date prior to the entered date\n2) By Location");
+                    System.out.println("1) By Date Before Registration Closed Date\n2) By Location");
                     choice = sc.nextInt();
 
                     if (choice == 2 || choice == 1) {
@@ -99,12 +98,12 @@ public class StudentViewsCamps implements Serializable{
 
         switch (choice) {
             case 1:
-                this.campFilter = new ByDate();
-                filteredCamps = this.campFilter.applyCampFilter(campList);
+                campFilter = new ByDate();
+                filteredCamps = campFilter.applyCampFilter(campList);
                 break;
             case 2:
-                this.campFilter = new ByLocation();
-                filteredCamps = this.campFilter.applyCampFilter(campList);
+                campFilter = new ByLocation();
+                filteredCamps = campFilter.applyCampFilter(campList);
                 break;
             case 3:
                 filteredCamps = CampFilter.sortByAlphabet(campList);

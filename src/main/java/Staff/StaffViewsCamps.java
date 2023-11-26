@@ -16,8 +16,6 @@ import Student.Student;
  * Represents staff viewing functionality for camps.
  */
 public class StaffViewsCamps implements Serializable{
-    private CampFilter campFilter;
-
     /**
      * Filters the camp list based on user input.
      *
@@ -26,6 +24,7 @@ public class StaffViewsCamps implements Serializable{
      */
     private ArrayList<Camp> filterSelection(ArrayList<Camp> campList) {
         ArrayList<Camp> filteredCamps = null;
+        CampFilter campFilter;
         int choice = 0, index = 0, maxTries = 3;
         Scanner sc = new Scanner(System.in);
         int tries;
@@ -83,12 +82,12 @@ public class StaffViewsCamps implements Serializable{
 
         switch (choice) {
             case 1:
-                this.campFilter = new ByDate();
-                filteredCamps = this.campFilter.applyCampFilter(campList);
+                campFilter = new ByDate();
+                filteredCamps = campFilter.applyCampFilter(campList);
                 break;
             case 2:
-                this.campFilter = new ByLocation();
-                filteredCamps = this.campFilter.applyCampFilter(campList);
+                campFilter = new ByLocation();
+                filteredCamps = campFilter.applyCampFilter(campList);
                 break;
             case 3:
                 filteredCamps = CampFilter.sortByAlphabet(campList);
