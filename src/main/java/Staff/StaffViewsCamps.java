@@ -9,6 +9,7 @@ import Camp.Camp;
 import CampFilter.ByDate;
 import CampFilter.ByLocation;
 import CampFilter.CampFilter;
+import Student.Student;
 
 
 /**
@@ -124,9 +125,10 @@ public class StaffViewsCamps implements Serializable{
      * Displays and returns a list of filtered/sorted camps owned by the staff.
      *
      * @param campList The list of camps to display.
+     * @param showParticipant Whether to show the attendee and Camp committee of the camp
      * @return The list of filtered/sorted camps or null if not found.
      */
-    public ArrayList<Camp> viewOwnCamps(ArrayList<Camp> campList) { //return a list of sortedfiltercamp
+    public ArrayList<Camp> viewOwnCamps(ArrayList<Camp> campList, boolean showParticipant) { //return a list of sortedfiltercamp
         ArrayList<Camp> filteredSortedCamps = filterSelection(campList);
         if (filteredSortedCamps == null || filteredSortedCamps.isEmpty()) {
             System.out.println("NOT FOUND");
@@ -134,10 +136,30 @@ public class StaffViewsCamps implements Serializable{
         }
         int i = 1;
         for (Camp camp : filteredSortedCamps) {
-            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
+            System.out.println("(" + (i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
                     + camp.getCampInfo().getStartDate()
                     + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
                     + camp.getCampInfo().getStaffInChargeID());
+            ArrayList <Student> studentList = camp.getRegisteredStudents();
+
+            if(!showParticipant) continue;
+
+            if(studentList == null || studentList.isEmpty()){
+                System.out.println("No student register for this camp.");
+                continue;
+            }
+            int j = 1;
+            System.out.println("Registered Student(s): ");
+            for(Student student: studentList){
+                if(student.getCommitteeForCamp()!=null && student.getCommitteeForCamp().equals(camp)){
+                    System.out.println(
+                        (j++) + ". " + student.getName() + ", Faculty: " + student.getFaculty().toString() + ", Role: Camp Committee\n");
+                }else{
+                    System.out.println(
+                        (j++) + ". " + student.getName() + ", Faculty: " + student.getFaculty().toString() + ", Role: Attendee\n");
+                }
+            }
+            System.out.println("");
         }
 
         return filteredSortedCamps;

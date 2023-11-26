@@ -370,7 +370,7 @@ public class Staff extends User implements Serializable {
 
         Scanner sc = new Scanner(System.in);
         int index = 0;
-        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps(false);
         int tries = 0;
         while (tries < MAX_TRIES) {
             System.out.println("Select which camp you want to edit:");
@@ -772,7 +772,7 @@ public class Staff extends User implements Serializable {
 
         Scanner sc = new Scanner(System.in);
         int index = 0;
-        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps(false);
 
         // Validate user input
         int tries = 0;
@@ -833,7 +833,7 @@ public class Staff extends User implements Serializable {
 
         Scanner sc = new Scanner(System.in);
         int index = -1;
-        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps();
+        ArrayList<Camp> filterSortedCreatedCamp = this.viewOwnCamps(false);
         
         if(filterSortedCreatedCamp == null || filterSortedCreatedCamp.isEmpty()) {
             return;
@@ -891,12 +891,13 @@ public class Staff extends User implements Serializable {
     }
 
     /**
-     * Retrieves camps created by the staff member.
+     * View the camps created by the staff.
      *
+     * @param showParticipant Whether to show the attendee and Camp committee of the camp
      * @return ArrayList of camps created by the staff.
      */
-    public ArrayList<Camp> viewOwnCamps() {
-        return staffViewsCamps.viewOwnCamps(this.createdCamps); // Pass in Staff's attribute as parameter
+    public ArrayList<Camp> viewOwnCamps(boolean showParticipant) {
+        return staffViewsCamps.viewOwnCamps(this.createdCamps, showParticipant); // Pass in Staff's attribute as parameter
     }
 
     /**

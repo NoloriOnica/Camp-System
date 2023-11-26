@@ -95,7 +95,7 @@ public class StaffMain {
                     staff.viewCamps(allCamps);
                     break;
                 case 6:
-                    staff.viewOwnCamps();
+                    staff.viewOwnCamps(true);
                     break;
                 case 7:
                     staff.viewEnquiries();
