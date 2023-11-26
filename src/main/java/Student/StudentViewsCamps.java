@@ -76,7 +76,7 @@ public class StudentViewsCamps implements Serializable{
             for (tries = 0; tries < maxTries; tries++) {
                 try {
                     System.out.println("Choose the filter types?");
-                    System.out.println("1) By Date Before Registration Closed Date\n2) By Location");
+                    System.out.println("1) Display the registration closing date prior to the entered date\n2) By Location");
                     choice = sc.nextInt();
 
                     if (choice == 2 || choice == 1) {
