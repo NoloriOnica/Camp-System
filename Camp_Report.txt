@@ -1,13 +1,8 @@
-Camp Name: STARS
-Start Date: 2024-01-01
-End Date: 2024-01-03
-Registration Closing Date: 2023-12-12
-User Group: Whole NTU
-Camp Visibility: ON
-Location: asdasd
-Total Slots: 39
-Camp Committee Slot: 9
-Description: asdasd
-Staff In Charge ID: SANTO
-1) VASANTH Faculty: SCSE Role: Camp Committee
-
+Camp: SANTO
+1) To Camp SANTO
+Enquiry {POIJIJI, sender's name = VASANTH }
+Replied by Santosh, Reply: PPUHUHUH, Reply State = true
+Camp: SSS gathering
+No enquiry available
+Camp: happy
+No enquiry available
