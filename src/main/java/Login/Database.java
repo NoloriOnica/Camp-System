@@ -208,7 +208,7 @@ class Database {
 		newPassword = scanner.nextLine();
 		
 		if (newPassword.equals("password")) {
-			System.out.println("You cant use the current password. Change to something new.");
+			System.out.println("You cant use this password! Change to something new.");
 		}
 		else
 			notValid = false;

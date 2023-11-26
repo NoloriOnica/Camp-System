@@ -55,8 +55,11 @@ public class Login {
 		while (loginChoice != 0) {
 			
 			if (password.equals("password")&& passwordValid  == false) {
-				loginChoice = 1;
-				System.out.println("This is your first time logging in. You have to change your password!");
+				loginChoice = 1; //Just a placeholder
+				System.out.println("\nThis is your first time logging in. You have to change your password!");
+				Database.changePassword(curUser.getUserID());
+				System.out.println("\nRELOGIN TO VERIFY!");
+				main(args);
 			}
 
 			else {
@@ -65,6 +68,7 @@ public class Login {
 				System.out.println("0. Log Out");
 				System.out.println("1. Change Password");
 				System.out.println("2. Go to Main Menu");
+				System.out.println("3. RELOGIN");
 				System.out.println("#################################################");
 				System.out.print("\nENTER YOUR CHOICE: ");
 				loginChoice = scanner.nextInt();
@@ -76,7 +80,6 @@ public class Login {
 				break;
 			case 1:
 				Database.changePassword(curUser.getUserID());
-				passwordValid = true;
 				break;
 			case 2:
 				if (curUser.getUserType().equalsIgnoreCase("t")){
@@ -93,6 +96,9 @@ public class Login {
 				}
 				break;
 
+			case 3:
+				main(args);
+				
 			default:
 				System.out.println("Invalid choice.");
 			}
