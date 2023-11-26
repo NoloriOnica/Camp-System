@@ -2,3 +2,5 @@ Camp: Winter Camp
 No enquiry available
 Camp: Summer Camp
 No enquiry available
+Camp: NTUCamp
+No enquiry available

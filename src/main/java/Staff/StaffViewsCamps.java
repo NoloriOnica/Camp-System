@@ -113,10 +113,13 @@ public class StaffViewsCamps implements Serializable{
         }
         int i = 1;
         for (Camp camp : filteredSortedCamps) {
-            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName() + ", Start Date: "
-                    + camp.getCampInfo().getStartDate()
-                    + ", Location: " + camp.getCampInfo().getLocation() + ", Created by Staff "
-                    + camp.getCampInfo().getStaffInChargeID());
+            System.out.println((i++) + ") Camp: " + camp.getCampInfo().getCampName()
+            		+ ", Camp User Group: " + camp.getCampInfo().getCampUserGroup()
+            		+ ", Start Date: " + camp.getCampInfo().getStartDate()
+                    + ", Location: " + camp.getCampInfo().getLocation() 
+                    + ", Created by Staff: " + camp.getCampInfo().getStaffInChargeID()
+                    + ", Visibility: " + camp.getCampInfo().getCampVisibility()
+                    );
         }
     }
 
@@ -144,7 +147,7 @@ public class StaffViewsCamps implements Serializable{
             if(!showParticipant) continue;
 
             if(studentList == null || studentList.isEmpty()){
-                System.out.println("No student register for this camp.");
+                System.out.println("No student register for this camp.\n");
                 continue;
             }
             int j = 1;
@@ -158,8 +161,9 @@ public class StaffViewsCamps implements Serializable{
                         (j++) + ". " + student.getName() + ", Faculty: " + student.getFaculty().toString() + ", Role: Attendee\n");
                 }
             }
-            System.out.println("");
+            
         }
+        System.out.println("");
 
         return filteredSortedCamps;
     }

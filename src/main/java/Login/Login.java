@@ -59,7 +59,7 @@ public class Login {
 				System.out.println("\nThis is your first time logging in. You have to change your password!");
 				Database.changePassword(curUser.getUserID());
 				System.out.println("\nRELOGIN TO VERIFY!");
-				main(args);
+				return;
 			}
 
 			else {
@@ -68,7 +68,7 @@ public class Login {
 				System.out.println("0. Log Out");
 				System.out.println("1. Change Password");
 				System.out.println("2. Go to Main Menu");
-				System.out.println("3. RELOGIN");
+				//System.out.println("3. RELOGIN");
 				System.out.println("#################################################");
 				System.out.print("\nENTER YOUR CHOICE: ");
 				loginChoice = scanner.nextInt();
@@ -96,8 +96,8 @@ public class Login {
 				}
 				break;
 
-			case 3:
-				main(args);
+			//case 3:
+			//	main(args);
 				
 			default:
 				System.out.println("Invalid choice.");
