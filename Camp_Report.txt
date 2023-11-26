@@ -1,8 +1,0 @@
-Camp: SANTO
-1) To Camp SANTO
-Enquiry {POIJIJI, sender's name = VASANTH }
-Replied by Santosh, Reply: PPUHUHUH, Reply State = true
-Camp: SSS gathering
-No enquiry available
-Camp: happy
-No enquiry available
